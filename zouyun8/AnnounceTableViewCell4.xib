@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnnounceTableViewCell4" rowHeight="152" id="tXU-ch-v8b" customClass="AnnounceTableViewCell4">
+            <rect key="frame" x="0.0" y="0.0" width="372" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tXU-ch-v8b" id="fu2-tr-VrG">
+                <rect key="frame" x="0.0" y="0.0" width="372" height="149"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aal-wQ-K02">
+                        <rect key="frame" x="8" y="8" width="116" height="133"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="非常抱歉～" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPp-R8-17b">
+                        <rect key="frame" x="151" y="51" width="71" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="71" id="TYX-dG-pYR"/>
+                            <constraint firstAttribute="height" constant="17" id="VQy-jg-EpN"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="系统正在计算，等待开奖" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luI-1Q-Bld">
+                        <rect key="frame" x="151" y="71" width="168" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="Xd3-oM-aGI"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O8I-ya-MN3">
+                        <rect key="frame" x="151" y="91" width="71" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="W4H-k8-pC9"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天堂三折山呵呵上大街上" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uG3-Rj-xm6">
+                        <rect key="frame" x="151" y="18" width="203" height="25"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="aal-wQ-K02" firstAttribute="bottom" secondItem="fu2-tr-VrG" secondAttribute="bottomMargin" id="1hF-sI-h8c"/>
+                    <constraint firstItem="O8I-ya-MN3" firstAttribute="top" secondItem="luI-1Q-Bld" secondAttribute="bottom" constant="3" id="26z-bb-fSp"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="O8I-ya-MN3" secondAttribute="bottom" constant="33" id="3cy-y1-MlA"/>
+                    <constraint firstItem="uG3-Rj-xm6" firstAttribute="top" secondItem="fu2-tr-VrG" secondAttribute="topMargin" constant="10" id="6LF-00-Lvz"/>
+                    <constraint firstItem="luI-1Q-Bld" firstAttribute="top" secondItem="hPp-R8-17b" secondAttribute="bottom" constant="3" id="AE4-6O-swQ"/>
+                    <constraint firstItem="uG3-Rj-xm6" firstAttribute="leading" secondItem="aal-wQ-K02" secondAttribute="trailing" constant="27" id="Aah-8M-e1s"/>
+                    <constraint firstItem="aal-wQ-K02" firstAttribute="leading" secondItem="fu2-tr-VrG" secondAttribute="leadingMargin" id="N09-1A-8mL"/>
+                    <constraint firstItem="uG3-Rj-xm6" firstAttribute="leading" secondItem="hPp-R8-17b" secondAttribute="leading" id="RY3-eU-2fU"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="luI-1Q-Bld" secondAttribute="trailing" constant="45" id="cWm-xZ-9so"/>
+                    <constraint firstItem="aal-wQ-K02" firstAttribute="top" secondItem="fu2-tr-VrG" secondAttribute="topMargin" id="caN-5o-AqZ"/>
+                    <constraint firstItem="hPp-R8-17b" firstAttribute="trailing" secondItem="O8I-ya-MN3" secondAttribute="trailing" id="pPI-iZ-5DQ"/>
+                    <constraint firstItem="hPp-R8-17b" firstAttribute="leading" secondItem="luI-1Q-Bld" secondAttribute="leading" id="pS8-RA-iJ4"/>
+                    <constraint firstItem="hPp-R8-17b" firstAttribute="centerX" secondItem="fu2-tr-VrG" secondAttribute="centerX" id="sCt-yx-ZAT"/>
+                    <constraint firstItem="hPp-R8-17b" firstAttribute="top" secondItem="uG3-Rj-xm6" secondAttribute="bottom" constant="8" symbolic="YES" id="uIn-DR-W2d"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="uG3-Rj-xm6" secondAttribute="trailing" constant="10" id="uKL-Ne-121"/>
+                    <constraint firstItem="luI-1Q-Bld" firstAttribute="leading" secondItem="O8I-ya-MN3" secondAttribute="leading" id="yEr-TI-z6h"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="image" destination="aal-wQ-K02" id="YBY-g1-Vx7"/>
+                <outlet property="name" destination="uG3-Rj-xm6" id="upE-GI-09D"/>
+            </connections>
+            <point key="canvasLocation" x="253" y="-42"/>
+        </tableViewCell>
+    </objects>
+</document>

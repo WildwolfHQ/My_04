@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="cb3-Yp-pca">
+            <rect key="frame" x="0.0" y="0.0" width="285" height="45"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKw-Uk-fLw">
+                    <rect key="frame" x="147.5" y="8" width="127.5" height="29"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="加入清单">
+                        <color key="titleColor" red="1" green="0.2352600249" blue="0.19669844819999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vyU-uK-5K6">
+                    <rect key="frame" x="10" y="8" width="127.5" height="29"/>
+                    <color key="backgroundColor" red="1" green="0.23526002493499076" blue="0.19669844819349691" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="立即参与"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="vyU-uK-5K6" firstAttribute="width" secondItem="cb3-Yp-pca" secondAttribute="width" multiplier="0.5" constant="-15" id="1rj-yW-DaZ"/>
+                <constraint firstItem="AKw-Uk-fLw" firstAttribute="top" secondItem="cb3-Yp-pca" secondAttribute="top" constant="8" id="CF5-la-RS6"/>
+                <constraint firstAttribute="trailing" secondItem="AKw-Uk-fLw" secondAttribute="trailing" constant="10" id="Ghc-ZN-7x6"/>
+                <constraint firstAttribute="bottom" secondItem="AKw-Uk-fLw" secondAttribute="bottom" constant="8" id="ZQj-Bc-815"/>
+                <constraint firstItem="AKw-Uk-fLw" firstAttribute="width" secondItem="cb3-Yp-pca" secondAttribute="width" multiplier="0.5" constant="-15" id="jJp-x1-EXn"/>
+                <constraint firstItem="vyU-uK-5K6" firstAttribute="top" secondItem="cb3-Yp-pca" secondAttribute="top" constant="8" id="jzd-Pt-1R6"/>
+                <constraint firstAttribute="bottom" secondItem="vyU-uK-5K6" secondAttribute="bottom" constant="8" id="kEg-S9-stF"/>
+                <constraint firstItem="vyU-uK-5K6" firstAttribute="centerY" secondItem="cb3-Yp-pca" secondAttribute="centerY" id="uCN-Mn-6zc"/>
+                <constraint firstItem="vyU-uK-5K6" firstAttribute="leading" secondItem="cb3-Yp-pca" secondAttribute="leading" constant="10" id="vXe-QI-15N"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="314.5" y="112.5"/>
+        </view>
+    </objects>
+</document>

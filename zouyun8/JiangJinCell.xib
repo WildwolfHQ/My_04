@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="JiangJinCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKU-Fk-10S" userLabel="时间">
+                        <rect key="frame" x="43" y="15" width="27" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1Q-rS-rRJ" userLabel="渠道">
+                        <rect key="frame" x="147" y="16" width="27" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdn-IV-KDr" userLabel="获得/支出">
+                        <rect key="frame" x="267" y="16" width="27" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="qdn-IV-KDr" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" multiplier="1.75" id="2vu-p3-hxF"/>
+                    <constraint firstItem="NKU-Fk-10S" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" multiplier="0.35" id="7mS-6K-IBV"/>
+                    <constraint firstItem="x1Q-rS-rRJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="caN-Nw-Edo"/>
+                    <constraint firstItem="qdn-IV-KDr" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="gHl-or-cza"/>
+                    <constraint firstItem="x1Q-rS-rRJ" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="lJ7-QY-cfy"/>
+                    <constraint firstItem="NKU-Fk-10S" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="rnU-jM-w9j"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="desc" destination="x1Q-rS-rRJ" id="cR3-0D-Vu7"/>
+                <outlet property="getOrPay" destination="qdn-IV-KDr" id="0fd-2o-biq"/>
+                <outlet property="time" destination="NKU-Fk-10S" id="Dk7-qV-92L"/>
+            </connections>
+            <point key="canvasLocation" x="110" y="197"/>
+        </tableViewCell>
+    </objects>
+</document>

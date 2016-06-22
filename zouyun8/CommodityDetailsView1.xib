@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CommodityDetailsView1">
+            <rect key="frame" x="0.0" y="0.0" width="606" height="127"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="华为 HUAWEI 全网通4G手机 钛银灰" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ei1-gZ-qnl">
+                    <rect key="frame" x="8" y="8" width="590" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="751" text="全新华为，强势回归，全网低价，拼购更实惠！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3qt-eT-D2C">
+                    <rect key="frame" x="8" y="33" width="590" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="原价：4388 元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69t-h3-2Cj">
+                    <rect key="frame" x="8" y="60" width="590" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.94185618459999998" green="0.11831960010000001" blue="0.15459885409999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVy-Y1-PLr">
+                    <rect key="frame" x="8" y="83" width="590" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="EE9-Vw-GYz"/>
+                    </constraints>
+                    <state key="normal" image="tuwenxiangqing"/>
+                    <connections>
+                        <action selector="tuwenxiangqingButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="fyc-BB-HXz"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="fVy-Y1-PLr" firstAttribute="centerX" secondItem="69t-h3-2Cj" secondAttribute="centerX" id="7v4-0H-RZN"/>
+                <constraint firstAttribute="bottom" secondItem="69t-h3-2Cj" secondAttribute="bottom" id="FYw-HE-qVn"/>
+                <constraint firstItem="ei1-gZ-qnl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="IlJ-00-I2A"/>
+                <constraint firstItem="3qt-eT-D2C" firstAttribute="top" secondItem="ei1-gZ-qnl" secondAttribute="bottom" constant="8" id="KxT-QZ-SWK"/>
+                <constraint firstAttribute="trailing" secondItem="ei1-gZ-qnl" secondAttribute="trailing" constant="8" id="Ntd-H8-NrV"/>
+                <constraint firstItem="69t-h3-2Cj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="QcY-sI-AIC"/>
+                <constraint firstAttribute="bottom" secondItem="fVy-Y1-PLr" secondAttribute="bottom" constant="9" id="R3G-qs-lyc"/>
+                <constraint firstItem="3qt-eT-D2C" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="SXh-bh-Ghj"/>
+                <constraint firstItem="ei1-gZ-qnl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Vz5-pT-pwD"/>
+                <constraint firstItem="69t-h3-2Cj" firstAttribute="top" secondItem="3qt-eT-D2C" secondAttribute="bottom" constant="12" id="XQL-sC-hr9"/>
+                <constraint firstItem="fVy-Y1-PLr" firstAttribute="top" secondItem="69t-h3-2Cj" secondAttribute="bottom" constant="3" id="fz0-jj-eoP"/>
+                <constraint firstAttribute="trailing" secondItem="3qt-eT-D2C" secondAttribute="trailing" constant="8" id="jdw-yM-MdF"/>
+                <constraint firstItem="69t-h3-2Cj" firstAttribute="top" secondItem="3qt-eT-D2C" secondAttribute="bottom" constant="12" id="pE6-18-GNU"/>
+                <constraint firstItem="3qt-eT-D2C" firstAttribute="top" secondItem="ei1-gZ-qnl" secondAttribute="bottom" constant="8" id="rHd-JK-15s"/>
+                <constraint firstItem="fVy-Y1-PLr" firstAttribute="top" secondItem="69t-h3-2Cj" secondAttribute="bottom" constant="3" id="sFZ-lF-SW8"/>
+                <constraint firstItem="fVy-Y1-PLr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="trX-sc-UWO"/>
+                <constraint firstAttribute="trailing" secondItem="69t-h3-2Cj" secondAttribute="trailing" constant="8" id="uyf-Kd-dDr"/>
+                <constraint firstAttribute="bottom" secondItem="fVy-Y1-PLr" secondAttribute="bottom" constant="9" id="vH1-V2-Ngh"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="FYw-HE-qVn"/>
+                    <exclude reference="sFZ-lF-SW8"/>
+                    <exclude reference="vH1-V2-Ngh"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="fuBiaoTi" destination="3qt-eT-D2C" id="FQL-xP-zT4"/>
+                <outlet property="name" destination="ei1-gZ-qnl" id="7Oz-vD-zGo"/>
+                <outlet property="yuanjia" destination="69t-h3-2Cj" id="cJO-aw-Ymt"/>
+            </connections>
+            <point key="canvasLocation" x="-26" y="477.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="tuwenxiangqing" width="600" height="66"/>
+    </resources>
+</document>

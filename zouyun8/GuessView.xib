@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="IED-Ma-Niw">
+            <rect key="frame" x="0.0" y="0.0" width="131" height="185"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pV-vA-dd3">
+                    <rect key="frame" x="44" y="156" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Rn-3d-pwM">
+                    <rect key="frame" x="8" y="0.0" width="115" height="148"/>
+                    <color key="backgroundColor" red="0.33725490200000002" green="0.74901960779999999" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="1pV-vA-dd3" secondAttribute="bottom" constant="8" id="9Ji-Wy-2r3"/>
+                <constraint firstItem="1pV-vA-dd3" firstAttribute="top" secondItem="3Rn-3d-pwM" secondAttribute="bottom" constant="8" id="CEQ-1t-lvb"/>
+                <constraint firstAttribute="trailing" secondItem="3Rn-3d-pwM" secondAttribute="trailing" constant="8" id="LAl-au-17m"/>
+                <constraint firstItem="3Rn-3d-pwM" firstAttribute="leading" secondItem="IED-Ma-Niw" secondAttribute="leading" constant="8" id="d52-JP-KOz"/>
+                <constraint firstItem="3Rn-3d-pwM" firstAttribute="top" secondItem="IED-Ma-Niw" secondAttribute="top" id="kCL-gC-xQP"/>
+                <constraint firstItem="1pV-vA-dd3" firstAttribute="centerX" secondItem="IED-Ma-Niw" secondAttribute="centerX" id="x2g-sv-uta"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-365.5" y="155.5"/>
+        </view>
+    </objects>
+</document>

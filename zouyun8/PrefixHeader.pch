@@ -1,0 +1,219 @@
+#ifdef __OBJC__
+#import <Foundation/Foundation.h>
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKConnector/ShareSDKConnector.h>
+//腾讯开放平台（对应QQ和QQ空间）SDK头文件
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+
+//微信SDK头文件
+#import "WXApi.h"
+#import "WXApiObject.h"
+//新浪微博SDK头文件
+#import "WeiboSDK.h"
+//新浪微博SDK需要在项目Build Settings中的Other Linker Flags添加"-ObjC"
+#import "DXPopover.h"
+#import "ViewController.h"
+#import <JavaScriptCore/JavaScriptCore.h>
+#import "SVProgressHUD.h"
+#import <ShareSDKUI/ShareSDK+SSUI.h>
+
+#import "PGViwe5.h"
+#import "PGView2.h"
+#import "GraphicDetailsViewController.h"
+#import "PGXiangGing.h"
+#import "PG_bid_list.h"
+#import "PGFirstCollectionViewCell.h"
+
+#import "CommodityDetailsView4.h"
+#import "CommodityDetailsView3.h"
+#import "CommodityDetailsView2.h"
+#import "CommodityDetailsView1.h"
+#import "CommodityDetailsPageViewController.h"
+#import "FirstCollectionViewCell1.h"
+#import "PGViewController.h"
+
+#import "FirstViewController.h"
+#import "AnnounceViewController.h"
+#import "FindViewController.h"
+#import "ShoppingcartViewController.h"
+#import "MyViewController.h"
+#import "MyMessageViewController.h"
+
+#import "LoginViewController.h"
+#import "forgetPassword.h"
+#import "RegistViewcontroller.h"
+#import "boundRegistViewController.h"
+#import "SortTableViewController.h"
+#import "GoodsDetailController.h"
+
+#import "UIImageView+WebCache.h"
+#import "AFNetworking.h"
+#import "AFHTTPRequestOperation.h"
+#import "AFHTTPRequestOperationManager.h"
+#import "UIImageView+WebCache.h"
+#import "SDWebImageManager.h"
+#import "SVProgressHUD.h"
+#import "JSONModel.h"
+#import "HttpRequest.h"
+#import "CustomIOS7AlertView.h"
+#import "SVProgressHUD.h"
+#import "UIButton+countDown.h"
+#import "ToolClass.h"
+#import "FMDB.h"
+#import "FMDatabase.h"
+#import "FMDatabaseAdditions.h"
+#import "SDCycleScrollView.h"
+#import "CSStickyHeaderFlowLayout.h"
+#import "Masonry.h"
+#import "MZTimerLabel.h"
+#import "SVPullToRefresh.h"
+#import "ToolClass.h"
+#import "UIScrollView+EmptyDataSet.h"  
+#import "TPKeyboardAvoidingTableView.h"
+
+
+#import "GoodsModel.h"
+#import "shoppingcartModel.h"
+#import "view3.h"
+#import "view2.h"
+#import "view5.h"
+#import "view4.h"
+#import "accountView.h"
+
+#import "StateView1.h"
+#import "DetailView.h"
+#import "JoinRecordCell.h"
+
+#import "RechargeViewController.h"
+
+#import "AddAddressController.h"
+#import "AddDetailAddressController.h"
+#import "AddrListTableViewCell.h"
+#import "LblTxtTableViewCell.h"
+#import "LblLblTableViewCell.h"
+#import "AddrDataModel.h"
+#import "InviteViewController.h"
+
+
+
+#import "shoppingcarCell.h"
+
+
+#import "MySectionHeader.h"
+#import "ServiceViewController.h"
+
+
+#import "ScrollUpView.h"
+#import "FirstCollectionViewCell.h"
+#import "ADViewController.h"
+
+#import "SettleAccountsViewController.h"
+#import "SettleView1.h"
+#import "SettleView2.h"
+#import "SettleView3.h"
+#import "SettleView4.h"
+#import "SettleView5.h"
+#import "SettleView6.h"
+#import "SettleModel.h"
+
+#define _AFNETWORKING_ALLOW_INVALID_SSL_CERTIFICATES
+//定义UIImage对象
+#define IMAGE(imageName) [UIImage imageNamed:[NSString stringWithFormat:@"%@",imageName]]
+
+#define TIPS [SVProgressHUD showSuccessWithStatus:@"请登录"]
+
+//获取屏幕 宽度、高度
+#define WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define HEIGHT ([UIScreen mainScreen].bounds.size.height)
+#define WID self.window.bounds.size.width
+#define HEI self.window.bounds.size.height
+#define PICKER_HEIGHT   216
+
+//判断设备型号
+#define iPhone4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+#define iPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
+#define iPhone6_plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define DBFATH [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"shoppingCart.sqlite"]
+#define TOKEN [[NSUserDefaults standardUserDefaults]objectForKey:@"token"]
+#define UID [[NSUserDefaults standardUserDefaults]objectForKey:@"uid"]
+#define USER_NAME [[NSUserDefaults standardUserDefaults]objectForKey:@"username"]
+#define ICON [[NSUserDefaults standardUserDefaults]objectForKey:@"icon"]
+#define TYPE [[NSUserDefaults standardUserDefaults]objectForKey:@"type"]
+#define LEVEL [[NSUserDefaults standardUserDefaults]objectForKey:@"level"]
+#define EXP  [[NSUserDefaults standardUserDefaults]objectForKey:@"exp"]
+#define NICK [[NSUserDefaults standardUserDefaults]objectForKey:@"nick"]
+#define APP_Name = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"] // app名称
+#define APP_BuildVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]// app build版本
+#define APP_Version [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]// app版本
+#define PERSONAL_IMAGE_URL [[NSUserDefaults standardUserDefaults]objectForKey:@"PersonalImageUrl"]
+
+#define ADURL @"https://zy8.jf-q.com/api/adlist"
+#define GOODSURL @"https://zy8.jf-q.com/api/lucky_list"
+#define ADDRESS_LISTURL @"https://zy8.jf-q.com/api/address_list"
+#define ADDRESS_EDITURL @"https://zy8.jf-q.com/api/address_edit"
+#define ADDRESS_ADD @"https://zy8.jf-q.com/api/address_add"
+#define SYNC_CART @"https://zy8.jf-q.com/api/sync_cart"
+#define ORDER_INFO @"https://zy8.jf-q.com/api/orderinfo"
+#define PAY_INFO @"https://zy8.jf-q.com/api/pay_info"
+#define TOKEN_LOGIN @"https://zy8.jf-q.com/api/token_login"
+#define CREATE_BILL @"https://zy8.jf-q.com/api/create_bill"
+#define START_PAY @"https://zy8.jf-q.com/api/start_pay"
+#define LUCKY_NOTICE @"https://zy8.jf-q.com/api/lucky_notice"
+#define QRCODE @"https://zy8.jf-q.com/api/qrcode"
+#define CATEGORY_LIST @"https://zy8.jf-q.com/api/category_list"
+#define LUCKY_LIST @"https://zy8.jf-q.com/api/lucky_list"
+#define LUCKY_LEFT @"https://zy8.jf-q.com/api/lucky_left"
+#define Bid_list @"https://zy8.jf-q.com/api/bid_top"
+#define MONEY_LOG @"https://zy8.jf-q.com/api/money_log"
+#define PUB_LUCKY @"https://zy8.jf-q.com/api/pub_lucky"
+#define COMM_LOG @"https://zy8.jf-q.com/api/comm_log"
+#define SCORE_LOG @"https://zy8.jf-q.com/api/score_log"
+#define HEGOU_HELP @"http://zy8.jf-q.com/a/cate/3126386536" //合购帮助页面
+#define MYBILL @"https://zy8.jf-q.com/api/mybill" //我的订单
+
+
+
+#define EVALUATE_ALL_LIST @"https://zy8.jf-q.com/api/evaluate_all_list"
+#define PGFirstPageURL @"https://zy8.jf-q.com/api/bid_list"//拼购首页
+#define PGxiangqingPageURL @"https://zy8.jf-q.com/api/bid_view"//拼购详情
+#define Share_successURL @"https://zy8.jf-q.com/api/share_success"//分享成功回调
+#define Share_URL @"http://zy8.jf-q.com/b/v/"//分享链接
+
+
+#define Lucky_view_URL @"https://zy8.jf-q.com/api/lucky_view"//合购详情
+#define Has_join_lucky_URL @"https://zy8.jf-q.com/api/has_join_lucky"//查询是否购买合购
+#import "HG_XiangGing.h"
+#import "HGDetaliView1.h"
+#import "HGDetaliView2.h"
+#import "Lucky_noticeModel.h"
+#import "AnnounceTableViewCell1.h"
+#import "AnnounceTableViewCell3.h"
+#import "AnnounceTableViewCell4.h"
+#import "TimeModel.h"
+
+#define Lucky_notice_URL @"https://zy8.jf-q.com/api/lucky_notice"//最新中奖消息  (揭晓)
+#define History_lucky_URL @"https://zy8.jf-q.com/api/history_lucky"
+#define Create_lucky_URL @"https://zy8.jf-q.com/api/create_lucky"//创建好友合购
+#define Bill_view_URL @"https://zy8.jf-q.com/api/bill_view"//订单详情
+#define Myoriginate_URL @"https://zy8.jf-q.com/api/myoriginate"//发起的合购
+#define Mylucky_URL @"https://zy8.jf-q.com/api/mylucky"//我获得的商品
+#define Evaluate_list_URL @"https://zy8.jf-q.com/api/evaluate_list"//我的晒单商品列表
+#define Junior_URL @"https://zy8.jf-q.com/api/junior"//我的下级会员
+
+
+
+
+
+
+
+
+
+
+
+
+
+#define _AFNETWORKING_ALLOW_INVALID_SSL_CERTIFICATES
+#endif

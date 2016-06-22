@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="rcW-El-gyc" customClass="SettleView1">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="共" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MrU-rk-xo4">
+                    <rect key="frame" x="8" y="15" width="12" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uf4-jC-SDJ" userLabel="数量">
+                    <rect key="frame" x="20" y="15" width="8" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.95686274510000002" green="0.03042617316" blue="0.12949481830000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="件商品" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YKF-ZD-JPX">
+                    <rect key="frame" x="28" y="15" width="36" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Lg-Mc-3XC">
+                    <rect key="frame" x="292" y="12.5" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="0T9-Mg-b09"/>
+                        <constraint firstAttribute="width" constant="20" id="QJy-8l-g3y"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="Indicator"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="YKF-ZD-JPX" firstAttribute="centerY" secondItem="Uf4-jC-SDJ" secondAttribute="centerY" id="EFT-6K-qU7"/>
+                <constraint firstItem="3Lg-Mc-3XC" firstAttribute="centerY" secondItem="MrU-rk-xo4" secondAttribute="centerY" id="H0c-rW-uUu"/>
+                <constraint firstItem="YKF-ZD-JPX" firstAttribute="leading" secondItem="Uf4-jC-SDJ" secondAttribute="trailing" id="Q3u-ij-T6h"/>
+                <constraint firstAttribute="trailing" secondItem="3Lg-Mc-3XC" secondAttribute="trailing" constant="8" id="QJY-lt-5cJ"/>
+                <constraint firstItem="MrU-rk-xo4" firstAttribute="leading" secondItem="rcW-El-gyc" secondAttribute="leading" constant="8" id="aCS-h6-qde"/>
+                <constraint firstItem="Uf4-jC-SDJ" firstAttribute="leading" secondItem="MrU-rk-xo4" secondAttribute="trailing" id="cPl-Jy-dXA"/>
+                <constraint firstItem="MrU-rk-xo4" firstAttribute="centerY" secondItem="rcW-El-gyc" secondAttribute="centerY" id="ky9-B8-KPZ"/>
+                <constraint firstItem="Uf4-jC-SDJ" firstAttribute="centerY" secondItem="MrU-rk-xo4" secondAttribute="centerY" id="laI-mK-hbX"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="GoodsCount" destination="Uf4-jC-SDJ" id="V3o-Td-Qi5"/>
+                <outlet property="arrowBtn" destination="3Lg-Mc-3XC" id="n5p-04-wse"/>
+            </connections>
+            <point key="canvasLocation" x="127" y="-45"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Indicator" width="8" height="15"/>
+    </resources>
+</document>

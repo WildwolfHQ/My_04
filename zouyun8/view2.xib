@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="MCU-rO-WZA" customClass="view2">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXj-5p-6vE" userLabel="1">
+                    <rect key="frame" x="20" y="6" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="sGE-6V-eBq"/>
+                        <constraint firstAttribute="width" constant="40" id="wzb-h4-oTJ"/>
+                    </constraints>
+                    <state key="normal" image="红包"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="红包:" destination="MCU-rO-WZA" eventType="touchUpInside" id="fza-zO-f2W"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQw-Bn-TeH" userLabel="2">
+                    <rect key="frame" x="100" y="6" width="40" height="40"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="E9j-jS-vGm"/>
+                        <constraint firstAttribute="width" constant="40" id="GzE-kF-4tp"/>
+                    </constraints>
+                    <state key="normal" image="抽奖"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="抽奖:" destination="MCU-rO-WZA" eventType="touchUpInside" id="k1m-U2-RRF"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceV-6I-Yqt" userLabel="3">
+                    <rect key="frame" x="180" y="6" width="40" height="40"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="g5Q-lP-hle"/>
+                        <constraint firstAttribute="height" constant="40" id="gPl-KF-kFO"/>
+                    </constraints>
+                    <state key="normal" image="jiexiao2"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="揭晓:" destination="MCU-rO-WZA" eventType="touchUpInside" id="kDI-tF-Q7v"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aE1-eI-Yo6" userLabel="4">
+                    <rect key="frame" x="260" y="6" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="7Ky-Qq-5Rn"/>
+                        <constraint firstAttribute="height" constant="40" id="e37-MY-uKc"/>
+                    </constraints>
+                    <state key="normal" image="banzhu1"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="帮助:" destination="MCU-rO-WZA" eventType="touchUpInside" id="Uzy-wu-Psg"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="红包" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0a-Mc-0jV">
+                    <rect key="frame" x="27" y="49" width="26" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="抽奖" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwL-eD-mJe">
+                    <rect key="frame" x="107" y="49" width="26" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="揭晓" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vch-h7-QFq">
+                    <rect key="frame" x="187" y="49" width="26" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="帮助" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CwF-N6-GWY">
+                    <rect key="frame" x="267" y="49" width="26" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oxx-uY-RVB">
+                    <rect key="frame" x="0.0" y="64" width="320" height="1"/>
+                    <color key="backgroundColor" red="0.9266089040336879" green="0.9266089040336879" blue="0.9266089040336879" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="9So-Gi-Vmt"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="lQw-Bn-TeH" firstAttribute="centerX" secondItem="MCU-rO-WZA" secondAttribute="centerX" multiplier="0.75" id="7bH-jv-Sei"/>
+                <constraint firstItem="g0a-Mc-0jV" firstAttribute="centerX" secondItem="SXj-5p-6vE" secondAttribute="centerX" id="DiG-GM-4Vw"/>
+                <constraint firstItem="g0a-Mc-0jV" firstAttribute="top" secondItem="SXj-5p-6vE" secondAttribute="bottom" constant="3" id="Go7-nY-DJ6"/>
+                <constraint firstItem="CwF-N6-GWY" firstAttribute="centerX" secondItem="aE1-eI-Yo6" secondAttribute="centerX" id="M07-68-rAp"/>
+                <constraint firstItem="aE1-eI-Yo6" firstAttribute="top" secondItem="MCU-rO-WZA" secondAttribute="top" constant="6" id="Oc5-AF-dKR"/>
+                <constraint firstItem="lQw-Bn-TeH" firstAttribute="top" secondItem="MCU-rO-WZA" secondAttribute="top" constant="6" id="PfN-V6-b1i"/>
+                <constraint firstItem="vch-h7-QFq" firstAttribute="top" secondItem="ceV-6I-Yqt" secondAttribute="bottom" constant="3" id="QTE-as-oEp"/>
+                <constraint firstItem="CwF-N6-GWY" firstAttribute="top" secondItem="aE1-eI-Yo6" secondAttribute="bottom" constant="3" id="Ulj-oS-1pk"/>
+                <constraint firstItem="hwL-eD-mJe" firstAttribute="top" secondItem="lQw-Bn-TeH" secondAttribute="bottom" constant="3" id="WHY-W3-eg4"/>
+                <constraint firstItem="vch-h7-QFq" firstAttribute="centerX" secondItem="ceV-6I-Yqt" secondAttribute="centerX" id="XCK-tU-0qq"/>
+                <constraint firstItem="aE1-eI-Yo6" firstAttribute="centerX" secondItem="MCU-rO-WZA" secondAttribute="centerX" multiplier="1.75" id="bde-5A-pI0"/>
+                <constraint firstItem="ceV-6I-Yqt" firstAttribute="top" secondItem="MCU-rO-WZA" secondAttribute="top" constant="6" id="h5m-sZ-Kt0"/>
+                <constraint firstItem="hwL-eD-mJe" firstAttribute="centerX" secondItem="lQw-Bn-TeH" secondAttribute="centerX" id="jTO-yb-EiQ"/>
+                <constraint firstItem="oxx-uY-RVB" firstAttribute="leading" secondItem="MCU-rO-WZA" secondAttribute="leading" id="kcW-Of-lTA"/>
+                <constraint firstAttribute="bottom" secondItem="oxx-uY-RVB" secondAttribute="bottom" id="nEB-G6-1fq"/>
+                <constraint firstAttribute="trailing" secondItem="oxx-uY-RVB" secondAttribute="trailing" id="ndD-i7-IEQ"/>
+                <constraint firstItem="SXj-5p-6vE" firstAttribute="centerX" secondItem="MCU-rO-WZA" secondAttribute="centerX" multiplier="0.25" id="pfu-Ps-kla"/>
+                <constraint firstItem="ceV-6I-Yqt" firstAttribute="centerX" secondItem="MCU-rO-WZA" secondAttribute="centerX" multiplier="1.25" id="vMc-vY-HNA"/>
+                <constraint firstItem="SXj-5p-6vE" firstAttribute="top" secondItem="MCU-rO-WZA" secondAttribute="top" constant="6" id="whJ-M8-WHH"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="22" y="77.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="banzhu1" width="40" height="40"/>
+        <image name="jiexiao2" width="40" height="40"/>
+        <image name="抽奖" width="80" height="80"/>
+        <image name="红包" width="80" height="80"/>
+    </resources>
+</document>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="SortTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IOS-分类.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="CAp-uv-eVY" userLabel="图像">
+                        <rect key="frame" x="8" y="2" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="7Kj-mi-pkk"/>
+                            <constraint firstAttribute="height" constant="40" id="YnK-K6-SHp"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPO-kG-rMA" userLabel="name">
+                        <rect key="frame" x="51" y="13" width="36" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle_arrow_right.png" translatesAutoresizingMaskIntoConstraints="NO" id="Iw9-lp-Yaa">
+                        <rect key="frame" x="292" y="12" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="9Ll-Bj-o2T"/>
+                            <constraint firstAttribute="width" constant="20" id="pTH-0N-ms4"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PMI-1L-abk">
+                        <rect key="frame" x="236" y="9" width="48" height="27"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="价格区间">
+                            <color key="titleColor" red="0.95686274510000002" green="0.03042617316" blue="0.12949481830000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="SelectSection:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ouy-cl-dOn"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="CAp-uv-eVY" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="KnD-sN-p15"/>
+                    <constraint firstItem="Iw9-lp-Yaa" firstAttribute="centerY" secondItem="CAp-uv-eVY" secondAttribute="centerY" id="NMB-II-E9E"/>
+                    <constraint firstItem="gPO-kG-rMA" firstAttribute="centerY" secondItem="CAp-uv-eVY" secondAttribute="centerY" id="PUQ-DX-YOD"/>
+                    <constraint firstItem="PMI-1L-abk" firstAttribute="centerY" secondItem="Iw9-lp-Yaa" secondAttribute="centerY" id="V6j-fl-Gvd"/>
+                    <constraint firstItem="gPO-kG-rMA" firstAttribute="leading" secondItem="CAp-uv-eVY" secondAttribute="trailing" constant="3" id="ch2-vB-zTC"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Iw9-lp-Yaa" secondAttribute="trailing" id="jnc-OR-HMA"/>
+                    <constraint firstItem="Iw9-lp-Yaa" firstAttribute="leading" secondItem="PMI-1L-abk" secondAttribute="trailing" constant="8" id="lcP-U6-bqo"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="CAp-uv-eVY" secondAttribute="leading" id="zcz-vh-amT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="imageView" destination="CAp-uv-eVY" id="p2f-wj-aO0"/>
+                <outlet property="name" destination="gPO-kG-rMA" id="rrc-cb-Bh6"/>
+                <outlet property="pricequjian" destination="PMI-1L-abk" id="qXu-Ye-QMu"/>
+            </connections>
+            <point key="canvasLocation" x="268" y="181"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="IOS-分类.jpg" width="100" height="100"/>
+        <image name="circle_arrow_right.png" width="30" height="30"/>
+    </resources>
+</document>

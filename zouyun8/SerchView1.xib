@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SerchView1">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CKk-Sy-UKS">
+                    <rect key="frame" x="34" y="76" width="30" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="2kJ-eD-FdL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="菠萝">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="热门搜索" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NYi-X2-sZI">
+                    <rect key="frame" x="18" y="29" width="63" height="21"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                    <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QVA-eT-3QV">
+                    <rect key="frame" x="87" y="72" width="30" height="28"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="西瓜">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZb-yU-cU1">
+                    <rect key="frame" x="181" y="76" width="30" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="菠萝">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aiW-S5-FmK">
+                    <rect key="frame" x="34" y="112" width="30" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="sqN-UV-nnh"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="菠萝">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PIq-OD-UOm">
+                    <rect key="frame" x="133" y="72" width="30" height="28"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="枇杷">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="CKk-Sy-UKS" firstAttribute="baseline" secondItem="IZb-yU-cU1" secondAttribute="firstBaseline" id="23U-I4-YFE"/>
+                <constraint firstItem="aiW-S5-FmK" firstAttribute="top" secondItem="CKk-Sy-UKS" secondAttribute="bottom" constant="15" id="4ap-Pe-bzP"/>
+                <constraint firstItem="QVA-eT-3QV" firstAttribute="baseline" secondItem="PIq-OD-UOm" secondAttribute="firstBaseline" id="4em-kt-lEr"/>
+                <constraint firstItem="CKk-Sy-UKS" firstAttribute="leading" secondItem="aiW-S5-FmK" secondAttribute="leading" id="9IC-zb-GnH"/>
+                <constraint firstItem="NYi-X2-sZI" firstAttribute="centerX" secondItem="CKk-Sy-UKS" secondAttribute="centerX" id="CHN-km-Abw"/>
+                <constraint firstItem="IZb-yU-cU1" firstAttribute="baseline" secondItem="CKk-Sy-UKS" secondAttribute="firstBaseline" id="ELf-oY-ft9"/>
+                <constraint firstItem="CKk-Sy-UKS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="34" id="EuH-zw-hI4"/>
+                <constraint firstItem="CKk-Sy-UKS" firstAttribute="top" secondItem="IZb-yU-cU1" secondAttribute="top" id="GHi-ea-HG4"/>
+                <constraint firstItem="CKk-Sy-UKS" firstAttribute="top" secondItem="NYi-X2-sZI" secondAttribute="bottom" constant="26" id="M4a-85-C6C"/>
+                <constraint firstItem="QVA-eT-3QV" firstAttribute="leading" secondItem="CKk-Sy-UKS" secondAttribute="trailing" constant="23" id="W7w-6D-Yt8"/>
+                <constraint firstItem="NYi-X2-sZI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="29" id="Yaw-Sa-hNf"/>
+                <constraint firstItem="NYi-X2-sZI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="18" id="dhg-84-y13"/>
+                <constraint firstItem="PIq-OD-UOm" firstAttribute="baseline" secondItem="QVA-eT-3QV" secondAttribute="firstBaseline" id="hv5-W4-Biz"/>
+                <constraint firstItem="IZb-yU-cU1" firstAttribute="leading" secondItem="PIq-OD-UOm" secondAttribute="trailing" constant="18" id="iMk-Bv-Mhm"/>
+                <constraint firstItem="PIq-OD-UOm" firstAttribute="leading" secondItem="QVA-eT-3QV" secondAttribute="trailing" constant="16" id="qXo-mY-V2m"/>
+                <constraint firstItem="PIq-OD-UOm" firstAttribute="centerY" secondItem="IZb-yU-cU1" secondAttribute="centerY" id="r9h-pP-Mb7"/>
+                <constraint firstItem="QVA-eT-3QV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="72" id="td5-DP-Arx"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="-82.5" y="-94.5"/>
+        </view>
+    </objects>
+</document>

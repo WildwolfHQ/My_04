@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Urr-my-jK6" customClass="SettleView6">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实付款：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="od0-1G-G3g">
+                    <rect key="frame" x="8" y="14" width="48" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="33.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdu-3i-WiG">
+                    <rect key="frame" x="52" y="14" width="26" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="1" green="0.10259666689999999" blue="0.17166056569999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBx-4a-Kyh">
+                    <rect key="frame" x="78" y="14" width="12" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="1" green="0.10259666689999999" blue="0.17166056569999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F5K-MV-l1P">
+                    <rect key="frame" x="252" y="7" width="60" height="30"/>
+                    <color key="backgroundColor" red="1" green="0.10259666689999999" blue="0.17166056569999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="提交订单"/>
+                    <connections>
+                        <action selector="submitOrder:" destination="Urr-my-jK6" eventType="touchUpInside" id="tBP-Vi-9gS"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="(1元等于1走运币)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOR-Wf-uff">
+                    <rect key="frame" x="91" y="15" width="92" height="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="EOR-Wf-uff" firstAttribute="leading" secondItem="MBx-4a-Kyh" secondAttribute="trailing" constant="1" id="76S-2U-1eT"/>
+                <constraint firstItem="gdu-3i-WiG" firstAttribute="leading" secondItem="od0-1G-G3g" secondAttribute="trailing" constant="-4" id="RE9-LA-Lbc"/>
+                <constraint firstItem="od0-1G-G3g" firstAttribute="centerY" secondItem="Urr-my-jK6" secondAttribute="centerY" id="SE2-C1-11G"/>
+                <constraint firstItem="MBx-4a-Kyh" firstAttribute="centerY" secondItem="gdu-3i-WiG" secondAttribute="centerY" id="Tpk-1b-Wyi"/>
+                <constraint firstItem="gdu-3i-WiG" firstAttribute="centerY" secondItem="od0-1G-G3g" secondAttribute="centerY" id="b6G-zc-Lwq"/>
+                <constraint firstItem="F5K-MV-l1P" firstAttribute="centerY" secondItem="Urr-my-jK6" secondAttribute="centerY" id="hSI-fb-Ref"/>
+                <constraint firstAttribute="trailing" secondItem="F5K-MV-l1P" secondAttribute="trailing" constant="8" id="ooP-z8-e4U"/>
+                <constraint firstItem="EOR-Wf-uff" firstAttribute="centerY" secondItem="gdu-3i-WiG" secondAttribute="centerY" id="pK6-Ak-fz0"/>
+                <constraint firstItem="MBx-4a-Kyh" firstAttribute="leading" secondItem="gdu-3i-WiG" secondAttribute="trailing" id="vgi-u0-eFV"/>
+                <constraint firstItem="od0-1G-G3g" firstAttribute="leading" secondItem="Urr-my-jK6" secondAttribute="leading" constant="8" id="wgW-C2-E86"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="totalPrice" destination="gdu-3i-WiG" id="moA-Ek-3gQ"/>
+            </connections>
+            <point key="canvasLocation" x="210" y="127"/>
+        </view>
+    </objects>
+</document>
