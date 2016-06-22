@@ -27,4 +27,5 @@
 @property(nonatomic,copy)NSString * lucky_num; //num	int	必须	该商品合购数量，
 @property(nonatomic,copy)NSString * lucky_buynum; //num	int	必须	该商品合购数量，
 @property(nonatomic,weak)NSTimer * timer; //
+@property(nonatomic,copy)NSString * tishi; //
 @end

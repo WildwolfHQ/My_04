@@ -44,6 +44,10 @@
 		425117641D0838DB00EAEA99 /* SearchHDView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 425117631D0838DB00EAEA99 /* SearchHDView2.m */; };
 		425117661D0838ED00EAEA99 /* SearchHDView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 425117651D0838ED00EAEA99 /* SearchHDView1.xib */; };
 		425117681D083AAF00EAEA99 /* SearchHDView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 425117671D083AAF00EAEA99 /* SearchHDView2.xib */; };
+		42540ED41D1A75FD0000B371 /* FooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42540ED31D1A75FD0000B371 /* FooterView.m */; };
+		42540ED61D1A760D0000B371 /* FooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42540ED51D1A760D0000B371 /* FooterView.xib */; };
+		42540EDD1D1A8B6C0000B371 /* FooterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42540EDB1D1A8B6C0000B371 /* FooterCollectionViewCell.m */; };
+		42540EDE1D1A8B6C0000B371 /* FooterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42540EDC1D1A8B6C0000B371 /* FooterCollectionViewCell.xib */; };
 		425667D61D0E8E3C007507A4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 425667D51D0E8E3C007507A4 /* QuartzCore.framework */; };
 		425667D81D0E8E4E007507A4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 425667D71D0E8E4E007507A4 /* Security.framework */; };
 		425667DD1D0E9D4C007507A4 /* libPaymentControl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 425667DC1D0E9D4C007507A4 /* libPaymentControl.a */; };
@@ -473,6 +477,12 @@
 		425117631D0838DB00EAEA99 /* SearchHDView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchHDView2.m; sourceTree = "<group>"; };
 		425117651D0838ED00EAEA99 /* SearchHDView1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchHDView1.xib; sourceTree = "<group>"; };
 		425117671D083AAF00EAEA99 /* SearchHDView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchHDView2.xib; sourceTree = "<group>"; };
+		42540ED21D1A75FD0000B371 /* FooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FooterView.h; sourceTree = "<group>"; };
+		42540ED31D1A75FD0000B371 /* FooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FooterView.m; sourceTree = "<group>"; };
+		42540ED51D1A760D0000B371 /* FooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FooterView.xib; sourceTree = "<group>"; };
+		42540EDA1D1A8B6C0000B371 /* FooterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FooterCollectionViewCell.h; sourceTree = "<group>"; };
+		42540EDB1D1A8B6C0000B371 /* FooterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FooterCollectionViewCell.m; sourceTree = "<group>"; };
+		42540EDC1D1A8B6C0000B371 /* FooterCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FooterCollectionViewCell.xib; sourceTree = "<group>"; };
 		425667D51D0E8E3C007507A4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		425667D71D0E8E4E007507A4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		425667DC1D0E9D4C007507A4 /* libPaymentControl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPaymentControl.a; path = libs/libPaymentControl.a; sourceTree = "<group>"; };
@@ -1187,6 +1197,19 @@
 				425117671D083AAF00EAEA99 /* SearchHDView2.xib */,
 			);
 			name = Search;
+			sourceTree = "<group>";
+		};
+		42540EDF1D1A8E780000B371 /* Tishi */ = {
+			isa = PBXGroup;
+			children = (
+				42540ED21D1A75FD0000B371 /* FooterView.h */,
+				42540ED31D1A75FD0000B371 /* FooterView.m */,
+				42540ED51D1A760D0000B371 /* FooterView.xib */,
+				42540EDA1D1A8B6C0000B371 /* FooterCollectionViewCell.h */,
+				42540EDB1D1A8B6C0000B371 /* FooterCollectionViewCell.m */,
+				42540EDC1D1A8B6C0000B371 /* FooterCollectionViewCell.xib */,
+			);
+			name = Tishi;
 			sourceTree = "<group>";
 		};
 		425667D01D0E86B2007507A4 /* UPPay */ = {
@@ -2375,6 +2398,7 @@
 		71C4E5BA1CB7A08F00703047 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				42540EDF1D1A8E780000B371 /* Tishi */,
 				425117551D07AF5A00EAEA99 /* Web */,
 				42503A4F1CFD2DE9000EE2CA /* 拼购 */,
 				713AF7FD1CFC400F003741B4 /* 个人中心子页面 */,
@@ -2698,6 +2722,7 @@
 				718396E01D0A6187007E0422 /* AllOrderCell.xib in Resources */,
 				710B16A91CEF31130098FB83 /* GuessView.xib in Resources */,
 				42503A631CFD2E2D000EE2CA /* CommodityDetailsView4.xib in Resources */,
+				42540EDE1D1A8B6C0000B371 /* FooterCollectionViewCell.xib in Resources */,
 				714F70BD1CC8B301003387AD /* view5.xib in Resources */,
 				71E5054B1CD3601200704068 /* accountView.xib in Resources */,
 				713AF7A01CF98DFE003741B4 /* ADViewController.xib in Resources */,
@@ -2751,6 +2776,7 @@
 				713AF7671CF2F71B003741B4 /* Province.plist in Resources */,
 				71E504781CD0CEBD00704068 /* baoshi_big@2x.png in Resources */,
 				425C22511D054A9500905226 /* AnnounceTableViewCell1.xib in Resources */,
+				42540ED61D1A760D0000B371 /* FooterView.xib in Resources */,
 				425117661D0838ED00EAEA99 /* SearchHDView1.xib in Resources */,
 				71E504721CD0CBDD00704068 /* ic_star@2x.png in Resources */,
 				4251175B1D08344D00EAEA99 /* SerchView1.xib in Resources */,
@@ -2902,6 +2928,7 @@
 				424556411D000E6F0074D02D /* HG_XiangGing.m in Sources */,
 				42503A801CFD2F19000EE2CA /* PGView2.m in Sources */,
 				715D82D31CB8E5B200E2E99E /* UIImage+WebP.m in Sources */,
+				42540EDD1D1A8B6C0000B371 /* FooterCollectionViewCell.m in Sources */,
 				714F70301CC765C1003387AD /* FirstViewController.m in Sources */,
 				717CE74D1CC20A6D007308AD /* FMDatabase.m in Sources */,
 				715D82C81CB8E5B200E2E99E /* NSData+ImageContentType.m in Sources */,
@@ -3049,6 +3076,7 @@
 				715D82D21CB8E5B200E2E99E /* UIImage+MultiFormat.m in Sources */,
 				4286B19A1D178D7400AD3972 /* GetGoodsViewController.m in Sources */,
 				71E504B91CD221B500704068 /* AFHTTPSessionManager.m in Sources */,
+				42540ED41D1A75FD0000B371 /* FooterView.m in Sources */,
 				7189BF8B1CBCE92700A1D39B /* JSONKeyMapper.m in Sources */,
 				7189BF4D1CBCD1B000A1D39B /* SVRadialGradientLayer.m in Sources */,
 				715D82D61CB8E5B200E2E99E /* UIView+WebCacheOperation.m in Sources */,

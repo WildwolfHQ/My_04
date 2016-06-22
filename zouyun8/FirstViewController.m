@@ -12,6 +12,7 @@
 
     NSString *_hgID;
     NSString *_hgNum;
+    BOOL istishi;
 }
 
 @property(nonatomic,strong)NSMutableArray * dataSource;         //数据源
@@ -487,7 +488,13 @@
 //定义展示的UICollectionViewCell的个数
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.dataSource.count;
+    if (self.dataSource.count!=0) {
+         return self.dataSource.count+1;
+    }else{
+    
+        return self.dataSource.count;
+    }
+   
 }
 //定义展示的Section的个数
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -497,17 +504,35 @@
 //每个UICollectionView展示的内容
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if (indexPath.row==self.dataSource.count+1-1) {
+        UINib *nib = [UINib nibWithNibName:@"FooterCollectionViewCell" bundle:nil];
+        [self.collectionView registerNib:nib forCellWithReuseIdentifier:@"FooterCollectionViewCell"];
+        
+        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FooterCollectionViewCell" forIndexPath:indexPath];
+        
+        
+        
+        
+        
+        return cell;
+
+    }else{
+   
+    
     static NSString *identify = @"FirstCollectionViewCell";
     FirstCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
     cell.delegate = self;
+        GoodsModel * model = self.dataSource[indexPath.row];
 //    [cell sizeToFit];
     if (self.dataSource.count != 0) {
-        GoodsModel * model = self.dataSource[indexPath.row];
+       
         cell.model = model;
         [cell setCellWithModel];
         cell.backgroundColor = [UIColor whiteColor];
     }
-    return cell;
+        return cell;
+    }
 }
 
 -(void)changeCornerMark
@@ -539,6 +564,16 @@
 {
     //边距占5*4=20 ，2个
     //图片为正方形，边长：(fDeviceWidth-20)/2-5-5 所以总高(fDeviceWidth-20)/2-5-5 +20+30+5+5 label高20 btn高30 边
+    
+
+    
+    if (indexPath.row==self.dataSource.count+1-1) {
+        
+        return CGSizeMake(WIDTH, 50);
+        
+        
+    }
+    
     
     NSLog(@"%f",[[UIScreen mainScreen] currentMode].size.width);
     NSLog(@"%f",[[UIScreen mainScreen] currentMode].size.height);
@@ -700,7 +735,7 @@
          NSLog(@"最新揭晓列表%@",dict);
          NSArray * array = dict[@"data"];
          NSLog(@"最新揭晓数量%ld",array.count);
-
+         
          //请求成功,将图片下载完保存到数组中
          for (NSDictionary * dic in array)
          {
@@ -732,12 +767,16 @@
     [ToolClass getRank:^(NSDictionary *dic) {
         NSArray * array = dic[@"data"];
         NSLog(@"获取到的商品个数为%@",dic);
+        
+    
         for (NSDictionary * dic in array)
         {
             GoodsModel * model = [[GoodsModel alloc]initWithDictionary:dic error:nil];
             [self.dataSource addObject:model];
         }
-        [self.collectionView reloadData];
+       
+            [self.collectionView reloadData];
+        
         
     } minPrice:nil maxPrice:nil page:[NSString stringWithFormat:@"%ld",self.page] name:nil category:nil top:info.userInfo[@"top"] type:nil];
 //    只刷新所有cell数据

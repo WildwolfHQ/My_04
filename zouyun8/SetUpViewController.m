@@ -41,6 +41,10 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section==3){
+    
+        return 50;
+    }
     return 44;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -52,9 +56,25 @@
     return 1;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    return 3+1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section==3) {
+    
+        UITableViewCell*cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellkk"];
+        FooterView * footerview1 = [[NSBundle mainBundle]loadNibNamed:@"FooterView" owner:self
+                                                              options:nil].firstObject;
+        footerview1.frame = CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height);
+        
+        [cell addSubview:footerview1];
+        cell.userInteractionEnabled=NO;
+        
+        return cell;
+
+    }
+    
+    
     NSInteger section = indexPath.section;
     //NSInteger row = indexPath.row;
     static NSString *CellIdentifier = @"Cell";
@@ -144,6 +164,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     
+    if (section==2){
+        return 0.00001;
+    }
     return 10.0 ;
     
 }

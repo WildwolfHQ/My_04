@@ -21,4 +21,5 @@
 @property(nonatomic,copy)NSString * start_time;
 @property(nonatomic,copy)NSString * end_time;
 @property(nonatomic,copy)NSString * price_level;
+@property(nonatomic,copy)NSString * tishi;
 @end

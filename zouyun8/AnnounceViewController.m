@@ -9,7 +9,7 @@
 #import "GoodsWebViewController.h"
 @interface AnnounceViewController (){
     //NSIndexPath *indexPath;
-
+    BOOL istishi;
 }
 @property(nonatomic,strong)NSMutableArray * dataSource;         //数据源
 @property(nonatomic,strong)NSMutableArray * countDownTimes;
@@ -113,16 +113,27 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return self.dataSource.count;
+    return self.dataSource.count+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
   
+    
+    if (indexPath.row==self.dataSource.count) {
+        UITableViewCell*cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        FooterView * footerview1 = [[NSBundle mainBundle]loadNibNamed:@"FooterView" owner:self
+                                                              options:nil].firstObject;
+        footerview1.frame = CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height);
+        
+        [cell addSubview:footerview1];
+        cell.userInteractionEnabled=NO;
+        
+        return cell;
+        
+    }else{
+    
     Lucky_noticeModel * model=self.dataSource[indexPath.row];
-   // NSString *nowDateStr=[self getNowDateStr];
-    
-    
     //已经开奖
     if(model.lucky_userid.integerValue!=0){
         
@@ -165,6 +176,7 @@
 
         
     }
+ }
 
 
 //else{
@@ -194,6 +206,11 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    
+    if (indexPath.row==self.dataSource.count) {
+        return 50;
+    }
     return 150;
 }
 
@@ -276,7 +293,16 @@
          if (isrash) {
              [self.dataSource removeAllObjects];
          }
-         
+         if(array.count==0){
+             if (istishi) {
+                 
+             }else{
+                 Lucky_noticeModel * model=[[Lucky_noticeModel alloc]init];
+                 model.tishi=@"特别说明：苹果公司不是走运网赞助商，并且苹果公司也不会以任何形式参与其中！";
+                 [self.dataSource addObject:model];
+                 istishi=YES;
+             }
+         }else{
          for (NSDictionary * dic in array)
          {
              Lucky_noticeModel * model = [[Lucky_noticeModel alloc]initWithDictionary:dic error:nil];
@@ -300,11 +326,13 @@
                 
                  [self.dataSource addObject:model];
                  
-                 [self.tableView reloadData];
+                 
                  
                 
                  //[self.m_dataArray addObject:[TimeModel timeModelWithTime:time*1000]];
              }
+           }
+             [self.tableView reloadData];
              
          }
          

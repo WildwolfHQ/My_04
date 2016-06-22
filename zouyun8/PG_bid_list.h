@@ -25,6 +25,7 @@
 @property(nonatomic,copy)NSString * money;        //money	int	必须	商品总价格
 @property(nonatomic,copy)NSString * name;         //name	string	必须	商品名称
 @property(nonatomic,copy)NSString * thumb;        //thumb	string	必须	缩略图
+@property(nonatomic,copy)NSString * tishi;        //thumb	string	必须	缩略图
 
 
 @end

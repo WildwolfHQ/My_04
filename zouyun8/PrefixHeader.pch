@@ -149,7 +149,7 @@
 #define APP_BuildVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]// app build版本
 #define APP_Version [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]// app版本
 #define PERSONAL_IMAGE_URL [[NSUserDefaults standardUserDefaults]objectForKey:@"PersonalImageUrl"]
-
+#import "FooterView.h"
 #define ADURL @"https://zy8.jf-q.com/api/adlist"
 #define GOODSURL @"https://zy8.jf-q.com/api/lucky_list"
 #define ADDRESS_LISTURL @"https://zy8.jf-q.com/api/address_list"

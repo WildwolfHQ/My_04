@@ -9,9 +9,12 @@
 #import "PGViewController.h"
 #import "GoodsWebViewController.h"
 #import "PGSearchViewController.h"
+
 @interface PGViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,SDCycleScrollViewDelegate,UISearchBarDelegate,UIActionSheetDelegate>{
 
     PGViwe5 * _view5;
+    
+    BOOL istishi;
 }
 
 @property(nonatomic,strong)NSMutableArray * dataSource;         //数据源
@@ -80,8 +83,8 @@
 //                                                                    NSFontAttributeName : [UIFont boldSystemFontOfSize:18]};
     UIBarButtonItem *fixBar = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     fixBar.width = -20;
-    
-    UIBarButtonItem *fixBar1 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    UIBarButtonItem *fixBar1 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:
+UIBarButtonSystemItemFixedSpace target:nil action:nil];
     fixBar1.width = 35;
     //左边buttonBarItem
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_nav_xiaoxi"] style:UIBarButtonItemStylePlain target:self action:@selector(MyMessage)];
@@ -286,6 +289,7 @@
     [self.collectionView registerClass:[FirstCollectionViewCell1 class] forCellWithReuseIdentifier:@"FirstCollectionViewCell1"];
     
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
+
 }
 
 #pragma mark -- UICollectionViewDataSource
@@ -297,7 +301,12 @@
         count= 1;
         
     }else {
-        count= self.dataSource.count;
+        if (self.dataSource.count!=0) {
+            return self.dataSource.count+1;
+        }else{
+            
+            return self.dataSource.count;
+        }
     }
     return count;
     
@@ -326,15 +335,40 @@
         
     }else{
         
-        static NSString *identify = @"PGFirstCollectionViewCell";
-        PGFirstCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
-        [cell sizeToFit];
-        PG_bid_list * model = self.dataSource[indexPath.row];
-        cell.model = model;
-        [cell setCellWithModel];
-        cell.backgroundColor = [UIColor whiteColor];
+        
+        if (indexPath.row==self.dataSource.count+1-1) {
+            UINib *nib = [UINib nibWithNibName:@"FooterCollectionViewCell" bundle:nil];
+            [self.collectionView registerNib:nib forCellWithReuseIdentifier:@"FooterCollectionViewCell"];
+            
+            UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FooterCollectionViewCell" forIndexPath:indexPath];
+            
+            
+            
+            
+            
+            return cell;
+            
+        }else{
+            PG_bid_list * model = self.dataSource[indexPath.row];
+            
+            
+            static NSString *identify = @"PGFirstCollectionViewCell";
+            PGFirstCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
+            [cell sizeToFit];
+            
+            cell.model = model;
+            [cell setCellWithModel];
+            cell.backgroundColor = [UIColor whiteColor];
+            
+            
+            return cell;
 
-        return cell;
+        
+        }
+        
+       
+        
+        
         
         
     }
@@ -353,9 +387,19 @@
         return CGSizeMake(WIDTH, 260);
         
     }else{
-        NSLog(@"WIDTH%f",WIDTH);
         
-        return CGSizeMake((WIDTH/2)-15, (191*(WIDTH/2-6))/160);
+        
+        
+        if (indexPath.row==self.dataSource.count+1-1) {
+           
+           return CGSizeMake(WIDTH, 50);
+            
+           
+        }else{
+
+        
+            return CGSizeMake((WIDTH/2)-15, (191*(WIDTH/2-6))/160);
+        }
     }
     
 }
@@ -429,30 +473,73 @@
         
     }else{
         return CGSizeMake(WIDTH, 40);
+        
     }
 }
+
+//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
+//{
+//    
+//    if (section==0) {
+//        return CGSizeMake(WIDTH, 0);
+//        
+//    }else{
+//        return CGSizeMake(WIDTH, 50);
+//    }
+//}
+
+
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     
-    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header" forIndexPath:indexPath];
-    [headerView addSubview:self.headView];
     
-    
-    if (indexPath.section==0) {
-        headerView.hidden=YES;
+    if (kind == UICollectionElementKindSectionHeader){
+        
+        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header" forIndexPath:indexPath];
+        [headerView addSubview:self.headView];
+        
+        
+        if (indexPath.section==0) {
+            headerView.hidden=YES;
+        }else{
+            
+            
+            
+            //    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header" forIndexPath:indexPath];
+            //    [headerView addSubview:self.headView];
+            //
+            //
+            //
+            //        return headerView;
+        }
+        
+        return headerView;
+        
     }else{
-        
-        
-        
-        //    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header" forIndexPath:indexPath];
-        //    [headerView addSubview:self.headView];
-        //
-        //
-        //
-        //        return headerView;
-    }
+//         UICollectionReusableView *footerview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"footerview" forIndexPath:indexPath];
+//        FooterView * footerview1 = [[NSBundle mainBundle]loadNibNamed:@"FooterView" owner:self
+//                                                          options:nil].firstObject;
+//        footerview1.frame = CGRectMake(0, 0, WIDTH, 50);
+//        
+//        
+//        
+//        [footerview addSubview:footerview1];
+//        if (indexPath.section==0) {
+//            
+//           
+//            footerview.hidden=YES;
+//
+//            
+//        }else{
+//            
+//        
+//        }
+//    
+//        return  footerview;
     
-    return headerView;
+    
+        return nil;
+    }
     
     
     
@@ -586,6 +673,7 @@
              }
              
          }
+         
          [self.collectionView reloadData];
          
          //[self.collectionView.infiniteScrollingView stopAnimating];

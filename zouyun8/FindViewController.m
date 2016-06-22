@@ -48,10 +48,30 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataSource.count + 1;
+    if (self.dataSource.count!=0) {
+        return self.dataSource.count + 2;
+    }else{
+        
+        return self.dataSource.count+1;
+    }
+   
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.row==self.dataSource.count + 2-1) {
+        UITableViewCell*cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        FooterView * footerview1 = [[NSBundle mainBundle]loadNibNamed:@"FooterView" owner:self
+                                                              options:nil].firstObject;
+        footerview1.frame = CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height);
+        
+        [cell addSubview:footerview1];
+        cell.userInteractionEnabled=NO;
+    
+        return cell;
+
+    }
+    
     static NSString * ID = @"cell";
     UITableViewCell * cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     if (cell == nil) {
@@ -81,6 +101,9 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row==self.dataSource.count+2-1) {
+        return 40;
+    }
     return 66;
 }
 

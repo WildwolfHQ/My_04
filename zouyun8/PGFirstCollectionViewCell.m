@@ -40,8 +40,7 @@
          self.ActivityTime.textColor=[UIColor redColor];
     
     }
-    
-    NSLog(@"%@",m);
+   
 //    self.buyLabel.text = self.model.buy_num;
 }
 //某一时间距离现在的距离

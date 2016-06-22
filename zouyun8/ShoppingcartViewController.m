@@ -264,6 +264,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+ 
+
     shoppingcarCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     shoppingcartModel * model;
@@ -336,6 +339,8 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+ 
     return WIDTH * 0.375;
 }
 - (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView {
