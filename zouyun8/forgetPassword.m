@@ -54,17 +54,18 @@
     {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
         
-        NSString * errcode = dict[@"errcode"];
+        NSNumber * errcode = dict[@"errcode"];
         NSLog(@"%@",errcode);
         
-        if ([errcode integerValue]) {
-            [SVProgressHUD showErrorWithStatus:dict[@"errmsg"]];
+        if ([errcode integerValue]==0) {
+            [SVProgressHUD showSuccessWithStatus:@"找回密码成功"];
+            [self.navigationController popViewControllerAnimated:YES];
         }
         else
-        {   //登录成功,返回并加载个人信息
+        {
             
-            [self.navigationController popViewControllerAnimated:YES];
-            NSLog(@"登录成功");
+            
+            [SVProgressHUD showErrorWithStatus:dict[@"errcode"]];
         }
     } failure:^(NSError *error) {
         

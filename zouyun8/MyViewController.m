@@ -482,27 +482,38 @@
     }
     
     if (indexPath.section == 1 && indexPath.row == 0) {
+        
         InviteViewController * Invite = [[InviteViewController alloc]init];
+        self.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:Invite animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
     }
     
     
     if (indexPath.section == 2 && indexPath.row == 0) {
         MyPartnerViewController * VC = [[MyPartnerViewController alloc]init];
+        self.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:VC animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
     }
     if (indexPath.section == 2 && indexPath.row == 1) {
         MyMessageViewController * msg = [[MyMessageViewController alloc]init];
+        self.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:msg animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
     }
     
     if (indexPath.section == 2 && indexPath.row == 2) {
         MySaiSingleViewController * VC = [[MySaiSingleViewController alloc]init];
+        self.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:VC animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
     }
     if (indexPath.section == 3 && indexPath.row == 0) {
         ServiceViewController * msg = [[ServiceViewController alloc]init];
+        self.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:msg animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

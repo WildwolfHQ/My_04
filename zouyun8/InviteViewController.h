@@ -11,4 +11,5 @@
 @interface InviteViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *barcodeImageView;
 @property (nonatomic,strong)NSMutableDictionary * shareDict;
+@property (weak, nonatomic) IBOutlet UIWebView *webview;
 @end

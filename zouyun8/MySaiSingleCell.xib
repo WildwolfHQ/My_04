@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,9 +15,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Ie-TM-oBD" userLabel="个人图像">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Ie-TM-oBD" userLabel="个人图像">
                         <rect key="frame" x="8" y="8" width="60" height="60"/>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.03042617316" blue="0.12949481830000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="pde-zo-18Y"/>
+                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                 <integer key="value" value="30"/>
@@ -24,26 +28,47 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IVV-sc-XFn" userLabel="中奖事件">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IVV-sc-XFn" userLabel="中奖事件">
                         <rect key="frame" x="176" y="8" width="136" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="4ra-oy-s54"/>
+                            <constraint firstAttribute="width" constant="136" id="APR-Ox-fRG"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="及那是几个哦我工具栏上看看你骄傲而管理局及付款了案件发你看法官进来看发生可能攻击力可就离开家阿哥尽可能的十几个可能冯爱国和刻录机啊嗯呐设计给你看啥的积分" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRw-GM-hMl" userLabel="商品标题">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="及那是几个哦我工具栏上看看你骄傲而管理局及付款了案件发你看法官进来看发生可能攻击力可就离开家阿哥尽可能的十几个可能冯爱国和刻录机啊嗯呐设计给你看啥的积分" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRw-GM-hMl" userLabel="商品标题">
                         <rect key="frame" x="81" y="30" width="231" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V6r-7i-SsH">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V6r-7i-SsH">
                         <rect key="frame" x="255" y="46" width="46" height="22"/>
                         <color key="backgroundColor" red="0.81849231020000002" green="0.1028221552" blue="0.13434956980000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="46" id="e0c-46-Fld"/>
+                        </constraints>
                         <state key="normal" title="去晒单">
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="IVV-sc-XFn" firstAttribute="trailing" secondItem="ryB-kD-ONR" secondAttribute="trailingMargin" id="0kk-uX-ob2"/>
+                    <constraint firstItem="0Ie-TM-oBD" firstAttribute="leading" secondItem="ryB-kD-ONR" secondAttribute="leadingMargin" id="Cjo-7u-edC"/>
+                    <constraint firstItem="0Ie-TM-oBD" firstAttribute="top" secondItem="IVV-sc-XFn" secondAttribute="top" id="HSl-NE-unD"/>
+                    <constraint firstItem="DRw-GM-hMl" firstAttribute="leading" secondItem="0Ie-TM-oBD" secondAttribute="trailing" constant="13" id="OWO-90-9Mp"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="V6r-7i-SsH" secondAttribute="trailing" constant="11" id="c39-dg-uOB"/>
+                    <constraint firstItem="0Ie-TM-oBD" firstAttribute="bottom" secondItem="V6r-7i-SsH" secondAttribute="bottom" id="ceA-vX-dkO"/>
+                    <constraint firstItem="0Ie-TM-oBD" firstAttribute="top" secondItem="ryB-kD-ONR" secondAttribute="topMargin" id="eTO-Gc-UlN"/>
+                    <constraint firstItem="IVV-sc-XFn" firstAttribute="trailing" secondItem="DRw-GM-hMl" secondAttribute="trailing" id="mP4-he-yac"/>
+                    <constraint firstItem="V6r-7i-SsH" firstAttribute="top" secondItem="DRw-GM-hMl" secondAttribute="bottom" constant="1" id="qvG-bc-g7G"/>
+                    <constraint firstItem="0Ie-TM-oBD" firstAttribute="centerY" secondItem="DRw-GM-hMl" secondAttribute="centerY" id="r9Y-QI-yCc"/>
+                    <constraint firstItem="DRw-GM-hMl" firstAttribute="top" secondItem="IVV-sc-XFn" secondAttribute="bottom" constant="7" id="ten-ZN-K1C"/>
+                    <constraint firstItem="0Ie-TM-oBD" firstAttribute="bottom" secondItem="ryB-kD-ONR" secondAttribute="bottomMargin" id="wY9-iZ-Zkp"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="date" destination="IVV-sc-XFn" id="zDj-th-aBD"/>
