@@ -40,7 +40,7 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"username"] = self.userNameText.text;
     params[@"password"] = self.passWordText.text;
-    [HttpRequest postWithURLString:@"https://zy8.jf-q.com/api/login" parameters:params success:^(id responseObject) {
+    [HttpRequest postWithURLString:@"https://m.zouyun8.com/api/login" parameters:params success:^(id responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
         
         NSString * errcode = dict[@"errcode"];
@@ -172,7 +172,7 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"openid"] = uid;
     params[@"type"] = type;
-    [HttpRequest postWithURLString:@"https://zy8.jf-q.com/api/openid_login" parameters:params success:^(id responseObject) {
+    [HttpRequest postWithURLString:@"https://m.zouyun8.com/api/openid_login" parameters:params success:^(id responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
         
         NSString * errcode = dict[@"errcode"]; //10018
@@ -261,17 +261,18 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"token"] = token;
     params[@"uid"] = uid;
-    [HttpRequest postWithURLString:@"https://zy8.jf-q.com/api/token_login" parameters:params success:^(id responseObject) {
+    [HttpRequest postWithURLString:@"https://m.zouyun8.com/api/token_login" parameters:params success:^(id responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
         
         NSNumber * errcode = dict[@"errcode"]; //10018
         if ([errcode integerValue]==0) {
-            
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"changeTabBar" object:nil];
-            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
             [ToolClass saveUserInfo:dict];
             //登录成功后将购物车清空
             [ToolClass removeAllCart];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"changeTabBar" object:nil];
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+            
+           
             
 
         }else{

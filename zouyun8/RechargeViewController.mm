@@ -260,7 +260,7 @@
     securityPolicy.allowInvalidCertificates = YES;
     manager.securityPolicy = securityPolicy;
     
-    [manager GET:@"https://zy8.jf-q.com/api/pay_status" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
+    [manager GET:@"https://m.zouyun8.com/api/pay_status" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          NSString * str=dict[@"code"];//code	int	必须	0表示到账，1表示未到帐

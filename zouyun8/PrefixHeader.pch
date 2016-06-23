@@ -150,41 +150,41 @@
 #define APP_Version [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]// app版本
 #define PERSONAL_IMAGE_URL [[NSUserDefaults standardUserDefaults]objectForKey:@"PersonalImageUrl"]
 #import "FooterView.h"
-#define ADURL @"https://zy8.jf-q.com/api/adlist"
-#define GOODSURL @"https://zy8.jf-q.com/api/lucky_list"
-#define ADDRESS_LISTURL @"https://zy8.jf-q.com/api/address_list"
-#define ADDRESS_EDITURL @"https://zy8.jf-q.com/api/address_edit"
-#define ADDRESS_ADD @"https://zy8.jf-q.com/api/address_add"
-#define SYNC_CART @"https://zy8.jf-q.com/api/sync_cart"
-#define ORDER_INFO @"https://zy8.jf-q.com/api/orderinfo"
-#define PAY_INFO @"https://zy8.jf-q.com/api/pay_info"
-#define TOKEN_LOGIN @"https://zy8.jf-q.com/api/token_login"
-#define CREATE_BILL @"https://zy8.jf-q.com/api/create_bill"
-#define START_PAY @"https://zy8.jf-q.com/api/start_pay"
-#define LUCKY_NOTICE @"https://zy8.jf-q.com/api/lucky_notice"
-#define QRCODE @"https://zy8.jf-q.com/api/qrcode"
-#define CATEGORY_LIST @"https://zy8.jf-q.com/api/category_list"
-#define LUCKY_LIST @"https://zy8.jf-q.com/api/lucky_list"
-#define LUCKY_LEFT @"https://zy8.jf-q.com/api/lucky_left"
-#define Bid_list @"https://zy8.jf-q.com/api/bid_top"
-#define MONEY_LOG @"https://zy8.jf-q.com/api/money_log"
-#define PUB_LUCKY @"https://zy8.jf-q.com/api/pub_lucky"
-#define COMM_LOG @"https://zy8.jf-q.com/api/comm_log"
-#define SCORE_LOG @"https://zy8.jf-q.com/api/score_log"
-#define HEGOU_HELP @"http://zy8.jf-q.com/a/cate/3126386536" //合购帮助页面
-#define MYBILL @"https://zy8.jf-q.com/api/mybill" //我的订单
+#define ADURL @"https://m.zouyun8.com/api/adlist"
+#define GOODSURL @"https://m.zouyun8.com/api/lucky_list"
+#define ADDRESS_LISTURL @"https://m.zouyun8.com/api/address_list"
+#define ADDRESS_EDITURL @"https://m.zouyun8.com/api/address_edit"
+#define ADDRESS_ADD @"https://m.zouyun8.com/api/address_add"
+#define SYNC_CART @"https://m.zouyun8.com/api/sync_cart"
+#define ORDER_INFO @"https://m.zouyun8.com/api/orderinfo"
+#define PAY_INFO @"https://m.zouyun8.com/api/pay_info"
+#define TOKEN_LOGIN @"https://m.zouyun8.com/api/token_login"
+#define CREATE_BILL @"https://m.zouyun8.com/api/create_bill"
+#define START_PAY @"https://m.zouyun8.com/api/start_pay"
+#define LUCKY_NOTICE @"https://m.zouyun8.com/api/lucky_notice"
+#define QRCODE @"https://m.zouyun8.com/api/qrcode"
+#define CATEGORY_LIST @"https://m.zouyun8.com/api/category_list"
+#define LUCKY_LIST @"https://m.zouyun8.com/api/lucky_list"
+#define LUCKY_LEFT @"https://m.zouyun8.com/api/lucky_left"
+#define Bid_list @"https://m.zouyun8.com/api/bid_top"
+#define MONEY_LOG @"https://m.zouyun8.com/api/money_log"
+#define PUB_LUCKY @"https://m.zouyun8.com/api/pub_lucky"
+#define COMM_LOG @"https://m.zouyun8.com/api/comm_log"
+#define SCORE_LOG @"https://m.zouyun8.com/api/score_log"
+#define HEGOU_HELP @"http://m.zouyun8.com/a/cate/3126386536" //合购帮助页面
+#define MYBILL @"https://m.zouyun8.com/api/mybill" //我的订单
 
 
 
-#define EVALUATE_ALL_LIST @"https://zy8.jf-q.com/api/evaluate_all_list"
-#define PGFirstPageURL @"https://zy8.jf-q.com/api/bid_list"//拼购首页
-#define PGxiangqingPageURL @"https://zy8.jf-q.com/api/bid_view"//拼购详情
-#define Share_successURL @"https://zy8.jf-q.com/api/share_success"//分享成功回调
-#define Share_URL @"http://zy8.jf-q.com/b/v/"//分享链接
+#define EVALUATE_ALL_LIST @"https://m.zouyun8.com/api/evaluate_all_list"
+#define PGFirstPageURL @"https://m.zouyun8.com/api/bid_list"//拼购首页
+#define PGxiangqingPageURL @"https://m.zouyun8.com/api/bid_view"//拼购详情
+#define Share_successURL @"https://m.zouyun8.com/api/share_success"//分享成功回调
+#define Share_URL @"http://m.zouyun8.com/b/v/"//分享链接
 
 
-#define Lucky_view_URL @"https://zy8.jf-q.com/api/lucky_view"//合购详情
-#define Has_join_lucky_URL @"https://zy8.jf-q.com/api/has_join_lucky"//查询是否购买合购
+#define Lucky_view_URL @"https://m.zouyun8.com/api/lucky_view"//合购详情
+#define Has_join_lucky_URL @"https://m.zouyun8.com/api/has_join_lucky"//查询是否购买合购
 #import "HG_XiangGing.h"
 #import "HGDetaliView1.h"
 #import "HGDetaliView2.h"
@@ -194,14 +194,14 @@
 #import "AnnounceTableViewCell4.h"
 #import "TimeModel.h"
 
-#define Lucky_notice_URL @"https://zy8.jf-q.com/api/lucky_notice"//最新中奖消息  (揭晓)
-#define History_lucky_URL @"https://zy8.jf-q.com/api/history_lucky"
-#define Create_lucky_URL @"https://zy8.jf-q.com/api/create_lucky"//创建好友合购
-#define Bill_view_URL @"https://zy8.jf-q.com/api/bill_view"//订单详情
-#define Myoriginate_URL @"https://zy8.jf-q.com/api/myoriginate"//发起的合购
-#define Mylucky_URL @"https://zy8.jf-q.com/api/mylucky"//我获得的商品
-#define Evaluate_list_URL @"https://zy8.jf-q.com/api/evaluate_list"//我的晒单商品列表
-#define Junior_URL @"https://zy8.jf-q.com/api/junior"//我的下级会员
+#define Lucky_notice_URL @"https://m.zouyun8.com/api/lucky_notice"//最新中奖消息  (揭晓)
+#define History_lucky_URL @"https://m.zouyun8.com/api/history_lucky"
+#define Create_lucky_URL @"https://m.zouyun8.com/api/create_lucky"//创建好友合购
+#define Bill_view_URL @"https://m.zouyun8.com/api/bill_view"//订单详情
+#define Myoriginate_URL @"https://m.zouyun8.com/api/myoriginate"//发起的合购
+#define Mylucky_URL @"https://m.zouyun8.com/api/mylucky"//我获得的商品
+#define Evaluate_list_URL @"https://m.zouyun8.com/api/evaluate_list"//我的晒单商品列表
+#define Junior_URL @"https://m.zouyun8.com/api/junior"//我的下级会员
 
 
 

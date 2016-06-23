@@ -40,6 +40,8 @@
         NSString * path = [[NSBundle mainBundle] pathForResource:@"Province" ofType:@"plist"];
         _arrayDS = [[NSArray alloc] initWithContentsOfFile:path];
     }
+    
+    
     return _arrayDS;
 }
 
@@ -56,6 +58,8 @@
 
 -(void)resetPickerSelectRow
 {
+    
+    
     [self.pickerView selectRow:_provinceIndex inComponent:0 animated:YES];
     [self.pickerView selectRow:_cityIndex inComponent:1 animated:YES];
     [self.pickerView selectRow:_districtIndex inComponent:2 animated:YES];
@@ -135,21 +139,32 @@
     [self resetPickerSelectRow];
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    NSString * address = [NSString stringWithFormat:@"%@-%@-%@", self.arrayDS[_provinceIndex][@"province"], self.arrayDS[_provinceIndex][@"citys"][_cityIndex][@"city"], self.arrayDS[_provinceIndex][@"citys"][_cityIndex][@"districts"][_districtIndex]];
+    self.areaTextField.text = address;
+    _provinceStr = self.arrayDS[_provinceIndex][@"province"];
+    _cityStr = self.arrayDS[_provinceIndex][@"citys"][_cityIndex][@"city"];
+    _districtStr = self.arrayDS[_provinceIndex][@"citys"][_cityIndex][@"districts"][_districtIndex];
+
+
+}
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    [self.areaTextField resignFirstResponder];
+       [self.areaTextField resignFirstResponder];
 }
 
 - (void)viewDidLoad {
     self.title = self.editOrAdd;
     self.is_default = @"0";
     [super viewDidLoad];
-    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveAdd:)];
-    self.navigationItem.rightBarButtonItem = rightItem;
+//    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveAdd:)];
+//    self.navigationItem.rightBarButtonItem = rightItem;
     [self createAddDetailAddressTableView];
     [self initData];
     // 默认Picker状态
-    [self resetPickerSelectRow];
+    [self.pickerView selectRow:1  inComponent:1  animated:YES];
+    
+  
 }
 -(void)createAddDetailAddressTableView
 {
@@ -162,6 +177,29 @@
     NSLog(@"%@",self.name);
     NSLog(@"%@",self.mobile);
     if (1) {
+        
+        
+        if (self.areaTextField.text.length==0) {
+            [SVProgressHUD showErrorWithStatus:@"请选择所在区域"];
+            return;
+        }
+        
+        if (self.name.length==0) {
+            [SVProgressHUD showErrorWithStatus:@"请编辑联系人"];
+            return;
+        }
+        
+        if (self.mobile.length==0) {
+            [SVProgressHUD showErrorWithStatus:@"请编辑联系方式"];
+            return;
+        }
+
+        if (self.detail.length==0) {
+            [SVProgressHUD showErrorWithStatus:@"请编辑详细地址"];
+            return;
+        }
+
+        
 //        if (self.delegate) {
 //            [self.delegate fetchNewAddr:self.dataModel];
 //        }
@@ -200,6 +238,7 @@
             {
                 //地址添加成功
                 [SVProgressHUD showSuccessWithStatus:@"地址添加成功"];
+                [self.navigationController popViewControllerAnimated:YES];
             }
             NSLog(@"--------------------%@",dict);
             

@@ -131,7 +131,7 @@ UIBarButtonSystemItemFixedSpace target:nil action:nil];
     
     SortTableViewController *VC=[[SortTableViewController alloc]init];
     
-     VC.pgFenlei=[NSString stringWithFormat:@"https://zy8.jf-q.com/api/category_list/?type=2"];
+     VC.pgFenlei=[NSString stringWithFormat:@"https://m.zouyun8.com/api/category_list/?type=2"];
      //VC.type=@"2";//category_list   分类接口 加一个 type 参数  值为1时 取合购  2取拼购分类
     [self.navigationController pushViewController:VC animated:YES];
     

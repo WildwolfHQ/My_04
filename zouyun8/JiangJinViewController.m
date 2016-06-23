@@ -72,12 +72,12 @@
     cell.desc.text = dic[@"msg"];
     if ([dic[@"type"] integerValue] > 10) {
         cell.getOrPay.textColor = [UIColor redColor];
-        cell.getOrPay.text = [NSString stringWithFormat:@"+%@",dic[@"score"]];
+        cell.getOrPay.text = [NSString stringWithFormat:@"-%@",dic[@"score"]];
     }
     else
     {
         cell.getOrPay.textColor = [UIColor greenColor];
-        cell.getOrPay.text = [NSString stringWithFormat:@"-%@",dic[@"score"]];
+        cell.getOrPay.text = [NSString stringWithFormat:@"+%@",dic[@"score"]];
     }
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

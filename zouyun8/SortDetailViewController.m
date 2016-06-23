@@ -147,7 +147,7 @@
     [ToolClass getSortDetail:^(NSDictionary *dic) {
         NSArray * marry = [[NSArray alloc]init];
         marry = dic[@"data"];
-        if (marry.count == 0) {
+        if (marry.count == 0&&self.dataSource.count==0) {
             [SVProgressHUD showErrorWithStatus:@"暂无该商品"];
             [self.navigationController popViewControllerAnimated:YES];
         }

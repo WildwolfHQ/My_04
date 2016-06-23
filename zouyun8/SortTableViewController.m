@@ -88,14 +88,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:255/255.0 green:64/255.0 blue:64/255.0 alpha:1];
-    [self.tableView registerNib:[UINib nibWithNibName:@"SortTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    self.tableView.frame=CGRectMake(0, 0, WIDTH, HEIGHT);
     [self getdata];
 }
 -(void)getdata
 {
     
     
-    NSString *urlStr=@"https://zy8.jf-q.com/api/category_list/?type=1";
+    NSString *urlStr=@"https://m.zouyun8.com/api/category_list/?type=1";
     if (self.pgFenlei!=nil) {
         urlStr=self.pgFenlei;
     }
@@ -161,11 +161,17 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewCell * cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-//    cell.imageView.image = [UIImage imageNamed:@"IOS-晒单.jpg"];
-//    cell.textLabel.text = @"手机平板";
-//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    SortTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+
+    SortTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"SortTableViewCell"];
+    
+    if (cell==nil) {
+        [self.tableView registerNib:[UINib nibWithNibName:@"SortTableViewCell" bundle:nil] forCellReuseIdentifier:@"SortTableViewCell"];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"SortTableViewCell"];
+        
+        
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.frame=CGRectMake(0, 0, WIDTH, 50);
     cell.delegate = self;
     SortModel * model = self.dataSource[indexPath.row];
     if (self.pgFenlei!=nil) {
@@ -175,8 +181,8 @@
     }
     cell.model = model;
     cell.name.text = model.name;
-    cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:model.icon]]];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.image.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:model.icon]]];
+    
     
     return cell;
 }
@@ -191,7 +197,10 @@
     SortModel * model = self.dataSource[indexPath.row];
     [self pushToSortDetail:nil andMax:nil andModel:model andName:model.name searchName:nil];
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 50;
 
+}
 #pragma mark - searchBar代理方法
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {

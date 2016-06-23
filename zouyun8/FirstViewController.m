@@ -150,13 +150,13 @@
     
 //     leftButtonItem.imageInsets = UIEdgeInsetsMake(0,-20, 0, 20);
     
-     UIBarButtonItem *leftButtonItem1 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_nav_fanhuo"] style:UIBarButtonItemStylePlain target:self action:@selector(pushToback)];
-//    leftButtonItem1.imageInsets = UIEdgeInsetsMake(0,0, 0, -20);
-
-    self.navigationItem.leftBarButtonItems = @[fixBar,leftButtonItem1];
-    
-    self.navigationItem.leftBarButtonItem.tintColor = [UIColor colorWithRed:217/255.0 green:43/255.0 blue:73/255.0 alpha:1];
-     leftButtonItem1.tintColor = [UIColor colorWithRed:217/255.0 green:43/255.0 blue:73/255.0 alpha:1];
+//     UIBarButtonItem *leftButtonItem1 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_nav_fanhuo"] style:UIBarButtonItemStylePlain target:self action:@selector(pushToback)];
+////    leftButtonItem1.imageInsets = UIEdgeInsetsMake(0,0, 0, -20);
+//
+//    self.navigationItem.leftBarButtonItems = @[fixBar,leftButtonItem1];
+//    
+//    self.navigationItem.leftBarButtonItem.tintColor = [UIColor colorWithRed:217/255.0 green:43/255.0 blue:73/255.0 alpha:1];
+//     leftButtonItem1.tintColor = [UIColor colorWithRed:217/255.0 green:43/255.0 blue:73/255.0 alpha:1];
 //       leftButtonItem.tintColor = [UIColor colorWithRed:217/255.0 green:43/255.0 blue:73/255.0 alpha:1];
     
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:217/255.0 green:43/255.0 blue:73/255.0 alpha:1];

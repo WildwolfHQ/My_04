@@ -261,7 +261,7 @@
 }
 
 
-#define Hot_searchURL @"https://zy8.jf-q.com/api/hot_search"//
+#define Hot_searchURL @"https://m.zouyun8.com/api/hot_search"//
 #pragma mark - 获取商品数据
 -(void)getData1
 {

@@ -18,4 +18,6 @@
 @property(nonatomic,weak) id<MyheaderViewDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *backImageViwe;
+@property (weak, nonatomic) IBOutlet UILabel *name2;
+
 @end

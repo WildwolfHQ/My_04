@@ -141,7 +141,7 @@
         
         //    dic[@"url"]=model;
         //    dic[@"desc"];
-        VC.urlStr=@"https://zy8.jf-q.com/a/article/3501050422";
+        VC.urlStr=@"https://m.zouyun8.com/a/article/3501050422";
         VC.titleName=@"关于我们";
         self.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:VC animated:YES];

@@ -217,7 +217,7 @@
     NSDictionary *dict = @{@"token":TOKEN,@"uid":UID,@"type":@"0"};
     
     //formData: 专门用于拼接需要上传的数据,在此位置生成一个要上传的数据体
-    [manager POST:@"https://zy8.jf-q.com/api/upload_image_multi" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [manager POST:@"https://m.zouyun8.com/api/upload_image_multi" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         // 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名
         // 要解决此问题，
         // 可以在上传时使用当前的系统事件作为文件名

@@ -13,6 +13,7 @@
 @interface MyViewController ()<MyheaderViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MySectionHeaderDelegate>{
     UIImage *_iconImage;
     UILabel *labeldengji;
+    UILabel *label;
 
 }
 @property(nonatomic,strong)NSArray * titles;
@@ -65,8 +66,9 @@
     labeldengji.textColor=[UIColor whiteColor];
     [self.headerView addSubview:labeldengji];
     
-
+    label=  [[UILabel alloc]init];
     [self loadData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"loadData" object:nil];
     
     
 }
@@ -138,24 +140,98 @@
              NSString * nick = NICK;
              if (nick.length != 0)
              {
-                 if ([type integerValue] != 2)
-                 {
-                     self.headerView.userNameLabel.text = nick;
+                 if ([type integerValue] != 2){
+                     if([type integerValue]==1){
+                     
+                         self.headerView.userNameLabel.text = [NSString stringWithFormat:@"%@",nick];
+                         
+                         //判断
+                         if (self.headerView.userNameLabel.frame.origin.x+self.headerView.userNameLabel.frame.size.width+65>=WIDTH) {
+                             label.frame=CGRectMake(WIDTH-65, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
+                             self.headerView.userNameLabel.frame=CGRectMake(self.headerView.userNameLabel.frame.origin.x, self.headerView.userNameLabel.frame.origin.y, label.frame.origin.x-self.headerView.userNameLabel.frame.origin.x, self.headerView.userNameLabel.frame.size.height);
+                             
+                         }else{
+                             label.frame =CGRectMake(self.headerView.userNameLabel.frame.origin.x+self.headerView.userNameLabel.frame.size.width, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
+                         }
+                         [self.headerView addSubview:label];
+                         label.text=@"(代理)";
+                         label.font=self.headerView.userNameLabel.font;
+                         label.textColor=[UIColor whiteColor];
+
+                         
+                         
+                     }else{
+                       self.headerView.userNameLabel.text = nick;
+                     
+                     }
+                
+                     
                  }
                  else
                  {
-                     self.headerView.userNameLabel.text = [NSString stringWithFormat:@"%@(试购员)",nick];
+                     self.headerView.userNameLabel.text = [NSString stringWithFormat:@"%@",nick];
+                     
+                     //判断
+                     if (self.headerView.userNameLabel.frame.origin.x+self.headerView.userNameLabel.frame.size.width+65>=WIDTH) {
+                         label.frame=CGRectMake(WIDTH-65, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
+                    self.headerView.userNameLabel.frame=CGRectMake(self.headerView.userNameLabel.frame.origin.x, self.headerView.userNameLabel.frame.origin.y, label.frame.origin.x-self.headerView.userNameLabel.frame.origin.x, self.headerView.userNameLabel.frame.size.height);
+                         
+                     }else{
+                         label.frame =CGRectMake(self.headerView.userNameLabel.frame.origin.x+self.headerView.userNameLabel.frame.size.width, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
+                     }
+                     [self.headerView addSubview:label];
+                     label.text=@"(试购员)";
+                     label.font=self.headerView.userNameLabel.font;
+                     label.textColor=[UIColor whiteColor];
+                     
                  }
              }
              else
              {
                  if ([type integerValue] != 2)
                  {
-                     self.headerView.userNameLabel.text = USER_NAME;
+                     if([type integerValue]==1){
+                         
+                         self.headerView.userNameLabel.text = [NSString stringWithFormat:@"%@",USER_NAME];
+                         
+                         //判断
+                         if (self.headerView.userNameLabel.frame.origin.x+self.headerView.userNameLabel.frame.size.width+65>=WIDTH) {
+                             label.frame=CGRectMake(WIDTH-65, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
+                             self.headerView.userNameLabel.frame=CGRectMake(self.headerView.userNameLabel.frame.origin.x, self.headerView.userNameLabel.frame.origin.y, label.frame.origin.x-self.headerView.userNameLabel.frame.origin.x, self.headerView.userNameLabel.frame.size.height);
+                             
+                         }else{
+                             label.frame =CGRectMake(self.headerView.userNameLabel.frame.origin.x+self.headerView.userNameLabel.frame.size.width, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
+                         }
+                         [self.headerView addSubview:label];
+                         label.text=@"(代理)";
+                         label.font=self.headerView.userNameLabel.font;
+                         label.textColor=[UIColor whiteColor];
+                         
+                         
+                         
+                     }else{
+                         self.headerView.userNameLabel.text = nick;
+                         
+                     }
+                     
                  }
                  else
                  {
-                     self.headerView.userNameLabel.text = [NSString stringWithFormat:@"%@(试购员)",USER_NAME];
+                     self.headerView.userNameLabel.text = [NSString stringWithFormat:@"%@",USER_NAME];
+                      //判断
+                     if (self.headerView.userNameLabel.frame.origin.x+self.headerView.userNameLabel.frame.size.width+65>=WIDTH) {
+                         label.frame=CGRectMake(WIDTH-65, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
+                         self.headerView.userNameLabel.frame=CGRectMake(self.headerView.userNameLabel.frame.origin.x, self.headerView.userNameLabel.frame.origin.y, label.frame.origin.x-self.headerView.userNameLabel.frame.origin.x, self.headerView.userNameLabel.frame.size.height);
+                         
+                     }else{
+                         label.frame =CGRectMake(self.headerView.userNameLabel.frame.origin.x+self.headerView.userNameLabel.frame.size.width, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
+                     }
+                     [self.headerView addSubview:label];
+                     label.text=@"(试购员)";
+                     label.font=self.headerView.userNameLabel.font;
+                     label.textColor=[UIColor whiteColor];
+
+
                  }
              }
          }];
@@ -199,7 +275,7 @@
 -(void)setInformation
 {
     ADViewController * ad = [[ADViewController alloc]init];
-    ad.url = [NSString stringWithFormat:@"http://zy8.jf-q.com/u/user_info/?uid=%@&token=%@",UID,TOKEN];
+    ad.url = [NSString stringWithFormat:@"http://m.zouyun8.com/u/user_info/?uid=%@&token=%@",UID,TOKEN];
     [self.navigationController pushViewController:ad animated:YES];
 }
 
@@ -384,7 +460,7 @@
     NSDictionary *dict = @{@"token":TOKEN,@"uid":UID,@"type":@"1"};
     
     //formData: 专门用于拼接需要上传的数据,在此位置生成一个要上传的数据体
-    [manager POST:@"https://zy8.jf-q.com/api/upload_image" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [manager POST:@"https://m.zouyun8.com/api/upload_image" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         // 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名
         // 要解决此问题，
         // 可以在上传时使用当前的系统事件作为文件名

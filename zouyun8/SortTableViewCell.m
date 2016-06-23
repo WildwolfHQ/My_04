@@ -18,4 +18,15 @@
     }
 }
 
+////cell.m 中重写prepareForReuse方法
+//- (void)prepareForReuse
+//{
+//    [super prepareForReuse];
+//    
+//    // 重置image
+//    self.image.image = nil;
+//    
+//    // 更新位置
+//    self.image.frame = self.contentView.bounds;
+//}
 @end

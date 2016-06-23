@@ -35,8 +35,29 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"TestClerk" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"loadData" object:nil];
 }
 
++(void)saveUserInfo1:(NSDictionary *)dict
+{
+    //保存用户token等用户信息,并同步
+    [[NSUserDefaults standardUserDefaults]setObject:dict[@"data"][@"comm"] forKey:@"comm"];
+    [[NSUserDefaults standardUserDefaults]setObject:dict[@"data"][@"exp"] forKey:@"exp"];
+    [[NSUserDefaults standardUserDefaults]setObject:dict[@"data"][@"icon"] forKey:@"icon"];
+    [[NSUserDefaults standardUserDefaults]setObject:dict[@"data"][@"token"] forKey:@"token"];
+    [[NSUserDefaults standardUserDefaults]setObject:dict[@"data"][@"last_login"] forKey:@"last_login"];
+    [[NSUserDefaults standardUserDefaults]setObject:dict[@"data"][@"level"] forKey:@"level"];
+    [[NSUserDefaults standardUserDefaults]setObject:dict[@"data"][@"money"] forKey:@"money"];
+    [[NSUserDefaults standardUserDefaults]setObject:dict[@"data"][@"nick"] forKey:@"nick"];
+    [[NSUserDefaults standardUserDefaults]setObject:dict[@"data"][@"score"] forKey:@"score"];
+    [[NSUserDefaults standardUserDefaults]setObject:dict[@"data"][@"type"] forKey:@"type"];
+    [[NSUserDefaults standardUserDefaults]setObject:dict[@"data"][@"uid"] forKey:@"uid"];
+    [[NSUserDefaults standardUserDefaults]setObject:dict[@"data"][@"username"] forKey:@"username"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"TestClerk" object:nil];
+    
+}
 +(BOOL)isNetConnect
 {
     __block BOOL state;
@@ -125,7 +146,7 @@
         if ([errcode integerValue]==0)
         {
             
-            [ToolClass saveUserInfo:dict];
+            [ToolClass saveUserInfo1:dict];
             //[SVProgressHUD showErrorWithStatus:dict[@"errmsg"]];
         }else
         {
@@ -539,7 +560,7 @@
     securityPolicy.allowInvalidCertificates = YES;
     manager.securityPolicy = securityPolicy;
     
-    [manager GET:@"https://zy8.jf-q.com/api/news_list" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
+    [manager GET:@"https://m.zouyun8.com/api/news_list" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          NSString * errcode = dict[@"errcode"];
@@ -781,7 +802,7 @@
     params[@"uid"] = UID;
     params[@"id"] = addressID;
     
-    [HttpRequest postWithURLString:@"https://zy8.jf-q.com/api/address_del/" parameters:params success:^(id responseObject)
+    [HttpRequest postWithURLString:@"https://m.zouyun8.com/api/address_del/" parameters:params success:^(id responseObject)
      {
          dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          NSString * errcode = dict[@"errcode"];
@@ -818,7 +839,7 @@
     params[@"default"] = @"1";
     params[@"id"] = model.ID;
     
-    [HttpRequest postWithURLString:@"https://zy8.jf-q.com/api/address_edit" parameters:params success:^(id responseObject)
+    [HttpRequest postWithURLString:@"https://m.zouyun8.com/api/address_edit" parameters:params success:^(id responseObject)
      {
          dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          NSString * errcode = dict[@"errcode"];

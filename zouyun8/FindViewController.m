@@ -118,7 +118,9 @@
     if (indexPath.row == 0) {
         //跳转到网友晒单界面
         NetShareViewController * net = [[NetShareViewController alloc]init];
+        self.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:net animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
     }
     else
     {
@@ -134,7 +136,9 @@
         }
         ad.url = self.dataSource[indexPath.row - 1][@"href"];
         ad.tip = title;
+        self.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:ad animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
     }
 }
 

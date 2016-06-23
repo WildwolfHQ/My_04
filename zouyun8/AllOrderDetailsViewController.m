@@ -90,8 +90,14 @@
         return 1;
     }
     if (section == 2) {
+        NSInteger row;
+        if (_model!=nil) {
+          row= _model.goods_info.count+1;
+        }else{
+            row=1;
         
-      NSInteger row= _model.goods_info.count+1;
+        }
+     
         return  row;
     }
     if (section == 3) {
@@ -122,7 +128,7 @@
             
         }
         
-        [cell setProperty:_model];
+       [cell setProperty:_model];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         return cell;
@@ -159,22 +165,22 @@
             
              return cell;
         }
-        if(row==1||row==2){
-            
-          AllOrderTableViewCell3  *cell = [tableView dequeueReusableCellWithIdentifier:@"AllOrderTableViewCell3"];
-            if (!cell)
-            {
-                [tableView registerNib:[UINib nibWithNibName:@"AllOrderTableViewCell3" bundle:nil] forCellReuseIdentifier:@"AllOrderTableViewCell3"];
-                cell= [tableView dequeueReusableCellWithIdentifier:@"AllOrderTableViewCell3"];
-            }
-            
-            
-            
-             [cell setProperty:_model.goods_info[row-1]];
-            
-             return cell;
-            
+        AllOrderTableViewCell3  *cell = [tableView dequeueReusableCellWithIdentifier:@"AllOrderTableViewCell3"];
+        if (!cell)
+        {
+            [tableView registerNib:[UINib nibWithNibName:@"AllOrderTableViewCell3" bundle:nil] forCellReuseIdentifier:@"AllOrderTableViewCell3"];
+            cell= [tableView dequeueReusableCellWithIdentifier:@"AllOrderTableViewCell3"];
         }
+        
+        
+        
+        [cell setProperty:_model.goods_info[row-1]];
+        
+        return cell;
+
+        
+        
+
         
        
         

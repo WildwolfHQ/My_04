@@ -45,7 +45,7 @@
     securityPolicy.allowInvalidCertificates = YES;
     manager.securityPolicy = securityPolicy;
     
-    [manager GET:@"https://zy8.jf-q.com/api/hot_search?type=1" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+    [manager GET:@"https://m.zouyun8.com/api/hot_search?type=1" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          NSString * errcode = dict[@"errcode"];

@@ -28,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title=@"我获得的商品";
     self.dataSource=[NSMutableArray array];
     [self getDataForMylucky_URL:nil andPage:nil isRefresh:NO];
     [self drawTableView];

@@ -139,7 +139,7 @@
     NSLog(@"%@",self.PhoneNumberText.text);
     NSLog(@"%@",self.codeText.text);
 
-    [HttpRequest postWithURLString:@"https://zy8.jf-q.com/api/sendcode" parameters:params success:^(id responseObject) {
+    [HttpRequest postWithURLString:@"https://m.zouyun8.com/api/sendcode" parameters:params success:^(id responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
         
          NSNumber * errcode = dict[@"errcode"];
@@ -194,7 +194,7 @@
         params[@"code"] = self.messageCode.text;
         params[@"password"] = self.passWord.text;
                                                                
-        [HttpRequest postWithURLString:@"https://zy8.jf-q.com/api/register" parameters:params success:^(id responseObject) {
+        [HttpRequest postWithURLString:@"https://m.zouyun8.com/api/register" parameters:params success:^(id responseObject) {
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
             
            NSNumber * errcode = dict[@"errcode"];
@@ -248,7 +248,7 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"username"] = username;
     params[@"password"] = password;
-    [HttpRequest postWithURLString:@"https://zy8.jf-q.com/api/login" parameters:params success:^(id responseObject) {
+    [HttpRequest postWithURLString:@"https://m.zouyun8.com/api/login" parameters:params success:^(id responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
         
         NSNumber * errcode = dict[@"errcode"];
@@ -309,7 +309,7 @@
 #pragma mark - 更换图形验证码
 -(void)getPicture
 {
-    [self.codeButton setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://zy8.jf-q.com/api/captcha?mobile=%@",self.PhoneNumberText.text]]]] forState:UIControlStateNormal];
+    [self.codeButton setBackgroundImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://m.zouyun8.com/api/captcha?mobile=%@",self.PhoneNumberText.text]]]] forState:UIControlStateNormal];
 }
 
 #pragma mark - 取消textfield第一响应者
@@ -339,7 +339,7 @@
         params[@"confirm"] = confirm;
     }
     
-    [HttpRequest postWithURLString:@"https://zy8.jf-q.com/api/user_bind" parameters:params success:^(id responseObject) {
+    [HttpRequest postWithURLString:@"https://m.zouyun8.com/api/user_bind" parameters:params success:^(id responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
         
         NSNumber * errcode = dict[@"errcode"];

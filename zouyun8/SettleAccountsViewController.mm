@@ -170,41 +170,41 @@
                      
                      if (errcode.integerValue==0) {
                          
-                         [SVProgressHUD showSuccessWithStatus:@"支付成功"];
+                         //[SVProgressHUD showSuccessWithStatus:@"支付成功"];
+                         [self getData1];
+                         
+//                         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否分享奖金红包" preferredStyle:UIAlertControllerStyleAlert];
+//                         
+//                         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+//                         
+//                         [self.navigationController popViewControllerAnimated:YES];
+//                         
+//                         
+//                         
+//                         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                             
+//                             
+//                             
+//                             
+//                         }];
                          
                          
-                         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否分享奖金红包" preferredStyle:UIAlertControllerStyleAlert];
-                         
-                         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-                         
-                         [self.navigationController popViewControllerAnimated:YES];
                          
                          
+//                         
+//                         [alertController addAction:okAction];
+//                         [alertController addAction:cancelAction];
                          
-                         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                             
-                             
-                             [self getData1];
-                             
-                         }];
-                         
-                         
-                         
-                         
-                         
-                         [alertController addAction:okAction];
-                         [alertController addAction:cancelAction];
-                         
-                         //膜态时一定要判断你膜态的ViewController是不是空 ，空才能去膜态 、非空不能。
-                         if ([UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil)
-                             
-                         {
-                             
-                             
-                             [[UIApplication sharedApplication].keyWindow.rootViewController  presentViewController:alertController  animated: YES completion:nil];
-                             
-                             
-                         }
+//                         //膜态时一定要判断你膜态的ViewController是不是空 ，空才能去膜态 、非空不能。
+//                         if ([UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil)
+//                             
+//                         {
+//                             
+//                             
+//                             [[UIApplication sharedApplication].keyWindow.rootViewController  presentViewController:alertController  animated: YES completion:nil];
+//                             
+//                             
+//                         }
 
                          
                      }else{
@@ -471,7 +471,7 @@
     securityPolicy.allowInvalidCertificates = YES;
     manager.securityPolicy = securityPolicy;
     
-    [manager GET:@"https://zy8.jf-q.com/api/pay_status" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
+    [manager GET:@"https://m.zouyun8.com/api/pay_status" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          NSString * str=dict[@"code"];//code	int	必须	0表示到账，1表示未到帐
@@ -835,7 +835,7 @@
     securityPolicy.allowInvalidCertificates = YES;
     manager.securityPolicy = securityPolicy;
     
-    [manager GET:@"https://zy8.jf-q.com/api/share_data" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject)
+    [manager GET:@"https://m.zouyun8.com/api/share_data" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          
          

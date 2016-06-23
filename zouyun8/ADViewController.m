@@ -21,6 +21,10 @@
 #pragma mark - webview代理（网页加载完后调用）
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    
+    
+    
+    
     NSString *str= [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     self.title=str;
     
@@ -34,6 +38,128 @@
     {
         
     };
+    
+    
+    context[@"zyw_getUserInfo"] = ^() {
+        
+        
+        
+        
+        NSArray *args = [JSContext currentArguments];
+        JSValue * json = args[0];
+        
+        NSString *str;
+        if (TOKEN) {
+            
+            str=[NSString stringWithFormat:@"%@,%@",UID,TOKEN];
+            
+            
+            
+            
+            
+        }else{
+            
+            
+            if ([json.toString isEqualToString:@""]) {
+                
+                if (TOKEN==nil) {
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"directLogin" object:nil];
+                    
+                }
+                
+            }else{
+                
+                
+            }
+            
+            
+            
+        }
+        return str;
+        
+    };
+    
+    
+   
+    context[@"zywShare"] = ^() {
+        
+        NSArray *args = [JSContext currentArguments];
+        //创建要分享的参数
+        NSString * desc = [[NSString alloc]init];
+        NSString * image = [[NSString alloc]init];
+        NSString * url = [[NSString alloc]init];
+        NSString * title = [[NSString alloc]init];
+        for (int i = 0; i < 4; i++)
+        {
+            JSValue * jsval = args[i];
+            if (i == 0) {
+                url = jsval.toString;
+            }
+            else if (i == 1)
+            {
+                desc = jsval.toString;
+            }
+            else if (i == 2)
+            {
+                title = jsval.toString;
+            }
+            else if (i == 3)
+            {
+                image = jsval.toString;
+            }
+        }
+        NSString * weiboDesc = [desc stringByAppendingString:url];
+        
+        //调用shareSdk分享
+        //1、创建分享参数
+        //（注意：图片必须要在Xcode左边目录里面，名称必须要传正确，如果要分享网络图片，可以这样传iamge参数 images:@[@"http://mob.com/Assets/images/logo.png?v=20150320"]）
+        if (1)
+        {
+            NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+            
+            [shareParams SSDKSetupShareParamsByText:desc
+                                             images:@[image]
+                                                url:[NSURL URLWithString:url]
+                                              title:title
+                                               type:SSDKContentTypeAuto];
+            
+            [shareParams SSDKSetupSinaWeiboShareParamsByText:weiboDesc title:title image:@[image] url:[NSURL URLWithString:url] latitude:0.0 longitude:0.0 objectID:nil type:SSDKContentTypeAuto];
+            
+            //2、分享（可以弹出我们的分享菜单和编辑界面）
+            [ShareSDK showShareActionSheet:nil //要显示菜单的视图, iPad版中此参数作为弹出菜单的参照视图，只有传这个才可以弹出我们的分享菜单，可以传分享的按钮对象或者自己创建小的view 对象，iPhone可以传nil不会影响
+                                     items:nil
+                               shareParams:shareParams
+                       onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end)
+             {
+                 
+                 switch (state)
+                 {
+                     case SSDKResponseStateSuccess:
+                     {
+                         //主线程调用js返回alert，且不等待
+                         //                         [self performSelectorOnMainThread:@selector(share_success) withObject:nil waitUntilDone:0];
+                         break;
+                     }
+                     case SSDKResponseStateFail:
+                     {
+                         //主线程调用js返回alert，且不等待
+                         //                         [self performSelectorOnMainThread:@selector(share_error) withObject:nil waitUntilDone:0];
+                         break;
+                     }
+                     default:
+                         break;
+                 }
+             }
+             ];
+        }
+        
+        
+        
+        
+    };
+
+    
+
 }
 -(void)viewWillAppear:(BOOL)animated
 {

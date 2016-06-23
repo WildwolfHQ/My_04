@@ -13,7 +13,8 @@
 @property(weak,nonatomic)id<SortTableViewCellDelegate> delegate;
 
 @property(nonatomic,strong)SortModel * model;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UIButton *pricequjian;
 
 @end

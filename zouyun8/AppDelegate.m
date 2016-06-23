@@ -94,7 +94,7 @@
                  //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
                  [appInfo SSDKSetupSinaWeiboByAppKey:@"1587287296"
                                            appSecret:@"8a675d2f7f5c0b4161603cebecd42cee"
-                                         redirectUri:@"http://zy8.jf-q.com/"
+                                         redirectUri:@"http://m.zouyun8.com/"
                                             authType:SSDKAuthTypeBoth];
                  break;
              case SSDKPlatformTypeWechat:
@@ -249,8 +249,8 @@
     
     
     self.PGvc = [[PGViewController alloc]init];
-    //self.Fvc = [[FirstViewController alloc]init];
-    self.NFvc = [[UINavigationController alloc]initWithRootViewController:self.PGvc];
+    self.Fvc = [[FirstViewController alloc]init];
+    self.NFvc = [[UINavigationController alloc]initWithRootViewController:self.Fvc];
     self.NFvc.tabBarItem.title=@"首页";
    
    

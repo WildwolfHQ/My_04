@@ -22,14 +22,27 @@
 }
 -(void) setProperty:(Bill_View *)model{
 
-    if (model.track_info!=nil) {
+    if (model.track_info!=nil&&model.track_info.count!=0) {
+       // NSNull *null=[[NSNull alloc]init];
         
-        self.kuaidi.text=model.track_info[@"name"];
+        if (![model.track_info[@"name"] isNull]) {
+            self.kuaidi.text=model.track_info[@"name"];
+        }else{
+        
+           self.kuaidi.text=@"";
+        }
+        
         
         //model.track_info[@"url"];
+        if (model.track_info[@"num"]!=nil) {
+            self.kuaididanhao.text=model.track_info[@"num"];//name = "<null>";
+            //num = "";
+        }
         
-        self.kuaididanhao.text=model.track_info[@"num"];
         
+    }else{
+    self.kuaidi.text=@"";self.kuaididanhao.text=@"";
+    
     }
     
     
