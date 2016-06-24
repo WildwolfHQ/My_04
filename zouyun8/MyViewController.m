@@ -145,6 +145,9 @@
                      
                          self.headerView.userNameLabel.text = [NSString stringWithFormat:@"%@",nick];
                          
+                         
+                      
+                         
                          //判断
                          if (self.headerView.userNameLabel.frame.origin.x+self.headerView.userNameLabel.frame.size.width+65>=WIDTH) {
                              label.frame=CGRectMake(WIDTH-65, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
@@ -194,8 +197,10 @@
                          
                          self.headerView.userNameLabel.text = [NSString stringWithFormat:@"%@",USER_NAME];
                          
+                         
+                    NSInteger lenth = [self getToInt:self.headerView.userNameLabel.text];
                          //判断
-                         if (self.headerView.userNameLabel.frame.origin.x+self.headerView.userNameLabel.frame.size.width+65>=WIDTH) {
+                         if (self.headerView.userNameLabel.frame.origin.x+lenth+65>=WIDTH) {
                              label.frame=CGRectMake(WIDTH-65, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
                              self.headerView.userNameLabel.frame=CGRectMake(self.headerView.userNameLabel.frame.origin.x, self.headerView.userNameLabel.frame.origin.y, label.frame.origin.x-self.headerView.userNameLabel.frame.origin.x, self.headerView.userNameLabel.frame.size.height);
                              
@@ -218,8 +223,9 @@
                  else
                  {
                      self.headerView.userNameLabel.text = [NSString stringWithFormat:@"%@",USER_NAME];
-                      //判断
-                     if (self.headerView.userNameLabel.frame.origin.x+self.headerView.userNameLabel.frame.size.width+65>=WIDTH) {
+                      //判断self.headerView.userNameLabel.frame.size.width(苹果公司字符串计算混合字符长度有误差)
+                    NSInteger lenth = [self getToInt:self.headerView.userNameLabel.text];
+                     if (self.headerView.userNameLabel.frame.origin.x+lenth+65>=WIDTH) {
                          label.frame=CGRectMake(WIDTH-65, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
                          self.headerView.userNameLabel.frame=CGRectMake(self.headerView.userNameLabel.frame.origin.x, self.headerView.userNameLabel.frame.origin.y, label.frame.origin.x-self.headerView.userNameLabel.frame.origin.x, self.headerView.userNameLabel.frame.size.height);
                          
@@ -244,7 +250,15 @@
 
 
 }
-#pragma mark - headerView代理方法：充值
+#pragma mark - 计算混合字符串长度
+- (NSInteger)getToInt:(NSString*)strtemp
+
+{
+    NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+    NSData* da = [strtemp dataUsingEncoding:enc];
+    return [da length];
+}
+
 -(void)reCharge
 {
     RechargeViewController * recharge = [[RechargeViewController alloc]init];

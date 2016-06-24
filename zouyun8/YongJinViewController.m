@@ -27,6 +27,7 @@
         NSLog(@"账户信息%@",dic);
         [self getData];
     }];
+    self.tableView.frame=CGRectMake(0, 0, WIDTH, HEIGHT);
     
     [self.tableView registerNib:[UINib nibWithNibName:@"YongJinCell" bundle:nil] forCellReuseIdentifier:@"cell"];
 }
@@ -64,18 +65,28 @@
 {
     if (indexPath.row == 0) {
         UITableViewCell * cell = [[UITableViewCell alloc]init];
+        cell.frame=CGRectMake(0, 0, WIDTH, 44);
         UIView * view = [[NSBundle mainBundle]loadNibNamed:@"tips2" owner:self options:nil].firstObject;
-        
+        view.frame=CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height);
         [cell addSubview:view];
+        
         return cell;
     }
     else
     {
     YongJinCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    cell.frame=CGRectMake(0, 0, WIDTH, 44);
     NSDictionary * dic = self.dataSource[indexPath.row - 1];
     cell.time.text = dic[@"create_time"];
     cell.desc.text = dic[@"msg"];
-    cell.money.text = [NSString stringWithFormat:@"+%@",dic[@"comm"]];
+        if ([dic[@"type"] integerValue] > 10) {
+             cell.money.textColor=[UIColor greenColor];
+             cell.money.text = [NSString stringWithFormat:@"-%@",dic[@"comm"]];
+        }else{
+            cell.money.textColor=[UIColor redColor];
+             cell.money.text = [NSString stringWithFormat:@"+%@",dic[@"comm"]];
+        }
+   
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;

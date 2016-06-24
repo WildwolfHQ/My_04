@@ -32,7 +32,9 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F5K-MV-l1P">
                     <rect key="frame" x="252" y="7" width="60" height="30"/>
                     <color key="backgroundColor" red="1" green="0.10259666689999999" blue="0.17166056569999999" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="提交订单"/>
+                    <state key="normal" title="提交订单">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                     <connections>
                         <action selector="submitOrder:" destination="Urr-my-jK6" eventType="touchUpInside" id="tBP-Vi-9gS"/>
                     </connections>
@@ -40,7 +42,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="(1元等于1走运币)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOR-Wf-uff">
                     <rect key="frame" x="91" y="15" width="92" height="14"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>

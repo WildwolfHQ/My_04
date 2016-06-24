@@ -451,6 +451,7 @@
     [self getPayInfo];
     [self getDefaultAddress];
     [self createTableView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getDefaultAddress) name:@"changeDefaultDitali" object:nil];
     
     
 }

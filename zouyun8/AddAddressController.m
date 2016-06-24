@@ -138,16 +138,24 @@
     cell.delegate = self;
     AddrDataModel * model = self.dataSource[indexPath.row];
     cell.nameLabel.text = model.name;
-    cell.detaillabel.text = model.detail;
+    cell.detaillabel.text = [NSString stringWithFormat:@"%@%@%@%@", model.province,model.city, model.town,model.detail]; ;
     cell.mobileLabel.text = model.phone;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if (indexPath.row == 0) {
-        cell.is_default.hidden = NO;
-        cell.switchBtn.on = YES;
-        cell.switchBtn.enabled = NO;
+    NSLog(@"%@",model.default1);
+    if (model.default1.integerValue==1) {
+         cell.is_default.hidden = NO;
+         cell.switchBtn.on = YES;
+         cell.switchBtn.enabled = NO;
+
+    }else{
+    
+         cell.is_default.hidden = YES;
     }
-    else
-        cell.is_default.hidden = YES;
+    
+//    if (indexPath.row == 0) {
+//           }
+//    else
+    
     return cell;
 }
 
@@ -163,16 +171,40 @@
     //从网络删除
     [ToolClass DelegateAddress_del:^(NSDictionary *dic) {
         NSLog(@"删除地址后返回%@",dic);
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"changeDefaultDitali" object:nil];
+
     } ID:model.ID];
 }
 -(void)setDefaultAddress:(NSIndexPath *)index
 {
+
     //从网络设置默认地址
     AddrDataModel * model = self.dataSource[index.row];
     [ToolClass SetDefaultAddress:^(NSDictionary *dic) {
-        NSLog(@"%@",dic[@"errmsg"]);
+        //NSLog(@"%@",dic[@"errmsg"]);
         //刷新表格
-        [SVProgressHUD showSuccessWithStatus:@"设置成功"];
+        NSString * errcode = dic[@"errcode"];
+        if ([errcode integerValue]==0)
+        {
+            [SVProgressHUD showSuccessWithStatus:@"设置成功"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"changeDefaultDitali" object:nil];
+        }
+        else
+        {
+            
+            [SVProgressHUD showErrorWithStatus:@"设置失败"];
+            
+            
+       
+            //            [SVProgressHUD showSuccessWithStatus:@"获取用户信息成功"];
+            //保存用户token等用户信息,并同步
+            //            [ToolClass saveUserInfo:dict];
+            //跳转到根视图,并加载个人信息
+            
+        }
+        
+        
+        
         [self getdata];
     } addressModel:model];
 }

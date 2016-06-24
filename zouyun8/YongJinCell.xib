@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,49 +12,51 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21V-GP-bIb" userLabel="时间">
-                        <rect key="frame" x="43" y="15" width="26.5" height="12"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21V-GP-bIb" userLabel="时间">
+                        <rect key="frame" x="8" y="16" width="114" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="114" id="rja-HG-k8a"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7h-Cs-QVV" userLabel="描述">
-                        <rect key="frame" x="147" y="16" width="26.5" height="12"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuA-cN-ty6" userLabel="金额">
+                        <rect key="frame" x="251" y="16" width="61" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="61" id="pvY-Kk-vCt"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuA-cN-ty6" userLabel="金额">
-                        <rect key="frame" x="267" y="16" width="26.5" height="12"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7h-Cs-QVV" userLabel="描述">
+                        <rect key="frame" x="117" y="0.0" width="86" height="43"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="IuA-cN-ty6" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" multiplier="1.75" id="7F8-kf-bJI"/>
-                    <constraint firstItem="21V-GP-bIb" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" multiplier="0.35" id="A0G-DK-of2"/>
-                    <constraint firstItem="IuA-cN-ty6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="BjV-Te-ZD0"/>
-                    <constraint firstItem="r7h-Cs-QVV" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="GaL-DZ-eQJ"/>
-                    <constraint firstItem="r7h-Cs-QVV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Q79-E4-RBh"/>
-                    <constraint firstItem="r7h-Cs-QVV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="idQ-YR-wyK"/>
-                    <constraint firstItem="21V-GP-bIb" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ymQ-Ce-WQC"/>
+                    <constraint firstItem="r7h-Cs-QVV" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="6r6-dO-nLv"/>
+                    <constraint firstItem="IuA-cN-ty6" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="BZj-nz-X4n"/>
+                    <constraint firstItem="21V-GP-bIb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="CHi-fq-gzE"/>
+                    <constraint firstAttribute="bottom" secondItem="r7h-Cs-QVV" secondAttribute="bottom" id="DzZ-Vy-t7n"/>
+                    <constraint firstItem="21V-GP-bIb" firstAttribute="centerY" secondItem="r7h-Cs-QVV" secondAttribute="centerY" id="a8p-qx-7AJ"/>
+                    <constraint firstItem="21V-GP-bIb" firstAttribute="baseline" secondItem="IuA-cN-ty6" secondAttribute="baseline" id="i0O-FE-34a"/>
+                    <constraint firstItem="r7h-Cs-QVV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="tOn-Rk-qHX"/>
+                    <constraint firstItem="IuA-cN-ty6" firstAttribute="leading" secondItem="r7h-Cs-QVV" secondAttribute="trailing" constant="48" id="zGP-RD-Pg8"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="Q79-E4-RBh"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="desc" destination="r7h-Cs-QVV" id="LbA-JH-3Lr"/>
                 <outlet property="money" destination="IuA-cN-ty6" id="5XB-5V-HaP"/>
                 <outlet property="time" destination="21V-GP-bIb" id="hXo-rX-R6g"/>
             </connections>
-            <point key="canvasLocation" x="100" y="221"/>
+            <point key="canvasLocation" x="384" y="383"/>
         </tableViewCell>
     </objects>
 </document>

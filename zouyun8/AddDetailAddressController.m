@@ -238,6 +238,7 @@
             {
                 //地址添加成功
                 [SVProgressHUD showSuccessWithStatus:@"地址添加成功"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"changeDefaultDitali" object:nil];
                 [self.navigationController popViewControllerAnimated:YES];
             }
             NSLog(@"--------------------%@",dict);

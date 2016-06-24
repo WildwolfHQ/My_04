@@ -15,7 +15,8 @@
 }
 + (JSONKeyMapper *)keyMapper
 {
-    NSDictionary *key = @{@"id":@"ID"};
+    NSDictionary *key = @{@"id":@"ID",@"default":@"default1"};
+    
     JSONKeyMapper *mapper = [[JSONKeyMapper alloc] initWithDictionary:key];
     return mapper;
 }

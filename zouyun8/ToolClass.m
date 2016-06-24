@@ -830,32 +830,23 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"token"] = TOKEN;
     params[@"uid"] = UID;
-    params[@"mobile"] = model.phone;
-    params[@"name"] = model.name;
-    params[@"province"] = model.province;
-    params[@"city"] = model.city;
-    params[@"town"] = model.town;
-    params[@"detail"] = model.detail;
+//    params[@"mobile"] = model.phone;
+//    params[@"name"] = model.name;
+//    params[@"province"] = model.province;
+//    params[@"city"] = model.city;
+//    params[@"town"] = model.town;
+//    params[@"detail"] = model.detail;
     params[@"default"] = @"1";
     params[@"id"] = model.ID;
     
     [HttpRequest postWithURLString:@"https://m.zouyun8.com/api/address_edit" parameters:params success:^(id responseObject)
      {
          dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-         NSString * errcode = dict[@"errcode"];
-         if ([errcode integerValue])
-         {
-             [SVProgressHUD showErrorWithStatus:dict[@"errmsg"]];
-         }
-         else
-         {
-             //            [SVProgressHUD showSuccessWithStatus:@"获取用户信息成功"];
-             //保存用户token等用户信息,并同步
-             //            [ToolClass saveUserInfo:dict];
-             //跳转到根视图,并加载个人信息
-         }
+         
          cb(dict);
+         
      } failure:^(NSError *error) {
+         //cb(dict);
      }];
     return dict;
 }

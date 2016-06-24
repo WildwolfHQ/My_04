@@ -220,6 +220,48 @@
     
     //我是土豪
     context[@"zyw_lucky_buy"] = ^() {
+        
+        
+        
+        NSString * type = TYPE;
+        if ([type integerValue] == 2) {
+            
+            
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"尊敬的试购员，您只能发起合购并邀请好友参与，不能参与他人的合购！" preferredStyle:UIAlertControllerStyleAlert];
+            
+            
+            
+            
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                
+                
+                
+            }];
+            
+            
+            
+            
+            
+            [alertController addAction:okAction];
+            
+            
+            //膜态时一定要判断你膜态的ViewController是不是空 ，空才能去膜态 、非空不能。
+            if ([UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil)
+                
+            {
+                
+                
+                [[UIApplication sharedApplication].keyWindow.rootViewController  presentViewController:alertController  animated: YES completion:nil];
+                
+                
+            }
+            
+            
+            
+            
+        }else{
+        
         //获取后台返回的数据
         NSArray *args = [JSContext currentArguments];
         JSValue * json = args[0];
@@ -253,6 +295,7 @@
             
             
             
+        }
         }
     };
     
