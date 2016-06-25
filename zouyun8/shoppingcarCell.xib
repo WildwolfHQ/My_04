@@ -134,6 +134,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="buyTextField" destination="GOf-iI-Gtp" id="4NE-YY-pB3"/>
+                <outlet property="canyurenci" destination="Vdj-gF-Nm2" id="axx-4w-fvV"/>
                 <outlet property="iamgeview" destination="Hw5-Jf-hvF" id="gKr-zr-fCD"/>
                 <outlet property="last" destination="w6r-sU-eUi" id="yrV-0t-IAg"/>
                 <outlet property="lastLabel" destination="42j-xl-W2D" id="eHi-Gf-4Pe"/>

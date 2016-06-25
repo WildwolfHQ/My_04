@@ -58,7 +58,7 @@
             //保存用户token等用户信息,并同步
             [ToolClass saveUserInfo:dict];
             //登录成功后将购物车清空
-            [ToolClass removeAllCart];
+            ///[ToolClass removeAllCart];
             //退回到个人中心，并刷新个人信息界面
             [self.navigationController popViewControllerAnimated:YES];
             //
@@ -268,7 +268,7 @@
         if ([errcode integerValue]==0) {
             [ToolClass saveUserInfo:dict];
             //登录成功后将购物车清空
-            [ToolClass removeAllCart];
+            //[ToolClass removeAllCart];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"changeTabBar" object:nil];
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];
             

@@ -19,12 +19,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastLabel;
 @property (weak, nonatomic) IBOutlet UITextField *buyTextField;
+@property (weak, nonatomic) IBOutlet UILabel *canyurenci;
 
 @property (assign ,nonatomic)NSInteger price;
 
 @property (nonatomic,strong)shoppingcartModel * model;
 
 @property (nonatomic,weak)id<tableViewCellDelegate> delegate;
--(void)setCellWithModel;
+-(void)setCellWithModel:(BOOL)is_tuhao;
 - (NSIndexPath *)getIndexPath;
 @end

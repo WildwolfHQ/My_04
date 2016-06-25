@@ -218,9 +218,12 @@
     
     
     
+
+
+    
+    
     //我是土豪
     context[@"zyw_lucky_buy"] = ^() {
-        
         
         
         NSString * type = TYPE;
@@ -261,42 +264,224 @@
             
             
         }else{
-        
-        //获取后台返回的数据
-        NSArray *args = [JSContext currentArguments];
-        JSValue * json = args[0];
-        NSLog(@"----------%@",json.toString);
-        if(json.toDictionary)
-        {
             
-            if (TOKEN) {
-                
-                DirectSettleViewController * direct = [[DirectSettleViewController alloc]init];
-                
-                direct.dic =json.toDictionary;
-                
-                //direct.is_tabBarHidden=YES;
-                self.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:direct animated:YES];
-              
-                
-            }else{
             
-                if (TOKEN==nil) {
-                    [[NSNotificationCenter defaultCenter]postNotificationName:@"directLogin" object:nil];
+            //获取后台返回的数据
+            NSArray *args = [JSContext currentArguments];
+            JSValue * json = args[0];
+            NSLog(@"----------%@",json.toString);
+            if(json.toDictionary)
+            {
+                
+                
+                
+                NSDictionary * dict1 = json.toDictionary;
+                
+                GoodsModel *model= [[GoodsModel alloc]initWithDictionary:dict1 error:nil];
+                
+ 
+            
+            //将cell属性里面的商品id加入到购物车数据库
+            FMDatabase *db = [FMDatabase databaseWithPath:DBFATH];
+            // 打开数据库
+            [db open];
+            //当前程序数据库是否有数据
+            NSUInteger count = [db intForQuery:@"select count(*) from t_contact"];
+            //插入购物车所需的cell数据到数据库
+            NSLog(@"当前的token%@",TOKEN);
+            if(TOKEN)
+            {
+                if(count == 0)
+                {
+//                    NSLog(@"增加当前cell数据");
+//                    if([self.delegate respondsToSelector:@selector(changeCornerMark)])
+//                    {
+//                        [self.delegate changeCornerMark];
+//                    }
+                    if(  [db executeUpdate:@"insert into t_contact (buy_num,goods_id,lucky_id,money,name,price,thumb,times,total_num,type,user_id,num,bid_id,buy_user_num,start_time,end_time,price_level) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",model.buy_num,model.goods_id,model.lucky_id,model.money,model.name,model.price,model.thumb,model.times,model.total_num,model.type,model.user_id,@"1",model.bid_id,model.buy_user_num,model.start_time,model.end_time,model.price_level]){
+                        
+                        
+                        //停止加载不然跳转时可能会线程死掉
+                        self.webView.delegate = nil;
+                        [self.webView stopLoading];
+                        
+                        ShoppingcartViewController *vc=[[ShoppingcartViewController alloc]init];
+                        
+                        vc.is_tabBarHidden=YES;
+                        vc.is_tuhao=YES;
+                        self.hidesBottomBarWhenPushed = YES;
+                        [self.navigationController pushViewController:vc animated:YES];
+                        
+                    }
+                }
+                else
+                {
+                    //        NSLog(@"好的%@",self.model.goods_id);
+                    //        NSLog(@"%@",self.model.lucky_id);
+                    //        NSLog(@"%@",self.model.type);
+                    
+                    FMResultSet *result =  [db executeQuery:@"select * from t_contact"];
+                    BOOL flag = NO;
+                    while ([result next])
+                    {
+                        NSLog(@"进来了");
+                        //判断：如果当前cell的商品标题在数据库中已存在 则 只将该一行表格的num+1
+                        if([[result stringForColumn:@"lucky_id"] isEqualToString:model.lucky_id] && [[result stringForColumn:@"goods_id"] isEqualToString:model.goods_id ])
+                        {
+                            NSLog(@"商品名称重复了");
+                            NSString * num = [result stringForColumn:@"num"];
+                            //NSString * price = [result stringForColumn:@"price"];
+                            NSInteger count = [num integerValue];
+                            // NSLog(@"数字count1 = %d",count);
+                            
+                            count = count + 1;
+                            
+                            //NSLog(@"数字count2 = %d",count);
+                            if( [db executeUpdate:@"UPDATE t_contact SET num = ? WHERE lucky_id = ? and goods_id = ?;", [NSString stringWithFormat:@"%ld",(long)count], model.lucky_id,model.goods_id]){
+                                
+                                
+                                //停止加载不然跳转时可能会线程死掉
+                                self.webView.delegate = nil;
+                                [self.webView stopLoading];
+                                ShoppingcartViewController *vc=[[ShoppingcartViewController alloc]init];
+                                
+                                vc.is_tabBarHidden=YES;
+                                vc.is_tuhao=YES;
+                                self.hidesBottomBarWhenPushed = YES;
+                                [self.navigationController pushViewController:vc animated:YES];
+                                
+                            }
+                            
+                            // NSLog(@"%@",[result stringForColumn:@"num"]);
+                            flag = YES;
+                        }
+                    }
+                    if(flag == NO)
+                    {    NSLog(@"还没有");
+                        BOOL success =  [db executeUpdate:@"DELETE FROM t_contact"];
+                        
+                        if(success){
+                            //             if([self.delegate respondsToSelector:@selector(changeCornerMark)])
+                            //             {
+                            //                [self.delegate changeCornerMark];
+                            //             }
+                            if( [db executeUpdate:@"insert into t_contact (buy_num,goods_id,lucky_id,money,name,price,thumb,times,total_num,type,user_id,num,bid_id,buy_user_num,start_time,end_time,price_level) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",model.buy_num,model.goods_id,model.lucky_id,model.money,model.name,model.price,model.thumb,model.times,model.total_num,model.type,model.user_id,@"1",model.bid_id,model.buy_user_num,model.start_time,model.end_time,model.price_level]){
+                                
+                                
+                                //停止加载不然跳转时可能会线程死掉
+                                self.webView.delegate = nil;
+                                [self.webView stopLoading];
+                                ShoppingcartViewController *vc=[[ShoppingcartViewController alloc]init];
+                                
+                                vc.is_tabBarHidden=YES;
+                                vc.is_tuhao=YES;
+                                self.hidesBottomBarWhenPushed = YES;
+                                [self.navigationController pushViewController:vc animated:YES];
+                                
+                                
+                            }
+                            
+                        }
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     
                 }
-
+            }else{
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"directLogin" object:nil];
+                
+                
             }
-           
-            
-            
-            
-            
             
             
         }
+
+        
         }
+        
+        
+        
+        
+//        
+//        NSString * type = TYPE;
+//        if ([type integerValue] == 2) {
+//            
+//            
+//            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"尊敬的试购员，您只能发起合购并邀请好友参与，不能参与他人的合购！" preferredStyle:UIAlertControllerStyleAlert];
+//            
+//            
+//            
+//            
+//            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                
+//                
+//                
+//                
+//            }];
+//            
+//            
+//            
+//            
+//            
+//            [alertController addAction:okAction];
+//            
+//            
+//            //膜态时一定要判断你膜态的ViewController是不是空 ，空才能去膜态 、非空不能。
+//            if ([UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil)
+//                
+//            {
+//                
+//                
+//                [[UIApplication sharedApplication].keyWindow.rootViewController  presentViewController:alertController  animated: YES completion:nil];
+//                
+//                
+//            }
+//            
+//            
+//            
+//            
+//        }else{
+//        
+//        //获取后台返回的数据
+//        NSArray *args = [JSContext currentArguments];
+//        JSValue * json = args[0];
+//        NSLog(@"kkjson----------%@",json.toString);
+//        if(json.toDictionary)
+//        {
+//            
+//            if (TOKEN) {
+//                
+//                DirectSettleViewController * direct = [[DirectSettleViewController alloc]init];
+//                
+//                direct.dic =json.toDictionary;
+//                
+//                //direct.is_tabBarHidden=YES;
+//                self.hidesBottomBarWhenPushed = YES;
+//                [self.navigationController pushViewController:direct animated:YES];
+//              
+//                
+//            }else{
+//            
+//                if (TOKEN==nil) {
+//                    [[NSNotificationCenter defaultCenter]postNotificationName:@"directLogin" object:nil];
+//                    
+//                }
+//
+//            }
+//           
+//            
+//            
+//            
+//            
+//            
+//            
+//        }
+//        }
     };
     
     //网友合购

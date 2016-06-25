@@ -37,7 +37,10 @@
 
 -(void)getData
 {
-    __block NSDictionary * dict;
+    
+    NSMutableDictionary *parameter=[[NSMutableDictionary alloc]init];
+    parameter[@"type"]=@"1";
+    //__block NSDictionary * dict;
     AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
@@ -45,9 +48,10 @@
     securityPolicy.allowInvalidCertificates = YES;
     manager.securityPolicy = securityPolicy;
     
-    [manager GET:@"https://m.zouyun8.com/api/hot_search?type=1" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+    [manager GET:@"https://m.zouyun8.com/api/hot_search" parameters:parameter success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
-         dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+       
+         NSDictionary *  dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          NSString * errcode = dict[@"errcode"];
          if ([errcode integerValue])
          {
@@ -105,8 +109,9 @@
 -(void)pushToSortDetail:(NSString * )name
 {
     SortDetailViewController * sortDetail = [[SortDetailViewController alloc]init];
-    sortDetail.name = name;
+    sortDetail.name1 = name;
     sortDetail.urlStr = LUCKY_LIST;
+    self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:sortDetail animated:YES];
 }
 

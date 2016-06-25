@@ -80,7 +80,7 @@
     
     
     [ToolClass getUserInfoSuccess:^(NSDictionary *dic) {
-        self.SectionHeaderView.yongjin.text = [NSString stringWithFormat:@"佣金:%@",dic[@"data"][@"comm"]];
+        self.SectionHeaderView.yongjin.text = [NSString stringWithFormat:@"佣金:%.2f",[dic[@"data"][@"comm"] floatValue]];
         self.SectionHeaderView.prize.text = [NSString stringWithFormat:@"奖金:%@",dic[@"data"][@"score"]];
         
         

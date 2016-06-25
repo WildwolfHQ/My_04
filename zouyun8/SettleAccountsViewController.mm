@@ -9,6 +9,7 @@
 @property(nonatomic,strong)UITableView * tableView;
 @property(nonatomic,strong)NSMutableArray * dataSource;
 @property(nonatomic,assign)BOOL is_expaned;
+
 @property(nonatomic,strong)SettleView1 * view1;
 @property(nonatomic,strong)SettleView2 * view2;
 @property(nonatomic,strong)SettleView3 * view3;
@@ -30,6 +31,7 @@
 @end
 
 @implementation SettleAccountsViewController
+
 -(void)submitOrder
 {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
@@ -154,7 +156,7 @@
         else
         {
             //创建直接用走运币支付订单,并清空购物车
-            [self removeAllCart];
+            
             
             //创建订单号
             [ToolClass create_bill:^(NSDictionary *dict)
@@ -169,43 +171,9 @@
                      //ShoppingcartViewController * cart = [[ShoppingcartViewController alloc]init];
                      
                      if (errcode.integerValue==0) {
-                         
-                         //[SVProgressHUD showSuccessWithStatus:@"支付成功"];
-                         [self getData1];
-                         
-//                         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否分享奖金红包" preferredStyle:UIAlertControllerStyleAlert];
-//                         
-//                         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-//                         
-//                         [self.navigationController popViewControllerAnimated:YES];
-//                         
-//                         
-//                         
-//                         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//                             
-//                             
-//                             
-//                             
-//                         }];
-                         
-                         
-                         
-                         
-//                         
-//                         [alertController addAction:okAction];
-//                         [alertController addAction:cancelAction];
-                         
-//                         //膜态时一定要判断你膜态的ViewController是不是空 ，空才能去膜态 、非空不能。
-//                         if ([UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil)
-//                             
-//                         {
-//                             
-//                             
-//                             [[UIApplication sharedApplication].keyWindow.rootViewController  presentViewController:alertController  animated: YES completion:nil];
-//                             
-//                             
-//                         }
-
+                         [self removeAllCart];
+                         [self zhifuSucss];
+                  
                          
                      }else{
                        [SVProgressHUD showSuccessWithStatus:@"支付失败"];
@@ -224,6 +192,170 @@
         }
     }];
 }
+
+
+
+
+-(void)zhifuSucss{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    //[SVProgressHUD showSuccessWithStatus:@"支付成功"];
+    
+    
+    
+    if (self.model.lucky_type.integerValue==1) {
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"支付成功！" message:@"是否分享奖金红包" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+            
+        }];
+        
+        
+        
+        
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            [self getData1];
+            
+            
+        }];
+        
+        
+        
+        
+        
+        [alertController addAction:okAction];
+        [alertController addAction:cancelAction];
+        
+        //膜态时一定要判断你膜态的ViewController是不是空 ，空才能去膜态 、非空不能。
+        if ([UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil)
+            
+        {
+            
+            
+            [[UIApplication sharedApplication].keyWindow.rootViewController  presentViewController:alertController  animated: YES completion:nil];
+            
+            
+        }
+        
+    }else{
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"支付成功！" message:@"好友合购每人限买一份，故必须邀请好友参与，否则无法完成此订单，除非您公开此订单让网友参与。" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"公开" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [self gongkai];
+            
+        }];
+        
+        
+        
+        
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"邀请好友" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            [self getData1];
+            
+            
+        }];
+        
+        
+        
+        
+        
+        [alertController addAction:okAction];
+        [alertController addAction:cancelAction];
+        
+        //膜态时一定要判断你膜态的ViewController是不是空 ，空才能去膜态 、非空不能。
+        if ([UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil)
+            
+        {
+            
+            
+            [[UIApplication sharedApplication].keyWindow.rootViewController  presentViewController:alertController  animated: YES completion:nil];
+            
+            
+        }
+        
+        
+    }
+    
+
+}
+-(void)gongkai{
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    //    params[@"category"] = @"";//int	可选	分类id
+    
+    params[@"lucky_id"] =[self.orders firstObject][@"lucky_id"];
+    
+    
+    params[@"uid"] = UID;
+    params[@"token"] = TOKEN;
+    
+    
+    
+    
+    
+    AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
+    securityPolicy.validatesDomainName = NO;
+    securityPolicy.allowInvalidCertificates = YES;
+    manager.securityPolicy = securityPolicy;
+    
+    [manager GET:@"https://m.zouyun8.com/api/set_pub" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         
+         
+         NSLog(@"进来了");
+         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         
+         
+         NSLog(@"%@",dict);
+        NSNumber * errcode = dict[@"errcode"];
+         
+         if (errcode.integerValue==0) {
+             
+              [SVProgressHUD showSuccessWithStatus:@"公开成功"];
+         }else{
+         
+         
+               [SVProgressHUD showSuccessWithStatus:@"公开失败"];
+         }
+         
+         
+//         NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
+//         [dic setValue:dic1[@"imgurl"] forKey:@"image"];
+//         [dic setValue:dic1[@"desc"]   forKey:@"desc"];
+//         [dic setValue:dic1[@"link" ]  forKey:@"url"];
+//         [dic setValue:dic1[@"title"]  forKey:@"title"];
+//         [dic setValue:@"3" forKey:@"share_action"];//action	int	必须	分享类型	1商品详情，2二维码，3活动页
+//         
+//         [self share:dic];
+         
+         
+         
+         //[self.navigationController popViewControllerAnimated:YES];
+         
+         
+         //[self.collectionView.infiniteScrollingView stopAnimating];
+         //[self.collectionView.pullToRefreshView stopAnimating];
+         
+     }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         
+         
+         
+         
+     }];
+
+}
+
 //确定充值走运币后
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -288,7 +420,7 @@
 //银联支付
 -(void)unionPay
 {
-     [self removeAllCart];
+     //[self removeAllCart];
     //[ToolClass removeAllCart];
     
     [ToolClass create_bill:^(NSDictionary *dict)
@@ -372,7 +504,7 @@
 -(void)weixinPay
 {
     //点击了微信支付后清空数据库购物车数据
-    [self removeAllCart];
+    //[self removeAllCart];
     //创建订单号
     [ToolClass create_bill:^(NSDictionary *dict)
      {
@@ -437,6 +569,15 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+//    for (UIImageView * view in self.navigationController.navigationBar.subviews)
+//    {
+//        if (view.tag == 10)
+//        {
+//            [view removeFromSuperview];
+//        }
+//    }
+//    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor redColor],
+//                                                                    NSFontAttributeName : [UIFont boldSystemFontOfSize:18]};
     [UIView animateWithDuration:0.5 animations:^{
         self.tabBarController.tabBar.hidden = YES;
     }];
@@ -478,41 +619,8 @@
          NSString * str=dict[@"code"];//code	int	必须	0表示到账，1表示未到帐
 
          if (str.integerValue==0) {
-             
-             [SVProgressHUD showSuccessWithStatus:@"支付成功"];
-             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否分享奖金红包" preferredStyle:UIAlertControllerStyleAlert];
-             
-             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-             
-             [self.navigationController popViewControllerAnimated:YES];
-             
-             
-             
-             UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                 
-                 
-                 [self getData1];
-                 
-             }];
-             
-             
-             
-             
-             
-             [alertController addAction:okAction];
-             [alertController addAction:cancelAction];
-             
-             //膜态时一定要判断你膜态的ViewController是不是空 ，空才能去膜态 、非空不能。
-             if ([UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil)
-                 
-             {
-                 
-                 
-                 [[UIApplication sharedApplication].keyWindow.rootViewController  presentViewController:alertController  animated: YES completion:nil];
-                 
-                 
-             }
-
+             [self removeAllCart];
+             [self zhifuSucss];
              
          }else{
              
@@ -535,38 +643,41 @@
 }
 
 -(void)weixinPaySuccessNotice:(id)sender{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否分享奖金红包" preferredStyle:UIAlertControllerStyleAlert];
+    NSMutableDictionary * parameters = [[NSMutableDictionary alloc]init];
+    parameters[@"uid"] = UID;
+    parameters[@"token"] = TOKEN;
+    parameters[@"id"] = self.orderID;
+    parameters[@"type"] = @"0";
+    AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
+    securityPolicy.validatesDomainName = NO;
+    securityPolicy.allowInvalidCertificates = YES;
+    manager.securityPolicy = securityPolicy;
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [manager GET:@"https://m.zouyun8.com/api/pay_status" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         NSString * str=dict[@"code"];//code	int	必须	0表示到账，1表示未到帐
+         
+         if (str.integerValue==0) {
+             [self removeAllCart];
+             [self zhifuSucss];
+             
+         }else{
+             
+             [SVProgressHUD showSuccessWithStatus:@"支付失败"];
+             
+             
+         }
+         
+         
+         
+     }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+     }];
     
-    [self.navigationController popViewControllerAnimated:YES];
-    
-    
-    
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-        
-        [self getData1];
-        
-    }];
-    
-    
-    
-    
-    
-    [alertController addAction:okAction];
-    [alertController addAction:cancelAction];
-    
-    //膜态时一定要判断你膜态的ViewController是不是空 ，空才能去膜态 、非空不能。
-    if ([UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil)
-        
-    {
-        
-        
-        [[UIApplication sharedApplication].keyWindow.rootViewController  presentViewController:alertController  animated: YES completion:nil];
-        
-        
-    }
 
     
 }
@@ -623,7 +734,7 @@
         //将model的商品信息，token,uid封装为json数据
         NSDictionary * dic;
         if (model.lucky_id) {
-           dic= @{@"id":model.lucky_id,@"type":model.type,@"num":model.num};
+           dic= @{@"id":model.lucky_id,@"type":model.type,@"num":model.num,@"lucky_id":model.lucky_id};
         }
         if (model.bid_id) {
             model.type=@"2";

@@ -23,7 +23,7 @@
     
     [super viewDidLoad];
     self.title = @"确认订单";
-    [self getOrders];
+    //[self getOrders];
 }
 -(void)getOrders
 {

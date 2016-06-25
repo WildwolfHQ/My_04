@@ -329,20 +329,25 @@
     FMDatabase *db = [FMDatabase databaseWithPath:DBFATH];
     // 打开数据库
     [db open];
-    FMResultSet *result =  [db executeQuery:@"select * from t_contact"];
-    while ([result next])
-    {
-        //判断：如果当前cell的商品标题在数据库中已存在 则删除该行字段
-        NSString *name = [result stringForColumn:@"name"];
-        if (name) {
-            NSString *deleteSql = [NSString stringWithFormat:
-                                   @"delete from t_contact where name = '%@'",
-                                   name];
-            [db executeUpdate:deleteSql];
-        }
+     BOOL success =  [db executeUpdate:@"DELETE FROM t_contact"];
+    if (success) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"removeAllCart" object:nil];
+    }else{
+    
     }
+//    while ([result next])
+//    {
+//        //判断：如果当前cell的商品标题在数据库中已存在 则删除该行字段
+//        NSString *name = [result stringForColumn:@"name"];
+//        if (name) {
+//            NSString *deleteSql = [NSString stringWithFormat:
+//                                   @"delete from t_contact where name = '%@'",
+//                                   name];
+//            [db executeUpdate:deleteSql];
+//        }
+//    }
     //2.通知购物车界面tableView清空
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"removeAllCart" object:nil];
+    
 }
 
 //二维码，商品详情分享

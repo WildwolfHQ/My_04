@@ -119,7 +119,7 @@
 {
     if([resp isKindOfClass:[PayResp class]]){
         //支付返回结果，实际支付结果需要去微信服务器端查询
-        NSString *strMsg,*strTitle = [NSString stringWithFormat:@"支付结果"];
+        NSString *strMsg;
         
         switch (resp.errCode) {
             case WXSuccess:
@@ -128,11 +128,33 @@
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"weixinPaySuccessNotice" object:self];
                 break;
                 
-            default:
-                strMsg = [NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", resp.errCode,resp.errStr];
-                //创建通知回调后台支付失败方法
+            case WXErrCodeUserCancel:
+                strMsg = @"取消交易";
+               
+                 [SVProgressHUD showErrorWithStatus:strMsg];
+                break;
+            case WXErrCodeSentFail:
+                strMsg = @"发送失败";
+               
                 [SVProgressHUD showErrorWithStatus:strMsg];
-                //[[NSNotificationCenter defaultCenter] postNotificationName:@"payFailed" object:self];
+                break;
+            case WXErrCodeAuthDeny:
+                strMsg = @"授权失败";
+                
+                [SVProgressHUD showErrorWithStatus:strMsg];
+                break;
+            case WXErrCodeUnsupport:
+                strMsg = @"微信不支持";
+                
+                [SVProgressHUD showErrorWithStatus:strMsg];
+                break;
+            case WXErrCodeCommon:
+                strMsg = @"普通错误类型";
+                
+                [SVProgressHUD showErrorWithStatus:strMsg];
+                break;
+            default:
+
                 break;
         }
     }

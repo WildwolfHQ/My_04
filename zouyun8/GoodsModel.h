@@ -5,11 +5,11 @@
 @property(nonatomic,copy)NSString * goods_id;
 @property(nonatomic,copy)NSString * user_id;
 @property(nonatomic,copy)NSString * times;
-@property(nonatomic,copy)NSString * price;
+@property(nonatomic,copy)NSString * price;//单价
 @property(nonatomic,copy)NSString * type;
 @property(nonatomic,copy)NSString * total_num;
 @property(nonatomic,copy)NSString * buy_num;
-@property(nonatomic,copy)NSString * money;
+@property(nonatomic,copy)NSString * money;//总价
 @property(nonatomic,copy)NSString * name;
 @property(nonatomic,copy)NSString * thumb;
 @property(nonatomic,copy)NSString * lucky_id;

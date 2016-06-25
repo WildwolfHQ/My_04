@@ -73,68 +73,192 @@
 -(void)pushToSort
 {
     SortTableViewController * sort = [[SortTableViewController alloc]init];
+     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:sort animated:YES];
+     self.hidesBottomBarWhenPushed = NO;
 }
 
 -(void)pushToSearch
 {
     SearchViewController * search = [[SearchViewController alloc]init];
+     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:search animated:YES];
+     self.hidesBottomBarWhenPushed = NO;
 }
 
 -(void)MyMessage
 {
     MyMessageViewController * msg = [[MyMessageViewController alloc]init];
+    self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:msg animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 //我是土豪
 -(void)directToPay:(NSDictionary *)dict
 {
-    NSString * type = TYPE;
-    if ([type integerValue] == 2) {
     
+    
+    
+    ShoppingcartViewController *vc=[[ShoppingcartViewController alloc]init];
+    
+    vc.is_tabBarHidden=YES;
+    vc.is_tuhao=YES;
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+
+    self.hidesBottomBarWhenPushed = NO;
+    
+//    NSString * type = TYPE;
+//    if ([type integerValue] == 2) {
+//    
+//        
+//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"尊敬的试购员，您只能发起合购并邀请好友参与，不能参与他人的合购！" preferredStyle:UIAlertControllerStyleAlert];
+//        
+//        
+//        
+//        
+//        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//            
+//            
+//            
+//            
+//        }];
+//        
+//        
+//        
+//        
+//        
+//        [alertController addAction:okAction];
+//       
+//        
+//        //膜态时一定要判断你膜态的ViewController是不是空 ，空才能去膜态 、非空不能。
+//        if ([UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil)
+//            
+//        {
+//            
+//            
+//            [[UIApplication sharedApplication].keyWindow.rootViewController  presentViewController:alertController  animated: YES completion:nil];
+//            
+//            
+//        }
+//
+//        
+//        
+//        
+//    }else{
+        //跳到购物车
         
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"尊敬的试购员，您只能发起合购并邀请好友参与，不能参与他人的合购！" preferredStyle:UIAlertControllerStyleAlert];
+//        GoodsModel *pgXiangGing_model= [[GoodsModel alloc]initWithDictionary:dict error:nil];
+//        
+//        pgXiangGing_model.buy_num=@"1";
+//        FMDatabase *db = [FMDatabase databaseWithPath:DBFATH];
+//        // 打开数据库
+//        [db open];
+//        //当前程序数据库是否有数据
+//        NSUInteger count = [db intForQuery:@"select count(*) from t_contact"];
+//        //插入购物车所需的cell数据到数据库
+//        NSLog(@"当前的token%@",TOKEN);
+//        if(TOKEN)
+//        {
+//            
+//            
+//            if(count == 0)
+//            {
+//                UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:2];
+//                
+//                item.badgeValue = [NSString stringWithFormat:@"%d",1];
+//                
+//                NSLog(@"增加当前cell数据");
+//                [db executeUpdate:@"insert into t_contact (buy_num,goods_id,lucky_id,money,name,price,thumb,times,total_num,type,user_id,num,bid_id,buy_user_num,start_time,end_time,price_level) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",pgXiangGing_model.buy_num,pgXiangGing_model.goods_id,pgXiangGing_model.lucky_id,pgXiangGing_model.money,pgXiangGing_model.name,nil,pgXiangGing_model.thumb,pgXiangGing_model.times,pgXiangGing_model.total_num,pgXiangGing_model.type,pgXiangGing_model.user_id,pgXiangGing_model.buy_num,nil,pgXiangGing_model.buy_user_num,pgXiangGing_model.start_time,pgXiangGing_model.end_time,pgXiangGing_model.price_level];
+//            }
+//            else
+//            {
+//                //            FMResultSet *result =  [db executeQuery:@"select * from t_contact where goods_id=? and bid_id＝?;",self.pgXiangGing_model.goods_id,self.pgXiangGing_model.bid_id];
+//                
+//                FMResultSet *result =  [db executeQuery:@"select * from t_contact"];
+//                BOOL flag = NO;
+//                
+//                while ([result next])
+//                {
+//                    
+//                    
+//                    
+//                    
+//                    if([[result stringForColumn:@"lucky_id"] isEqualToString:pgXiangGing_model.lucky_id] && [[result stringForColumn:@"goods_id"] isEqualToString:pgXiangGing_model.goods_id ])
+//                    {
+//                        NSLog(@"商品重复了");
+//                        NSString * num = [result stringForColumn:@"num"];
+//                        
+//                        NSInteger count = [num integerValue];
+//                        
+//                        
+//                        count = count + pgXiangGing_model.buy_num.integerValue;
+//                        
+//                        
+//                        [db executeUpdate:@"UPDATE t_contact SET num = ? where goods_id = ? and lucky_id = ?;", [NSString stringWithFormat:@"%ld",(long)count], pgXiangGing_model.goods_id,pgXiangGing_model.lucky_id];
+//                        
+//                        
+//                        
+//                        
+//                        
+//                        flag = YES;
+//                        
+//                        
+//                    }
+//                    
+//                    
+//                    
+//                }
+//                
+//                
+//                
+//                if(flag == NO)
+//                    
+//                {
+//                    UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:2];
+//                    item.badgeValue = [NSString stringWithFormat:@"%ld",[item.badgeValue integerValue] + 1];
+//                    NSLog(@"还没有");
+//                    [db executeUpdate:@"insert into t_contact (buy_num,goods_id,lucky_id,money,name,price,thumb,times,total_num,type,user_id,num,bid_id,buy_user_num,start_time,end_time,price_level) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",pgXiangGing_model.buy_num,pgXiangGing_model.goods_id,pgXiangGing_model.lucky_id,pgXiangGing_model.money,pgXiangGing_model.name,nil,pgXiangGing_model.thumb,pgXiangGing_model.times,pgXiangGing_model.total_num,pgXiangGing_model.type,pgXiangGing_model.user_id,pgXiangGing_model.buy_num,pgXiangGing_model.bid_id,pgXiangGing_model.buy_user_num,pgXiangGing_model.start_time,pgXiangGing_model.end_time,pgXiangGing_model.price_level];
+//                    
+//                }
+//            }
+//            
+////            //停止加载不然跳转时可能会线程死掉
+////            self.webView.delegate = nil;
+////            [self.webView stopLoading];
+//            
+//            
+//            
+//            ShoppingcartViewController *vc=[[ShoppingcartViewController alloc]init];
+//            
+//            vc.is_tabBarHidden=YES;
+//            self.hidesBottomBarWhenPushed = YES;
+//            [self.navigationController pushViewController:vc animated:YES];
+//            
+//            
+//            
+//            
+//            
+//        }else{
+//            
+//            //TIPS;
+//            if (TOKEN==nil) {
+//                [[NSNotificationCenter defaultCenter]postNotificationName:@"directLogin" object:nil];
+//            }
+//        }
+//        
         
-        
-        
-        
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            
-            
-            
-            
-        }];
-        
-        
-        
-        
-        
-        [alertController addAction:okAction];
-       
-        
-        //膜态时一定要判断你膜态的ViewController是不是空 ，空才能去膜态 、非空不能。
-        if ([UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil)
-            
-        {
-            
-            
-            [[UIApplication sharedApplication].keyWindow.rootViewController  presentViewController:alertController  animated: YES completion:nil];
-            
-            
-        }
 
         
         
         
-    }else{
-    
-    DirectSettleViewController * direct = [[DirectSettleViewController alloc]init];
-    direct.dic = dict;
-    self.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:direct animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
-    }
+        
+//    DirectSettleViewController * direct = [[DirectSettleViewController alloc]init];
+//    direct.dic = dict;
+//    self.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:direct animated:YES];
+//        self.hidesBottomBarWhenPushed = NO;
+//    }
 }
 
 -(void)OpenHeGouDetail:(NSDictionary *)dict
@@ -173,15 +297,14 @@
     
     UIImage *image1 = [UIImage imageNamed:@"分类.png"];
     UIBarButtonItem *imageBar1 = [[UIBarButtonItem alloc]initWithImage:image1 style:UIBarButtonItemStylePlain target:self action:@selector(pushToSort)];
-    
     UIImage *image2 = [UIImage imageNamed:@"搜索.png"];
     UIBarButtonItem *imageBar2 = [[UIBarButtonItem alloc]initWithImage:image2 style:UIBarButtonItemStylePlain target:self action:@selector(pushToSearch)];
     imageBar2.tag = 100;
     imageBar2.tintColor = [UIColor colorWithRed:217/255.0 green:43/255.0 blue:73/255.0 alpha:1];
-    imageBar2.imageInsets = UIEdgeInsetsMake(0, 20, 0, -20);
+    //imageBar2.imageInsets = UIEdgeInsetsMake(0, 20, 0, -20);
+    self.navigationItem.leftBarButtonItem=imageBar2;
     
-    self.navigationItem.rightBarButtonItems = @[imageBar1,fixBar,imageBar2,fixBar];
-    
+    self.navigationItem.rightBarButtonItem=imageBar1;
     //左边buttonBarItem
 //    UIBarButtonItem *fixBar2 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
 //    fixBar2.width = -20;
@@ -332,24 +455,6 @@
 {
     [super viewDidLoad];
     
-    NSMutableArray * array = [[NSMutableArray alloc]init];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(testClerk) name:@"TestClerk" object:nil];
-    
-    NSString * type = TYPE;
-    if ([type integerValue] == 2) {
-        for (int i = 5; i <= 50; i ++) {
-            [array addObject:[NSString stringWithFormat:@"%d",i]];
-        }
-    }
-    else
-    {
-        for (int i = 2; i <= 50; i ++) {
-            [array addObject:[NSString stringWithFormat:@"%d",i]];
-        }
-    }
-    self.fruits = array;
-    
     self.page = 1;
     //默认打开时为yes
     self.is_announce = YES;
@@ -367,20 +472,20 @@
 
 -(void)testClerk{
    
-    NSMutableArray * array = [[NSMutableArray alloc]init];
-    NSString * type = TYPE;
-    if ([type integerValue] == 2) {
-        for (int i = 5; i <= 50; i ++) {
-            [array addObject:[NSString stringWithFormat:@"%d",i]];
-        }
-    }
-    else
-    {
-        for (int i = 2; i <= 50; i ++) {
-            [array addObject:[NSString stringWithFormat:@"%d",i]];
-        }
-    }
-    self.fruits = array;
+//    NSMutableArray * array = [[NSMutableArray alloc]init];
+//    NSString * type = TYPE;
+//    if ([type integerValue] == 2) {
+//        for (int i = 5; i <= 500; i ++) {
+//            [array addObject:[NSString stringWithFormat:@"%d",i]];
+//        }
+//    }
+//    else
+//    {
+//        for (int i = 2; i <= 500; i ++) {
+//            [array addObject:[NSString stringWithFormat:@"%d",i]];
+//        }
+//    }
+//    self.fruits = array;
 
 }
 #pragma mark - 选择好友合购份数
@@ -415,7 +520,7 @@
 - (void)czpickerView:(CZPickerView *)pickerView didConfirmWithItemAtRow:(NSInteger)row{
     
     
-    NSLog(@"%@ is chosen!", self.fruits[row]);
+    //NSLog(@"%@ is chosen!", self.fruits[row]);
     
     
     NSMutableDictionary *dic=[NSMutableDictionary dictionary];
@@ -578,7 +683,7 @@
 -(void)changeCornerMark
 {
     NSLog(@"改变角标");
-    UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:3];
+    UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:2];
     item.badgeValue = [NSString stringWithFormat:@"%ld",[item.badgeValue integerValue] + 1];
 }
 
@@ -586,6 +691,36 @@
 {
     NSLog(@"点击了好友合购");
     self.model = model;
+    NSInteger count;
+    if (self.model.money.integerValue>=5000) {
+         count=5000;
+
+    }else{
+    
+         count=[self.model.money integerValue];
+    }
+    
+    NSMutableArray * array = [[NSMutableArray alloc]init];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(testClerk) name:@"TestClerk" object:nil];
+    
+    NSString * type = TYPE;
+    if ([type integerValue] == count) {
+        for (int i = 5; i <= count; i ++) {
+            [array addObject:[NSString stringWithFormat:@"%d",i]];
+        }
+    }
+    else
+    {
+        for (int i = 2; i <= count; i ++) {
+            [array addObject:[NSString stringWithFormat:@"%d",i]];
+        }
+    }
+    self.fruits = array;
+
+    
+    
+    
     CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"请选择好友合购份数" cancelButtonTitle:@"取消" confirmButtonTitle:@"确定"];
     picker.delegate = self;
     picker.dataSource = self;

@@ -8,6 +8,7 @@
 @property NSMutableArray *fruits;
 @property NSMutableArray *fruitImages;
 @property CZPickerView *pickerWithImage;
+@property (strong,nonatomic) GoodsModel *model;
 
 @end
 
@@ -38,7 +39,7 @@
     }
     else
     {
-        for (int i = 1; i <= 50; i ++) {
+        for (int i = 2; i <= 50; i ++) {
             [array addObject:[NSString stringWithFormat:@"%d",i]];
         }
     }
@@ -80,16 +81,17 @@
 
 -(void)directToPay:(NSDictionary *)dict
 {
-    DirectSettleViewController * direct = [[DirectSettleViewController alloc]init];
-    direct.dic = dict;
+    ShoppingcartViewController *vc=[[ShoppingcartViewController alloc]init];
+    
+    vc.is_tabBarHidden=YES;
+    vc.is_tuhao=YES;
     self.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:direct animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
-}
+    [self.navigationController pushViewController:vc animated:YES];}
 
 -(void)selectBuyTogetherNum:(GoodsModel *)model
 {
     NSLog(@"点击了好友合购");
+    self.model = model;
     CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"请选择好友合购份数" cancelButtonTitle:@"取消" confirmButtonTitle:@"确定"];
     picker.delegate = self;
     picker.dataSource = self;
@@ -126,8 +128,11 @@
 
 //点击确定后跳转到合购详情页
 - (void)czpickerView:(CZPickerView *)pickerView didConfirmWithItemAtRow:(NSInteger)row{
-    NSLog(@"%@ is chosen!", self.fruits[row]);
-    //这里跳转到合购详情，参数self.model,self.fruits[row]
+    //NSLog(@"%@ is chosen!", self.fruits[row]);
+    NSMutableDictionary *dic=[NSMutableDictionary dictionary];
+    dic[@"id"]=self.model.lucky_id;
+    dic[@"num"]=self.fruits[row];
+    [self getDataForCreate_lucky_URL:dic];
 }
 
 -(void)czpickerView:(CZPickerView *)pickerView didConfirmWithItemsAtRows:(NSArray *)rows
@@ -180,7 +185,7 @@
     CGFloat wid = WIDTH / 3 - 10;
     flowLayout.itemSize = CGSizeMake(wid, WIDTH/2);
     
-    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT -49) collectionViewLayout:flowLayout];
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT) collectionViewLayout:flowLayout];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     //设置代理
     self.collectionView.delegate = self;
@@ -320,11 +325,11 @@
     GoodsModel * model;
     model = self.dataSource[indexPath.row];
     //http://zy8.jf-q.com/l/v/[lucky_id]/?uid=[uid]&token=[token]
-    NSString * url = [NSString stringWithFormat:@"http://zy8.jf-q.com/l/v/%@/?uid=%@&token=%@",model.lucky_id,UID,TOKEN];
+    NSString * url = [NSString stringWithFormat:@"http://m.zouyun8.com/l/v/%@/?uid=%@&token=%@",model.lucky_id,UID,TOKEN];
     NSLog(@"%@",url);
-    HgGoodsDetailController * detail = [[HgGoodsDetailController alloc]init];
+    GoodsWebViewController * detail = [[GoodsWebViewController alloc]init];
     self.hidesBottomBarWhenPushed = YES;
-    detail.url = url;
+    detail.urlStr = url;
     [self.navigationController pushViewController:detail animated:YES];
         self.hidesBottomBarWhenPushed = NO;
     }
@@ -336,5 +341,55 @@
     return YES;
 }
 
+
+-(void)getDataForCreate_lucky_URL:(NSMutableDictionary*)dic
+{
+    
+    NSMutableDictionary * parameters = [[NSMutableDictionary alloc]init];
+    parameters[@"uid"] = UID;
+    parameters[@"token"] = TOKEN;
+    parameters[@"id"] = dic[@"id"];
+    parameters[@"num"] = dic[@"num"];
+    
+    AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
+    securityPolicy.validatesDomainName = NO;
+    securityPolicy.allowInvalidCertificates = YES;
+    manager.securityPolicy = securityPolicy;
+    
+    [manager GET:Create_lucky_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         NSLog(@"最新揭晓列表%@",dict);
+         NSLog(@"最新揭晓列表%@",dict[@"errmsg"]);
+         
+         
+         if (dict[@"lucky_id"]!=nil) {
+             
+             GoodsWebViewController *VC=[[GoodsWebViewController alloc]init];
+             VC.lucky_id=[NSString stringWithFormat:@"%@",dict[@"lucky_id"]];
+             VC.titleName=@"商品详情";
+             self.hidesBottomBarWhenPushed = YES;
+             [self.navigationController pushViewController:VC animated:YES];
+             self.hidesBottomBarWhenPushed = NO;
+             
+         }else{
+             [SVProgressHUD showErrorWithStatus:dict[@"errmsg"]];
+             
+         }
+         
+         
+         
+         
+         
+     }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         
+         
+     }];
+}
 
 @end

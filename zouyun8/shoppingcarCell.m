@@ -21,8 +21,11 @@
     [super setSelected:selected animated:animated];
 }
 
--(void)setCellWithModel
+-(void)setCellWithModel:(BOOL)is_tuhao
 {
+    
+    
+    
     if (self.model.bid_id.length != 0) {
         self.lastLabel.hidden = YES;
         self.last.hidden = YES;
@@ -32,12 +35,27 @@
     }
     if(self.model.lucky_id.length != 0)
     {
-        self.lastLabel.hidden = NO;
-        self.last.hidden = NO;
-        self.num.hidden = NO;
-        self.needAll.text = @"总需:";
-        self.totalLabel.text = self.model.total_num;
-        self.lastLabel.text = [NSString stringWithFormat:@"%ld",[self.model.total_num integerValue] - [self.model.buy_num integerValue]];
+        
+        if (self.model.lucky_type.integerValue==1) {
+             self.last.hidden = YES;
+             self.num.hidden = YES;
+             self.lastLabel.hidden=YES;
+             self.needAll.text = @"价格";
+        
+            self.totalLabel.text = self.model.money;
+            self.canyurenci.text=@"购买份数";
+            
+        }else{
+            
+            self.lastLabel.hidden = NO;
+            self.last.hidden = NO;
+            self.num.hidden = NO;
+            self.needAll.text = @"总需:";
+            self.totalLabel.text = self.model.total_num;
+            self.lastLabel.text = [NSString stringWithFormat:@"%ld",[self.model.total_num integerValue] - [self.model.buy_num integerValue]];
+
+        }
+
     }
     [self.iamgeview sd_setImageWithURL:[NSURL URLWithString:self.model.thumb]];
     self.titleLabel.text = self.model.name;

@@ -15,6 +15,17 @@
 #pragma mark - 视图即将显示时 从数据库重新获取数据 刷新购物车
 -(void)viewWillAppear:(BOOL)animated
 {
+    for (UIImageView * view in self.navigationController.navigationBar.subviews)
+    {
+        if (view.tag == 10)
+        {
+            [view removeFromSuperview];
+        }
+    }
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor redColor],
+                                                                    NSFontAttributeName : [UIFont boldSystemFontOfSize:18]};
+    
+    
 //    self.tabBarController.tabBar.hidden = NO;
     //从数据库获取商品订单信息
     [self getOrders];
@@ -44,12 +55,26 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"settleAccounts" object:nil];
 }
+
+//去结算
 -(void)settleAccounts:(NSNotification *)info
 {
-    SettleAccountsViewController * settle = [[SettleAccountsViewController alloc]init];
-    self.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:settle animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
+    
+  shoppingcartModel  * model = self.dataSource[0];
+    if (self.is_tuhao) {
+        SettleAccountsViewController * settle = [[SettleAccountsViewController alloc]init];
+        settle.model=model;
+        self.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:settle animated:YES];
+      
+    }else{
+        SettleAccountsViewController * settle = [[SettleAccountsViewController alloc]init];
+        settle.model=model;
+        self.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:settle animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
+    }
+    
 }
 -(void)removeAllCart:(NSNotification *)info
 {
@@ -142,7 +167,13 @@
         model.num = [result stringForColumn:@"num"];
         model.money = [result stringForColumn:@"money"];
         //获取到全部商品的总价,并改变价格显示
-        self.totalPrice = self.totalPrice + [model.num integerValue] * [model.price integerValue];
+        if (self.is_tuhao) {
+            self.totalPrice = self.totalPrice + [model.num integerValue] * [model.money integerValue];
+        }else{
+        
+            self.totalPrice = self.totalPrice + [model.num integerValue] * [model.price integerValue];
+        }
+        
     }
     //重新设置底部视图的总价
     self.accountview.totalPrice.text = [NSString stringWithFormat:@"%ld",(long)self.totalPrice];
@@ -242,9 +273,21 @@
                      shoppingcartModel * model = [[shoppingcartModel alloc]initWithDictionary:dic error:nil];
                      [self.dataSource addObject:model];
                      //获取到全部商品的总价,并改变价格显示
-                     self.totalPrice = self.totalPrice + [model.num integerValue] * [model.price integerValue];
+                     
+                     if (model.lucky_type.integerValue==1) {
+                      self.totalPrice = self.totalPrice + [model.num integerValue] * [model.money integerValue];
+                     
+                     }else{
+                       self.totalPrice = self.totalPrice + [model.num integerValue] * [model.price integerValue];
+                     }
+                    
+                     UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:2];
+                     item.badgeValue = @"1";
+
+                     
                  }
                           [SVProgressHUD dismiss];
+            
              [self.tableView reloadData];
          }
               failure:^(AFHTTPRequestOperation *operation, NSError *error)
@@ -274,7 +317,7 @@
         model = self.dataSource[indexPath.row];
     }
     cell.model = model;
-    [cell setCellWithModel];
+    [cell setCellWithModel:self.is_tuhao];
     cell.delegate = self;
     cell.buyTextField.text = model.num;
     return cell;
@@ -282,60 +325,66 @@
 
 -(void)changeBuyNumber:(NSIndexPath *)index
 {
-    [self getTotalprice];
+    [self getOrders];
+    [self getCartData];
 }
 
 -(void)removeGoods:(NSIndexPath *)index
 {
+    
+    
+    
     NSLog(@"改变角标");
     FMDatabase *db = [FMDatabase databaseWithPath:DBFATH];
     // 打开数据库
     [db open];
-    NSUInteger count = [db intForQuery:@"select count(*) from t_contact"];
-    if (count == 0)
+    BOOL success =  [db executeUpdate:@"DELETE FROM t_contact"];
+   // NSUInteger count = [db intForQuery:@"select count(*) from t_contact"];
+    if (success)
     {
         UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:2];
         item.badgeValue = nil;
-    }
-    else
-    {
-        UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:2];
-        item.badgeValue = [NSString stringWithFormat:@"%ld",count];
-    }
-    //移除商品
-    //重新从数据库获取数据 并 单独刷新这一行
-    [self.dataSource removeObjectAtIndex:index.row];
-    [self.tableView deleteRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationRight];
-    //从数据库获取商品订单信息
-    [self getOrders];
-    //从服务器获取到最新订单信息
-    [self getOrderInfo];
-    
-    if (self.dataSource.count != 0)
-    {
-        //只刷新所有cell数据
-        for (int i = 0; i < self.dataSource.count; i++)
+        //移除商品
+        //重新从数据库获取数据 并 单独刷新这一行
+        [self.dataSource removeObjectAtIndex:index.row];
+        [self.tableView deleteRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationRight];
+        //从数据库获取商品订单信息
+        [self getOrders];
+        //从服务器获取到最新订单信息
+        [self getCartData];
+        
+        if (self.dataSource.count != 0)
         {
-            NSIndexPath *indexPath=[NSIndexPath indexPathForRow:i inSection:0];
-            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:YES];
+            //只刷新所有cell数据
+            for (int i = 0; i < self.dataSource.count; i++)
+            {
+                NSIndexPath *indexPath=[NSIndexPath indexPathForRow:i inSection:0];
+                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:YES];
+            }
         }
-    }
-    else
-    {
-        [self.tableView reloadData];
+        else
+        {
+            [self.tableView reloadData];
+        }
+        
+        if (self.dataSource.count!=0) {
+            //发送通知改变商品件数
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"changeAccount" object:nil userInfo:@{@"key":@(self.dataSource.count)}];
+
+        }
+    
     }
     
-    if (self.dataSource.count!=0) {
-        //发送通知改变商品件数
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"changeAccount" object:nil userInfo:@{@"key":@(self.dataSource.count)}];
-    }
+    
+    
    
     //重新加载底部总价
-    [self getTotalprice];
+   // [self getTotalprice];
 }
 -(void)refreshTotalPrice
 {
-    [self getTotalprice];
+    [self getOrders];
+    [self getCartData];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -370,7 +419,9 @@
         //设置底部结算view的商品件数
         self.accountview.totalNumber.text = [NSString stringWithFormat:@"%d",self.dataSource.count];
         //设置底部结算view的总价
-        [self getTotalprice];
+        //[self getTotalprice];
+        //[self getCartData];
+         self.accountview.totalPrice.text = [NSString stringWithFormat:@"%ld",(long)self.totalPrice];
         [self.view addSubview:self.accountview];
         return NO;
     }

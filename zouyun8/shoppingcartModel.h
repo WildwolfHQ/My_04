@@ -22,6 +22,7 @@
 @property(nonatomic,copy)NSString * thumb;
 @property(nonatomic,copy)NSString * lucky_id;
 @property(nonatomic,copy)NSString * num;
+@property(nonatomic,copy)NSString * lucky_type;
 
 @property(nonatomic,copy)NSString * ID;
 @property(nonatomic,copy)NSString * bid_id;
