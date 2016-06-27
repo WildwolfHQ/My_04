@@ -37,10 +37,10 @@
     }];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
-
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"tuichu" object:nil];
         [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"token"];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"directLogin" object:nil];
-   
+ 
         
         
     }];

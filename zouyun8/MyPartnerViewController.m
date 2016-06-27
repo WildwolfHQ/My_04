@@ -56,7 +56,7 @@ __weak NSString *weak_type1;
     
     
      self.segmentedControl = [[SegmentdedControl alloc] initWithSectionTitles:self.segmentTitlesArray];
-    [self.segmentedControl setFrame:CGRectMake(0,self.view1.frame.origin.y+self.view1.frame.size.height+10, WIDTH, 36)];
+    [self.segmentedControl setFrame:CGRectMake(0,self.view1.frame.origin.y+self.view1.frame.size.height+1, WIDTH, 36)];
     [self.segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
     
     [self.view addSubview:self.segmentedControl];

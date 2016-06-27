@@ -24,13 +24,16 @@
     [_scrollUpView createUI];
     
     //scrollUpView点击回调
-    _scrollUpView.clickBlock = ^(NSInteger index){
-        NoticeModel *noticeModel = __mutArr[index];
-        NSLog(@"恭喜%@获得了%@",noticeModel.nickname,noticeModel.title);
-        //这里跳转到商品详情
-        [SVProgressHUD showSuccessWithStatus:@"跳转到商品详情"];
-        
-    };
+//    _scrollUpView.clickBlock = ^(NSInteger index){
+//        if (__mutArr.count!=0) {
+//            NoticeModel *noticeModel = __mutArr[index];
+//        }
+//        
+//       // NSLog(@"恭喜%@获得了%@",noticeModel.nickname,noticeModel.title);
+//        //这里跳转到商品详情
+//        //[SVProgressHUD showSuccessWithStatus:@"跳转到商品详情"];
+//        
+//    };
 }
 
 - (void)createNoticeView

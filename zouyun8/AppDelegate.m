@@ -32,9 +32,11 @@
 }
 -(void)directLogin
 {
+  
     LoginViewController * login = [[LoginViewController alloc]init];
     UINavigationController * nvc = [[UINavigationController alloc]initWithRootViewController:login];
-    self.window.rootViewController = nvc;   
+    self.window.rootViewController = nvc;
+    
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSLog(@"改动测试");

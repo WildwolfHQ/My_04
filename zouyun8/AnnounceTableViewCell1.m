@@ -37,26 +37,32 @@
 
 - (void)loadData:(id)data indexPath:(NSIndexPath *)indexPath m_dataArray:(NSMutableArray *)dataArray :(NSTimer *)timer{
     
-         //判断定时器是否有效或是否为空
-        if (!timer.isValid||timer==nil) {
-            return;
-        }
+//         //判断定时器是否有效或是否为空
+//        if (!timer.isValid||timer==nil) {
+//            return;
+//        }
     
     
-        TimeModel *model = timer.userInfo;
+        TimeModel *model = data;
         [self storeWeakValueWithData:model indexPath:indexPath m_dataArray:dataArray :timer];
+         if ([self.timesLable.text isEqualToString:@""]) {
+            return;
+         }
         self.timesLable.text  = [NSString stringWithFormat:@"%@",[model currentTimeString]];
     
     
+    
         if ([self.timesLable.text isEqualToString:@"00:00:00"]) {
+            
+            self.timesLable.text=@"";
 //            //关闭定时器
 //            [timer setFireDate:[NSDate distantFuture]];
 //            //开启定时器
 //            [timer setFireDate:[NSDate distantPast]];
             
-            //永久关闭定时器并释放
-            [timer invalidate];
-             timer = nil;
+//            //永久关闭定时器并释放
+//            [timer invalidate];
+//             timer = nil;
             
             Lucky_noticeModel * model1=dataArray[indexPath.row];
             
@@ -251,6 +257,16 @@
                  font= [UIFont systemFontOfSize:12];
              }
 
+         }else{
+         
+             if (cell.jiexiaotimes.text.length>5) {
+                 font= [UIFont systemFontOfSize:10];
+             }else{
+                 
+                 font= [UIFont systemFontOfSize:12];
+             }
+
+         
          }
          
          cell.jiexiaotimes.font=font;

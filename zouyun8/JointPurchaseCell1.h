@@ -22,5 +22,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *statas;
 -(void) setProperty:(Myoriginate *)model;
 
+@property (weak, nonatomic) IBOutlet UILabel *hegouID;
 
 @end

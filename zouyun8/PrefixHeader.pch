@@ -130,7 +130,12 @@
 #define HEI self.window.bounds.size.height
 #define PICKER_HEIGHT   216
 
+
+
+
 //判断设备型号
+#define PhoneModel [[UIDevice currentDevice] model]
+#define DeviceName [[UIDevice currentDevice] systemName]
 #define iPhone4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
 #define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 #define iPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
@@ -202,6 +207,9 @@
 #define Mylucky_URL @"https://m.zouyun8.com/api/mylucky"//我获得的商品
 #define Evaluate_list_URL @"https://m.zouyun8.com/api/evaluate_list"//我的晒单商品列表
 #define Junior_URL @"https://m.zouyun8.com/api/junior"//我的下级会员
+
+
+
 
 
 

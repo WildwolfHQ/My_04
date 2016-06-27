@@ -13,8 +13,9 @@
 }
 @property(nonatomic,strong)NSMutableArray * dataSource;         //数据源
 @property(nonatomic,strong)NSMutableArray * countDownTimes;
-//@property (nonatomic, strong) NSMutableArray *m_dataArray;
+@property (nonatomic, strong) NSMutableArray *m_dataArray;
 @property (nonatomic, strong) NSTimer        *m_timer;
+@property (nonatomic, strong) NSTimer        *m_timer1;
 @end
 
 @implementation AnnounceViewController
@@ -63,26 +64,29 @@
     
     
     self.dataSource=[NSMutableArray array];
-    //self.m_dataArray = [NSMutableArray array];
+    self.m_dataArray = [NSMutableArray array];
     
     self.tableView.bounds=CGRectMake(self.tableView.bounds.origin.x, self.tableView.bounds.origin.y, WIDTH,self.tableView.bounds.size.height);
     [self getData:nil :NO];
     [self  createTimer];
+    [self createTimer1];
 }
 
 -(void)popaction{
     
     //[self.dataSource removeAllObjects];
     
-    for (  Lucky_noticeModel * model in self.dataSource) {
-        [model.timer invalidate];
-         model.timer=nil;
-        
-    }
+//    for (  Lucky_noticeModel * model in self.dataSource) {
+//        [model.timer invalidate];
+//         model.timer=nil;
+//        
+//    }
     
     [self.m_timer invalidate];
      self.m_timer=nil;
 
+    [self.m_timer1 invalidate];
+    self.m_timer1=nil;
     [self.navigationController popViewControllerAnimated:YES];
     
 
@@ -94,11 +98,38 @@
     self.m_timer = [NSTimer timerWithTimeInterval:15.0 target:self selector:@selector(update1) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:self.m_timer forMode:NSRunLoopCommonModes];
 }
-- (void)timerEvent:(NSTimer *)timer {
-   
-    TimeModel *model = timer.userInfo;
-    [model countDown];
+
+- (void)createTimer1 {
     
+// CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(timerEvent:)];
+//    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+//   
+//    displayLink.frameInterval=60/1000;
+   
+    
+    self.m_timer1 = [NSTimer timerWithTimeInterval:0.001 target:self selector:@selector(timerEvent:) userInfo:nil repeats:YES] ;
+    NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+    [runLoop addTimer:self.m_timer1 forMode:NSRunLoopCommonModes];
+//    NSThread *thread = [[NSThread alloc] initWithTarget:self selector:@selector(newThread:) object:nil];
+//    [thread start];
+    
+  
+    
+   
+}
+- (void)timerEvent:(NSTimer *)timer {
+    
+    
+    
+   
+//    TimeModel *model = timer.userInfo;
+//    [model countDown];
+    
+    for (int count = 0; count < _m_dataArray.count; count++) {
+        
+        TimeModel *model = _m_dataArray[count];
+        [model countDown];
+    }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_TIME_CELL object:timer];
 }
@@ -167,9 +198,10 @@
         
        
         
+        TimeModel * model1 = _m_dataArray[indexPath.row];
         
         
-        [cell1 loadData:nil indexPath:indexPath m_dataArray:self.dataSource :model.timer];
+        [cell1 loadData:model1 indexPath:indexPath m_dataArray:self.dataSource :nil];
         cell1.m_isDisplayed=YES;
         [cell1 setProperty:model];
         return cell1;
@@ -178,6 +210,7 @@
     }
  }
 
+    
 
 //else{
 //        AnnounceTableViewCell4 * cell4 = [tableView dequeueReusableCellWithIdentifier:@"AnnounceTableViewCell4"];
@@ -204,6 +237,28 @@
     
     
 }
+
+
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+//     AnnounceTableViewCell1 *tmpCell = ( AnnounceTableViewCell1 *)cell;
+//    tmpCell.m_isDisplayed = YES;
+//    TimeModel * model1 = _m_dataArray[indexPath.row];
+//    
+//    
+//    [tmpCell loadData:model1 indexPath:indexPath m_dataArray:self.dataSource :nil];
+}
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath {
+//    AnnounceTableViewCell1 *tmpCell = ( AnnounceTableViewCell1 *)cell;
+//    tmpCell.m_isDisplayed = NO;
+}
+
+
+
+
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -315,10 +370,20 @@
                          
                         int time=model.run_time.intValue-(int)[self getNowTimeInterval];
                          TimeModel * model1 = [TimeModel timeModelWithTime:time*1000];
+                         [self.m_dataArray addObject:model1];
                          
-                         NSTimer *timer=[NSTimer timerWithTimeInterval:0.001 target:self selector:@selector(timerEvent:) userInfo:model1 repeats:YES];
-                         [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-                         model.timer=timer;
+                         
+                         
+//                         NSTimer *timer=[NSTimer timerWithTimeInterval:0.001 target:self selector:@selector(timerEvent:) userInfo:model1 repeats:YES];
+//                         [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+//                                model.timer=timer;
+
+//                         NSThread *thread = [[NSThread alloc] initWithTarget:self selector:@selector(newThread:) object:model1];
+//                            [thread start];
+                         
+                         
+                         
+                         
                      }
                      
                      
@@ -359,6 +424,19 @@
          
      }];
 }
+
+- (void)newThread:(NSThread *)thread
+ {
+       @autoreleasepool
+       {
+           
+
+           
+//        [runLoop run];
+
+       }
+  }
+
 
 
 //static int page=0;
@@ -469,11 +547,11 @@
 }
 
 -(void)update1{
-    for (Lucky_noticeModel * model in self.dataSource) {
-        [model.timer invalidate];
-         model.timer=nil;
-        
-    }
+//    for (Lucky_noticeModel * model in self.dataSource) {
+//        [model.timer invalidate];
+//         model.timer=nil;
+//        
+//    }
     [self getData:nil:YES];
     
 }

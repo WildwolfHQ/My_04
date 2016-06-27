@@ -25,7 +25,7 @@
     self.name.text=model.name;
     self.zhongfenshu.text=[NSString stringWithFormat:@"总份数: %@",model.total_num];
     self.zhongjiazhi.text=[NSString stringWithFormat:@"总价值: %@",model.money];
-    
+    self.hegouID.text=[NSString stringWithFormat:@"合购编号:%@",model.ID];
     
     
     self.shenyushu.text=[NSString stringWithFormat:@"剩余: %@",model.left_num];

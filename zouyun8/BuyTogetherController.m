@@ -3,6 +3,7 @@
 #import "BuyTogetherModel.h"
 #import "HgGoodsDetailController.h"
 #import "DirectSettleViewController.h"
+#import "GoodsWebViewController.h"
 @interface BuyTogetherController ()<UICollectionViewDataSource,UICollectionViewDelegate,BuyTogetherCellDelegate>
 
 @property(nonatomic,assign)NSInteger page;
@@ -196,13 +197,15 @@
     BuyTogetherModel * model;
     model = self.dataSource[indexPath.row];
     //http://zy8.jf-q.com/l/v/[lucky_id]/?uid=[uid]&token=[token]
-    NSString * url = [NSString stringWithFormat:@"http://zy8.jf-q.com/l/v/%@/?uid=%@&token=%@",model.ID,UID,TOKEN];
-    NSLog(@"%@",url);
-    HgGoodsDetailController * detail = [[HgGoodsDetailController alloc]init];
+    NSString * url = [NSString stringWithFormat:@"http://m.zouyun8.com/l/v/%@/?uid=%@&token=%@",model.ID,UID,TOKEN];
+    
+    GoodsWebViewController * VC = [[GoodsWebViewController alloc]init];
+    
+    VC.urlStr = url;
     self.hidesBottomBarWhenPushed = YES;
-    detail.url = url;
-    [self.navigationController pushViewController:detail animated:YES];
+    [self.navigationController pushViewController:VC animated:YES];
     self.hidesBottomBarWhenPushed = NO;
+
 }
 //返回这个UICollectionView是否可以被选择
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath

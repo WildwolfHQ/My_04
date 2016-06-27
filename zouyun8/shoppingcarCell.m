@@ -63,6 +63,7 @@
 
 - (IBAction)cutNumberBtn:(id)sender
 {
+     [SVProgressHUD showWithStatus:@""];
     if ([self.buyTextField.text integerValue] > 1)
     {
         //按照单价递减
@@ -101,6 +102,8 @@
 - (IBAction)addNumberBtn:(id)sender
 {
     NSLog(@"点击了加号");
+    
+    [SVProgressHUD showWithStatus:@""];
     //
     if (!([self.lastLabel.text integerValue] < [self.buyTextField.text integerValue] || [self.lastLabel.text integerValue] == [self.buyTextField.text integerValue])) {
         self.buyTextField.text = [NSString stringWithFormat:@"%ld",[self.buyTextField.text integerValue] + 1];
@@ -131,6 +134,7 @@
 }
 
 - (IBAction)clearBtn:(id)sender {
+   
     /*
      1.根据name从数据库中清除该商品，
      2.发送通知给tableView刷新数据

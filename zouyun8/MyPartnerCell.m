@@ -22,7 +22,7 @@
 }
 
 -(void) setProperty:(Junior *)model{
-    [self.image sd_setImageWithURL:[NSURL URLWithString:model.icon]];
+    [self.image sd_setImageWithURL:[NSURL URLWithString:model.icon] placeholderImage:[UIImage imageNamed:@"star"]];
     self.name.text=model.username;
     self.time.text=model.reg_time;
     self.fanli.text=[NSString stringWithFormat:@"已返利%@元",model.cash];

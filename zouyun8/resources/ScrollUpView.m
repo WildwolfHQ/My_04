@@ -55,7 +55,10 @@
 - (void)setScrollUpViewDatas:(NSMutableArray *)dataArr
 {
     _dataArr = dataArr;
-    self.currentLabel.attributedText = _dataArr[count];
+    if (_dataArr.count!=0) {
+        self.currentLabel.attributedText = _dataArr[count];
+    }
+    
 }
 
 - (void)dealTap:(UITapGestureRecognizer *)tap
@@ -77,11 +80,17 @@
     }
     
     if (flag == 1) {
-        self.currentLabel.attributedText = _dataArr[count];
+        if (_dataArr.count!=0) {
+            self.currentLabel.attributedText = _dataArr[count];
+        }
+        
     }
     
     if (flag == 0) {
-        self.hidenLabel.attributedText = _dataArr[count];
+        if (_dataArr.count!=0) {
+            self.hidenLabel.attributedText = _dataArr[count];
+        }
+        
     }
     
     

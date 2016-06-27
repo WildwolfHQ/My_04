@@ -70,10 +70,15 @@
     [self loadData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"loadData" object:nil];
     
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tuichu) name:@"tuichu" object:nil];
     
 }
 
+-(void)tuichu{
+    UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:2];
+    item.badgeValue = nil;
 
+}
 -(void)loadData{
 
     

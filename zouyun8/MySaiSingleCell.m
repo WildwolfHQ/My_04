@@ -25,7 +25,7 @@
 
 -(void) setProperty:(Evaluate_list *)model{
 
-    [self.image sd_setImageWithURL:[NSURL URLWithString:model.thumb]];
+    [self.image sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:@"star"]];
      self.date.text=model.create_time;
      self.name.text=model.name;
     

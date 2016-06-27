@@ -49,6 +49,7 @@
                         <rect key="frame" x="145" y="114" width="56" height="13"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="56" id="La5-4d-8ox"/>
+                            <constraint firstAttribute="height" constant="13" id="OUQ-iS-22V"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                         <color key="textColor" red="0.81849231020000002" green="0.1028221552" blue="0.13434956980000001" alpha="1" colorSpace="calibratedRGB"/>

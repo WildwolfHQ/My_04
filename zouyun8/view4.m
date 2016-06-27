@@ -39,9 +39,12 @@
 }
 - (void)personalImageBtn3:(id)sender
 {
-    NSLog(@"%@",self.GoodsArray[2]);
+   // NSLog(@"%@",self.GoodsArray[2]);
     NSDictionary * dic = [[NSDictionary alloc]init];
-    dic = self.GoodsArray[2];
+    if (self.GoodsArray.count!=0) {
+        dic = self.GoodsArray[2];
+    }
+    
     if ([self.delegate respondsToSelector:@selector(OpenHeGouDetail:)]) {
         [self.delegate OpenHeGouDetail:dic];
     }

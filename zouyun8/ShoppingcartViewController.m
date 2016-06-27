@@ -236,9 +236,9 @@
 #pragma mark - 获取商品数据
 -(void)getCartData
 {
-    if (self.orders.count != 0) {
-        [SVProgressHUD show];
-    }
+//    if (self.orders.count != 0) {
+//        [SVProgressHUD show];
+//    }
     [self.dataSource removeAllObjects];
     self.totalPrice = 0;
     //订单json信息
@@ -281,14 +281,20 @@
                        self.totalPrice = self.totalPrice + [model.num integerValue] * [model.price integerValue];
                      }
                     
-                     UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:2];
-                     item.badgeValue = @"1";
-
                      
                  }
-                          [SVProgressHUD dismiss];
+             if (array.count==0) {
+                 UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:2];
+                 item.badgeValue = nil;
+             }else{
+                 
+                 UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:2];
+                 item.badgeValue = @"1";
+
+             }
             
              [self.tableView reloadData];
+             [SVProgressHUD dismiss];
          }
               failure:^(AFHTTPRequestOperation *operation, NSError *error)
          {

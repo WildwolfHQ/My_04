@@ -264,11 +264,12 @@
 -(void)OpenHeGouDetail:(NSDictionary *)dict
 {
     //http://zy8.jf-q.com/l/v/[lucky_id]/?uid=[uid]&token=[token]  实际链接中没有中括号
-    NSString * url = [NSString stringWithFormat:@"http://zy8.jf-q.com/l/v/%@/?uid=%@&token=%@",dict[@"id"],UID,TOKEN];
-    HgGoodsDetailController * detail = [[HgGoodsDetailController alloc]init];
+    NSString * url = [NSString stringWithFormat:@"http://m.zouyun8.com/l/v/%@/?uid=%@&token=%@",dict[@"id"],UID,TOKEN];
+    GoodsWebViewController * VC = [[GoodsWebViewController alloc]init];
+    
+    VC.urlStr = url;
     self.hidesBottomBarWhenPushed = YES;
-    detail.url = url;
-    [self.navigationController pushViewController:detail animated:YES];
+    [self.navigationController pushViewController:VC animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
 
@@ -342,22 +343,14 @@
     
     self.view4 = [[NSBundle mainBundle]loadNibNamed:@"view4" owner:self options:nil].firstObject;
     self.view4.delegate = self;
-    [self.view4.imageView1 sd_setImageWithURL:[NSURL URLWithString:self.imageUrl1] placeholderImage:nil completed:nil];
-    [self.view4.imageView2 sd_setImageWithURL:[NSURL URLWithString:self.imageUrl2] placeholderImage:nil completed:nil];
-    [self.view4.imageView3 sd_setImageWithURL:[NSURL URLWithString:self.imageUrl3] placeholderImage:nil completed:nil];
-    self.view4.price1.text = [NSString stringWithFormat:@"%@",self.price1];
-    self.view4.price2.text = [NSString stringWithFormat:@"%@",self.price2];
-    self.view4.price3.text = [NSString stringWithFormat:@"%@",self.price3];
-    self.view4.last1.text = [NSString stringWithFormat:@"%@",self.last1];
-    self.view4.last2.text = [NSString stringWithFormat:@"%@",self.last2];
-    self.view4.last3.text = [NSString stringWithFormat:@"%@",self.last3];
+    
     if (iPhone6_plus) {
         self.view4.frame = CGRectMake(0, CGRectGetMaxY(view3.frame), WIDTH, 173);
     }
     else
     self.view4.frame = CGRectMake(0, CGRectGetMaxY(view3.frame), WIDTH, 153);
     
-    self.view4.GoodsArray = self.GoodsArray;
+    
     
     view5 * view5 = [[NSBundle mainBundle]loadNibNamed:@"view5" owner:self
                                               options:nil].firstObject;
@@ -425,12 +418,14 @@
     //下拉操作
     [self.collectionView addPullToRefreshWithActionHandler:^{
         
-        int64_t delayInSeconds = 1.0;
+        int64_t delayInSeconds = 0.5;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             
              weakSelf.page = 1;
             [weakSelf getData];
+            [weakSelf getPub_lucky];
+            [weakSelf GetAdPicture];
             [weakSelf.collectionView.pullToRefreshView stopAnimating];
         });
     }];
@@ -467,6 +462,7 @@
     [self getPub_lucky];
     [self GetAdPicture];
     [self createAdScrollView];
+    [self createHeadView];
     [self createCollectionView];
 }
 
@@ -552,23 +548,69 @@
         NSArray* array = dic[@"data"];
         //最新公开的合购商品图片地址
         if (array.count != 0) {
-            self.imageUrl1 = array[0][@"thumb"];
-            if (array.count>=2) {
-                self.imageUrl2 = array[1][@"thumb"];
-                self.imageUrl3 = array[2][@"thumb"];
+            self.view4.hidden=NO;
+            
+           
+            
+            
+            if (array.count>0) {
+              self.imageUrl1 = array[0][@"thumb"];
+                self.price1 = array[0][@"money"];
+                self.last1 = array[0][@"left_num"];
+            }else{
+                
+                self.price1=@"";
+                self.imageUrl1=nil;
+                self.last1=@"";
+            
             }
+            if (array.count>1) {
+                 self.imageUrl2 = array[1][@"thumb"];
+                self.price2 = array[1][@"money"];
+                self.last2 = array[1][@"left_num"];
+            }else{
+            
+                self.price2=@"";
+                self.imageUrl2=nil;
+                self.last2=@"";
+
+            }
+            if (array.count>2) {
+                self.imageUrl3 = array[2][@"thumb"];
+                self.price3 = array[2][@"money"];
+                self.last3 = array[2][@"left_num"];
+            }else{
+               self.price3=@"";
+                self.imageUrl3=nil;
+                self.last3=@"";
+
+            
+            }
+           
+            [self.view4.imageView1 sd_setImageWithURL:[NSURL URLWithString:self.imageUrl1] placeholderImage:nil completed:nil];
+            [self.view4.imageView2 sd_setImageWithURL:[NSURL URLWithString:self.imageUrl2] placeholderImage:nil completed:nil];
+            [self.view4.imageView3 sd_setImageWithURL:[NSURL URLWithString:self.imageUrl3] placeholderImage:nil completed:nil];
+            self.view4.price1.text = [NSString stringWithFormat:@"%@",self.price1];
+            self.view4.price2.text = [NSString stringWithFormat:@"%@",self.price2];
+            self.view4.price3.text = [NSString stringWithFormat:@"%@",self.price3];
+            self.view4.last1.text = [NSString stringWithFormat:@"%@",self.last1];
+            self.view4.last2.text = [NSString stringWithFormat:@"%@",self.last2];
+            self.view4.last3.text = [NSString stringWithFormat:@"%@",self.last3];
+            
+            self.GoodsArray = array;
+            //获取已开奖信息
+            self.view4.GoodsArray = self.GoodsArray;
             
             
-            self.price1 = array[0][@"money"];
-            self.price2 = array[1][@"money"];
-            self.price3 = array[2][@"money"];
-            self.last1 = array[0][@"left_num"];
-            self.last2 = array[1][@"left_num"];
-            self.last3 = array[2][@"left_num"];
+        }else{
+            
+        
+            self.view4.hidden=YES;
+           
+        //[self createHeadView];
         }
-        self.GoodsArray = array;
-        //获取已开奖信息
         [self getAlreadyNotice];
+       
     } page:@"1"];
     
 //    [ToolClass getLucky_notice:^(NSDictionary *dic) {
@@ -599,7 +641,7 @@
         NSLog(@"%@",self.names);
         NSLog(@"%@",self.prizes);
         //创建组头视图
-        [self createHeadView];
+        
         [SVProgressHUD dismiss];
         [self getData];
     }];
@@ -909,7 +951,7 @@
          NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          NSLog(@"最新揭晓列表%@",dict);
          NSArray * array = dict[@"data"];
-         NSLog(@"最新揭晓数量%ld",array.count);
+        
          
          //请求成功,将图片下载完保存到数组中
          for (NSDictionary * dic in array)
@@ -936,7 +978,7 @@
     self.is_announce = NO;
     self.page = 1;
     self.top = info.userInfo[@"top"];
-    NSLog(@"页码是%ld,top是%@",self.page,self.top);
+
     [self.dataSource removeAllObjects];
     
     [ToolClass getRank:^(NSDictionary *dic) {
