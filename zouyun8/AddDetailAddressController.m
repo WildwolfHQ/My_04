@@ -280,7 +280,7 @@
         LblTxtTableViewCell * cell1 = [tableView dequeueReusableCellWithIdentifier:@"LblTxtTableViewCell"];
         cell1.label.text = @"收件人:";
         cell1.textField.placeholder = @"姓名";
-        cell1.textField.delegate = self;
+        //cell1.textField.delegate = self;
         cell1.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell1.textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         return cell1;
@@ -300,7 +300,7 @@
         LblTxtTableViewCell * cell1 = [tableView dequeueReusableCellWithIdentifier:@"LblTxtTableViewCell"];
         cell1.label.text = @"详细地址:";
         cell1.textField.placeholder = @"街道，楼牌号等";
-        cell1.textField.delegate = self;
+        //cell1.textField.delegate = self;
         cell1.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell1.textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         return cell1;

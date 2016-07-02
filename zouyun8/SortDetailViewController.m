@@ -3,7 +3,15 @@
 #import "DirectSettleViewController.h"
 #import "CZPicker.h"
 #import "GoodsWebViewController.h"
-@interface SortDetailViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,FirstCollectionViewCellDelegate,CZPickerViewDataSource, CZPickerViewDelegate>
+#import "JKAlertDialog.h"
+#import "AlertDialogSubView.h"
+#import "BuyTogetherController.h"
+@interface SortDetailViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,FirstCollectionViewCellDelegate,CZPickerViewDataSource, CZPickerViewDelegate>{
+
+    JKAlertDialog *alert;
+    AlertDialogSubView * alertDialogSubView;
+
+}
 
 @property NSMutableArray *fruits;
 @property NSMutableArray *fruitImages;
@@ -90,14 +98,224 @@
 
 -(void)selectBuyTogetherNum:(GoodsModel *)model
 {
-    NSLog(@"点击了好友合购");
     self.model = model;
-    CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"请选择好友合购份数" cancelButtonTitle:@"取消" confirmButtonTitle:@"确定"];
-    picker.delegate = self;
-    picker.dataSource = self;
-    picker.needFooterView = YES;
-    [picker show];
+    NSString * type = TYPE;//0普通会员 1 代理 2 试购员
+    int k=[self.model.money intValue];
+    int l=0;
+    
+    NSMutableArray *array=[[NSMutableArray alloc]init];
+    NSMutableArray *array1=[[NSMutableArray alloc]init];
+    if (type.integerValue==2) {
+        
+        for (int  i=5; i<=k; i++) {
+            if (k%i==0) {
+                l=l+1;
+                [array addObject:[NSString stringWithFormat:@"%d",i]];
+                
+            }
+            
+        }
+        
+        if (array.count<5) {
+            [array removeAllObjects];
+            
+            for (int a=5; a<10; a++) {
+                
+                if (a==9) {
+                    if (k>a) {
+                        [array addObject:[NSString stringWithFormat:@"%d",k]];
+                    }else{
+                        [array addObject:[NSString stringWithFormat:@"%d",a]];
+                    }
+                    
+                    [array1 addObject:[NSString stringWithFormat:@"%d",1]];
+                }else{
+                    
+                    [array addObject:[NSString stringWithFormat:@"%d",a]];
+                    int m;
+                    if (k%a!=0) {
+                        m= k/a + 1;
+                    }else{
+                        
+                        m= k/a ;
+                    }
+                    
+                    
+                    
+                    
+                    [array1 addObject:[NSString stringWithFormat:@"%d",m]];
+                }
+            }
+            
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }else{
+        
+        for (int  i=2; i<=k; i++) {
+            if (k%i==0) {
+                l=l+1;
+                [array addObject:[NSString stringWithFormat:@"%d",i]];
+                
+            }
+            
+        }
+        
+        if (array.count<5) {
+            [array removeAllObjects];
+            for (int a=2; a<7; a++) {
+                
+                if (a==6) {
+                    if (k>a) {
+                        [array addObject:[NSString stringWithFormat:@"%d",k]];
+                    }else{
+                        [array addObject:[NSString stringWithFormat:@"%d",a]];
+                    }
+                    
+                    [array1 addObject:[NSString stringWithFormat:@"%d",1]];
+                }else{
+                    
+                    [array addObject:[NSString stringWithFormat:@"%d",a]];
+                    
+                    int m;
+                    if (k%a!=0) {
+                        m= k/a + 1;
+                    }else{
+                        
+                        m= k/a ;
+                    }
+                    
+                    
+                    [array1 addObject:[NSString stringWithFormat:@"%d",m]];
+                }
+            }
+            
+            
+        }
+        
+        
+        
+        
+    }
+    
+    
+    
+    alertDialogSubView = [[NSBundle mainBundle]loadNibNamed:@"AlertDialogSubView" owner:self options:nil].firstObject;
+    alertDialogSubView.shuruTf.delegate=alertDialogSubView;
+    
+    if (iPhone4||iPhone5) {
+        alertDialogSubView.frame=CGRectMake(0, 0, 280, 434);
+        alertDialogSubView.tishi1.font=[UIFont systemFontOfSize:11];
+        alertDialogSubView.tishi2.font=[UIFont systemFontOfSize:11];
+        
+    }else if(iPhone6){
+        alertDialogSubView.frame=CGRectMake(0, 0, 300, 434);
+    }else{
+        
+        alertDialogSubView.frame=CGRectMake(0, 0, 350, 434);
+        
+    }
+    [alertDialogSubView setdata:array addPrice:self.model.money addArray1:array1];
+    
+    
+    alert = [[JKAlertDialog alloc]init];
+    [self.view addSubview:alert];
+    alert.contentView =  alertDialogSubView;
+    alert.contentViewSize=alertDialogSubView.frame.size;
+    
+    
+    [alert show];
+    
+    [alertDialogSubView.faqihegouBt addTarget:self action:@selector(faqidehegou1) forControlEvents:UIControlEventTouchUpInside ];
+    
+    [alertDialogSubView.canyugongkaihegouBt addTarget:self action:@selector(canyugongkaihegou1) forControlEvents:UIControlEventTouchUpInside ];
+    
+    [alertDialogSubView.dismissAlertBt addTarget:self action:@selector(dismissAlertBt1) forControlEvents:UIControlEventTouchUpInside ];
+    
+//    NSLog(@"点击了好友合购");
+//    self.model = model;
+//    CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"请选择好友合购份数" cancelButtonTitle:@"取消" confirmButtonTitle:@"确定"];
+//    picker.delegate = self;
+//    picker.dataSource = self;
+//    picker.needFooterView = YES;
+//    [picker show];
 }
+
+
+-(void)faqidehegou1{
+    
+    if (alertDialogSubView.selectedNumber.length==0) {
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"你还没输选择合购人数！" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            
+            
+            
+        }];
+        
+        
+        
+        
+        
+        [alertController addAction:okAction];
+        
+        
+        //膜态时一定要判断你膜态的ViewController是不是空 ，空才能去膜态 、非空不能。
+        if ([UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil)
+            
+        {
+            
+            
+            [[UIApplication sharedApplication].keyWindow.rootViewController  presentViewController:alertController  animated: YES completion:nil];
+            
+            
+        }
+        
+        
+        //[SVProgressHUD showErrorWithStatus:@"你还没输选择合购人数"];
+        return;
+    }
+    
+    [alert dismiss];
+    
+    NSMutableDictionary *dic=[NSMutableDictionary dictionary];
+    dic[@"id"]=self.model.lucky_id;
+    dic[@"num"]=alertDialogSubView.selectedNumber;
+    [self getDataForCreate_lucky_URL:dic];
+    
+    
+}
+-(void)canyugongkaihegou1{
+    [alert dismiss];
+    
+    [self OpenHeGou];
+    
+    
+}
+-(void)dismissAlertBt1{
+    [alert dismiss];
+    
+}
+
+-(void)OpenHeGou
+{
+    BuyTogetherController * buy = [[BuyTogetherController alloc]init];
+    self.hidesBottomBarWhenPushed=YES;
+    [self.navigationController pushViewController:buy animated:YES];
+    self.hidesBottomBarWhenPushed=NO;
+}
+
 #pragma mark - 选择好友合购份数
 - (NSAttributedString *)czpickerView:(CZPickerView *)pickerView
                attributedTitleForRow:(NSInteger)row{

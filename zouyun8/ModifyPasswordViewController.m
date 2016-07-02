@@ -55,7 +55,7 @@
     params[@"mobile"] = self.iphone.text;
     params[@"code"] = self.verificationCode.text;
     params[@"password"] = self.passWord.text;
-    [HttpRequest postWithURLString:@"http://zy8.jf-q.com/api/reset_password" parameters:params success:^(id responseObject)
+    [HttpRequest postWithURLString:@"http://m.zouyun8.com/api/reset_password" parameters:params success:^(id responseObject)
      {
          NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          
@@ -85,7 +85,7 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"mobile"] = self.iphone.text;
     params[@"type"] = @"1";
-    [HttpRequest postWithURLString:@"http://zy8.jf-q.com/api/sendcode" parameters:params success:^(id responseObject) {
+    [HttpRequest postWithURLString:@"https://m.zouyun8.com/api/sendcode" parameters:params success:^(id responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
         
         NSNumber * errcode = dict[@"errcode"];

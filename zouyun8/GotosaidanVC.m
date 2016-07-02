@@ -173,7 +173,7 @@
     params[@"imgs"] = dic[@"imgs"];
 
     
-    [HttpRequest postWithURLString:@"http://zy8.jf-q.com/api/evaluate_add" parameters:params success:^(id responseObject)
+    [HttpRequest postWithURLString:@"https://m.zouyun8.com/api/evaluate_add" parameters:params success:^(id responseObject)
      {
          NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          

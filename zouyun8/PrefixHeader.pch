@@ -209,7 +209,7 @@
 #define Junior_URL @"https://m.zouyun8.com/api/junior"//我的下级会员
 
 
-
+#define Comm_to_money @"https://m.zouyun8.com/api/comm_to_money"
 
 
 

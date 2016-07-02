@@ -25,6 +25,7 @@
 -(void)changeTabBar
 {
     NSLog(@"接受到通知");
+
     self.tabBar.selectedIndex = 0;
     self.tabBar.viewControllers = self.viewControllers;
     self.window.rootViewController = self.tabBar;

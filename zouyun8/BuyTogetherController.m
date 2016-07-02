@@ -71,8 +71,8 @@
     [ToolClass getPub_lucky:^(NSDictionary *dic) {
         
         NSLog(@"合购公开%@",dic);
-        NSArray * array = [[NSArray alloc]init];
-        array = dic[@"data"];
+        
+       NSArray *  array = dic[@"data"];
         
         if (self.is_Pull == YES)
         {
@@ -80,6 +80,7 @@
         }
         for (NSDictionary * dict in array) {
             BuyTogetherModel * model = [[BuyTogetherModel alloc]initWithDictionary:dict error:nil];
+            model.type=@"1";
             [self.dataSource addObject:model];
         }
         [self.collectionView reloadData];
@@ -88,20 +89,14 @@
 
 -(void)directToPay:(NSDictionary *)dict
 {
-    if (!TOKEN)
-    {
-        LoginViewController * login = [[LoginViewController alloc]init];
-        UINavigationController * nvc = [[UINavigationController alloc]initWithRootViewController:login];
-        [self presentViewController:nvc animated:YES completion:nil];
-    }
-    else
-    {
-        DirectSettleViewController * direct = [[DirectSettleViewController alloc]init];
-        direct.dic = dict;
-        self.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:direct animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
-    }
+    ShoppingcartViewController *vc=[[ShoppingcartViewController alloc]init];
+    
+     vc.is_tabBarHidden=YES;
+//    vc.is_tuhao=YES;
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    
+
 }
 
 #pragma mark - 创建collectionview
@@ -113,7 +108,7 @@
     CGFloat wid = WIDTH / 3 - 10;
     flowLayout.itemSize = CGSizeMake(wid, WIDTH/2);
     
-    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT -49) collectionViewLayout:flowLayout];
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT) collectionViewLayout:flowLayout];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     //设置代理
     self.collectionView.delegate = self;

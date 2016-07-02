@@ -146,20 +146,31 @@
              if (nick.length != 0)
              {
                  if ([type integerValue] != 2){
+                     
+                     self.headerView.userNameLabel.text = [NSString stringWithFormat:@"%@",nick];
+                     
+                     //                         UIFont *fnt = [UIFont fontWithName:@"Heiti SC" size:13.0f];
+                     //l1.font =fnt;
+                     // 根据字体得到NSString的尺寸
+                     CGSize size = [self.headerView.userNameLabel.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.headerView.userNameLabel.font,NSFontAttributeName, nil]];
+                     // 名字的H
+                     //                         CGFloat nameH = size.height;
+                     // 名字的W
+                     CGFloat nameW = size.width;
+                     
                      if([type integerValue]==1){
                      
-                         self.headerView.userNameLabel.text = [NSString stringWithFormat:@"%@",nick];
-                         
-                         
+                        
                       
                          
                          //判断
-                         if (self.headerView.userNameLabel.frame.origin.x+self.headerView.userNameLabel.frame.size.width+65>=WIDTH) {
+                        // NSInteger lenth = [self getToInt:self.headerView.userNameLabel.text];
+                         if (self.headerView.userNameLabel.frame.origin.x+nameW+65>=WIDTH) {
                              label.frame=CGRectMake(WIDTH-65, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
                              self.headerView.userNameLabel.frame=CGRectMake(self.headerView.userNameLabel.frame.origin.x, self.headerView.userNameLabel.frame.origin.y, label.frame.origin.x-self.headerView.userNameLabel.frame.origin.x, self.headerView.userNameLabel.frame.size.height);
                              
                          }else{
-                             label.frame =CGRectMake(self.headerView.userNameLabel.frame.origin.x+self.headerView.userNameLabel.frame.size.width, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
+                             label.frame =CGRectMake(self.headerView.userNameLabel.frame.origin.x+nameW, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
                          }
                          [self.headerView addSubview:label];
                          label.text=@"(代理)";
@@ -177,15 +188,16 @@
                  }
                  else
                  {
-                     self.headerView.userNameLabel.text = [NSString stringWithFormat:@"%@",nick];
-                     
-                     //判断
-                     if (self.headerView.userNameLabel.frame.origin.x+self.headerView.userNameLabel.frame.size.width+65>=WIDTH) {
+//                     self.headerView.userNameLabel.text = [NSString stringWithFormat:@"%@",nick];
+//                     
+//                     //判断
+//                       NSInteger lenth = [self getToInt:self.headerView.userNameLabel.text];
+                     if (self.headerView.userNameLabel.frame.origin.x+nameW+65>=WIDTH) {
                          label.frame=CGRectMake(WIDTH-65, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
                     self.headerView.userNameLabel.frame=CGRectMake(self.headerView.userNameLabel.frame.origin.x, self.headerView.userNameLabel.frame.origin.y, label.frame.origin.x-self.headerView.userNameLabel.frame.origin.x, self.headerView.userNameLabel.frame.size.height);
                          
                      }else{
-                         label.frame =CGRectMake(self.headerView.userNameLabel.frame.origin.x+self.headerView.userNameLabel.frame.size.width, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
+                         label.frame =CGRectMake(self.headerView.userNameLabel.frame.origin.x+nameW, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
                      }
                      [self.headerView addSubview:label];
                      label.text=@"(试购员)";
@@ -198,19 +210,29 @@
              {
                  if ([type integerValue] != 2)
                  {
+                     self.headerView.userNameLabel.text = [NSString stringWithFormat:@"%@",USER_NAME];
+                     CGSize size = [self.headerView.userNameLabel.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:self.headerView.userNameLabel.font,NSFontAttributeName, nil]];
+                     // 名字的H
+                     //                         CGFloat nameH = size.height;
+                     // 名字的W
+                     CGFloat nameW = size.width;
+                     
+                     
                      if([type integerValue]==1){
                          
-                         self.headerView.userNameLabel.text = [NSString stringWithFormat:@"%@",USER_NAME];
+                         
+                        
                          
                          
-                    NSInteger lenth = [self getToInt:self.headerView.userNameLabel.text];
+                         
+                   // NSInteger lenth = [self getToInt:self.headerView.userNameLabel.text];
                          //判断
-                         if (self.headerView.userNameLabel.frame.origin.x+lenth+65>=WIDTH) {
+                         if (self.headerView.userNameLabel.frame.origin.x+nameW+65>=WIDTH) {
                              label.frame=CGRectMake(WIDTH-65, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
                              self.headerView.userNameLabel.frame=CGRectMake(self.headerView.userNameLabel.frame.origin.x, self.headerView.userNameLabel.frame.origin.y, label.frame.origin.x-self.headerView.userNameLabel.frame.origin.x, self.headerView.userNameLabel.frame.size.height);
                              
                          }else{
-                             label.frame =CGRectMake(self.headerView.userNameLabel.frame.origin.x+self.headerView.userNameLabel.frame.size.width, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
+                             label.frame =CGRectMake(self.headerView.userNameLabel.frame.origin.x+nameW, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
                          }
                          [self.headerView addSubview:label];
                          label.text=@"(代理)";
@@ -227,15 +249,15 @@
                  }
                  else
                  {
-                     self.headerView.userNameLabel.text = [NSString stringWithFormat:@"%@",USER_NAME];
-                      //判断self.headerView.userNameLabel.frame.size.width(苹果公司字符串计算混合字符长度有误差)
-                    NSInteger lenth = [self getToInt:self.headerView.userNameLabel.text];
-                     if (self.headerView.userNameLabel.frame.origin.x+lenth+65>=WIDTH) {
+//                     self.headerView.userNameLabel.text = [NSString stringWithFormat:@"%@",USER_NAME];
+//                      //判断self.headerView.userNameLabel.frame.size.width(苹果公司字符串计算混合字符长度有误差)
+//                    NSInteger lenth = [self getToInt:self.headerView.userNameLabel.text];
+                     if (self.headerView.userNameLabel.frame.origin.x+nameW+65>=WIDTH) {
                          label.frame=CGRectMake(WIDTH-65, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
                          self.headerView.userNameLabel.frame=CGRectMake(self.headerView.userNameLabel.frame.origin.x, self.headerView.userNameLabel.frame.origin.y, label.frame.origin.x-self.headerView.userNameLabel.frame.origin.x, self.headerView.userNameLabel.frame.size.height);
                          
                      }else{
-                         label.frame =CGRectMake(self.headerView.userNameLabel.frame.origin.x+self.headerView.userNameLabel.frame.size.width, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
+                         label.frame =CGRectMake(self.headerView.userNameLabel.frame.origin.x+nameW, self.headerView.userNameLabel.frame.origin.y, 65, self.headerView.userNameLabel.frame.size.height);
                      }
                      [self.headerView addSubview:label];
                      label.text=@"(试购员)";
@@ -362,22 +384,36 @@
 {
     self.is_selected = YES;
     
-    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
-    //当选择的类型是图片
-    if ([type isEqualToString:@"public.image"])
-    {
-        //先把图片转成NSData
-        UIImage* image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-        _iconImage=image;
+   NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+
+    if ([mediaType isEqualToString:( NSString *)kUTTypeImage]){
+        UIImage *theImage = nil;
+        // 判断，图片是否允许修改
+        if ([picker allowsEditing]){
+            //获取用户编辑之后的图像
+            theImage = [info objectForKey:UIImagePickerControllerEditedImage];
+        } else {
+            // 照片的元数据参数
+            theImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+            
+        }
+        
+        _iconImage=theImage;
+        //[self.headerView.personalImage setImage:_iconImage];
         NSData *data1;
-        if (UIImagePNGRepresentation(image) == nil)
+        if (UIImagePNGRepresentation(theImage) == nil)
         {
-            data1 = UIImageJPEGRepresentation(image, 1);
+            data1 = UIImageJPEGRepresentation(theImage, 1);
         }
         else
         {
-            data1 = UIImagePNGRepresentation(image);
+            data1 = UIImagePNGRepresentation(theImage);
         }
+        
+        data1 = [self reSizeImageData:[UIImage imageWithData:data1] maxImageSize:70 maxSizeWithKB:20];
+        //上传到服务器
+        [self postPersonalImage:data1];
+        
         //图片保存的路径
         //这里将图片放在沙盒的documents文件夹中
         NSString * DocumentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
@@ -386,30 +422,42 @@
         //把刚刚图片转换的data对象拷贝至沙盒中 并保存为image.png
         [fileManager createDirectoryAtPath:DocumentsPath withIntermediateDirectories:YES attributes:nil error:nil];
         [fileManager createFileAtPath:[DocumentsPath stringByAppendingString:@"/image.png"] contents:data1 attributes:nil];
-        //得到选择后沙盒中图片的完整路径
-        NSString *filePath = [[NSString alloc]initWithFormat:@"%@%@",DocumentsPath,  @"/image.png"];
+//        //得到选择后沙盒中图片的完整路径
+//        NSString *filePath = [[NSString alloc]initWithFormat:@"%@%@",DocumentsPath,  @"/image.png"];
+//        
+//        
+//        long long abc = [self fileSizeAtPath:filePath];
+//        NSLog(@"%@",filePath);
+//        if (abc < 1024000) {
+//            NSLog(@"小于1m");
+//            //直接上传
+//            [self postPersonalImage:data1];
+//        }
+//        else {
+//            NSLog(@"压缩至1m以内");
+//            //如果图片尺寸大于1m则压缩
+//            
+//        }
+       
+        
+       
+        
+    }else if ([mediaType isEqualToString:(NSString *)kUTTypeMovie]){
+        // 判断获取类型：视频
         
         
-        long long abc = [self fileSizeAtPath:filePath];
-        NSLog(@"%@",filePath);
-        if (abc < 1024000) {
-            NSLog(@"小于1m");
-            //直接上传
-            [self postPersonalImage:data1];
-        }
-        else {
-            NSLog(@"压缩至1m以内");
-            //如果图片尺寸大于1m则压缩
-            data1 = [self reSizeImageData:[UIImage imageWithData:data1] maxImageSize:70 maxSizeWithKB:64];
-            //上传到服务器
-            [self postPersonalImage:data1];
-        }
-        //关闭相册界面
-        [picker dismissViewControllerAnimated:YES completion:^{
-            NSLog(@"关闭相册界面");
-        }];
-//        [self.tableView reloadData];
     }
+    
+    //关闭界面
+    [picker dismissViewControllerAnimated:YES completion:^{
+        //            NSLog(@"关闭相册界面");
+    }];
+
+    
+    
+    
+    
+
 }
 //判断文件的大小
 - (long long) fileSizeAtPath:(NSString*) filePath{
@@ -501,21 +549,23 @@
         
     }success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-        NSString * errcode = dict[@"errcode"];
-        if ([errcode integerValue]) {
-            [SVProgressHUD showErrorWithStatus:dict[@"errmsg"]];
-        }
-        else
-        {
+        NSNumber * errcode = dict[@"errcode"];
+        if ([errcode integerValue]==0) {
             
             [self.headerView.personalImage setImage:_iconImage];
             //上传成功
-            NSLog(@"%@",dict[@"data"]);
-//            [SVProgressHUD showSuccessWithStatus:@"上传成功"];
+            //NSLog(@"%@",dict[@"data"]);
+            //            [SVProgressHUD showSuccessWithStatus:@"上传成功"];
             //将最新图像地址保存到本地
             [ToolClass savePersonalImageUrl:dict[@"data"][@"url"]];
             self.url = dict[@"data"][@"url"];
-            NSLog(@"图像的url地址为%@",dict[@"data"][@"url"]);
+           // NSLog(@"图像的url地址为%@",dict[@"data"][@"url"]);
+            
+        }
+        else
+        {
+            [SVProgressHUD showErrorWithStatus:dict[@"errmsg"]];
+           
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

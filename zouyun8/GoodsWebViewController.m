@@ -31,6 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     if (self.shareDict!=nil) {
         UIBarButtonItem *barbtn=[[UIBarButtonItem alloc] initWithTitle:@"分享" style:UIBarButtonItemStylePlain target:self action:@selector(share)];
         self.navigationItem.rightBarButtonItem=barbtn;
@@ -73,9 +74,10 @@
     }
     
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]]];
-    //self.webView.scalesPageToFit=YES;
+ 
     self.webView.delegate=self;
   
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -121,6 +123,14 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    BOOL success  =[webView stringByEvaluatingJavaScriptFromString:@"hide_something()"];
+
+    if(success){
+    
+        [self performSelector:@selector(delayMethod:) withObject:webView afterDelay:0.1f];
+        
+    }
+  
 //
 //    if ([self.guanggao isEqualToString:@"1"]) {
 //        NSString *str= [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
@@ -134,7 +144,8 @@
     //@"settle_account"即为传给html端的方法名称，由后台判断是否接受到了方法，接收到后就返回json数据
     
     
-    [webView stringByEvaluatingJavaScriptFromString:@"hide_something()"];
+  
+    
     JSContext *context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     
     //是否隐藏网页的导航栏或好友邀请
@@ -654,41 +665,45 @@
     
     
     
+   
     
    
 
 
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView{
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     
-//
-//    //获取当前网页的上下文
-//    JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-//    
-//    context[@"zywShare"] = ^() {
-//        
-//        
-//        
-//        
-//        
-//        
-//    };
+    
+   
+   
     
 
-  
+    return YES;
+
+}
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+    
+    webView.hidden=YES;
         
 
    
     
 
 }
+
+
+
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error{
 
-
+  
 
 }
+-(void)delayMethod:(UIWebView *)webView{
 
+   webView.hidden=NO;
+}
 /*
 #pragma mark - Navigation
 

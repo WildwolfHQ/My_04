@@ -50,7 +50,7 @@
     params[@"mobile"] = self.phoneNumberText.text;
     params[@"code"] = self.messageCode.text;
     params[@"password"] = self.passWord.text;
-    [HttpRequest postWithURLString:@"http://zy8.jf-q.com/api/reset_password" parameters:params success:^(id responseObject)
+    [HttpRequest postWithURLString:@"https://m.zouyun8.com/api/reset_password" parameters:params success:^(id responseObject)
     {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
         
@@ -79,7 +79,7 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"mobile"] = self.phoneNumberText.text;
     params[@"type"] = @"1";
-    [HttpRequest postWithURLString:@"http://zy8.jf-q.com/api/sendcode" parameters:params success:^(id responseObject) {
+    [HttpRequest postWithURLString:@"https://m.zouyun8.com/api/sendcode" parameters:params success:^(id responseObject) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
         
         NSString * errcode = dict[@"errcode"];

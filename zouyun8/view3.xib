@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -15,7 +15,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="喇叭" translatesAutoresizingMaskIntoConstraints="NO" id="MBf-qE-lZd" userLabel="喇叭">
                     <rect key="frame" x="8" y="11" width="8" height="8"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="MBf-qE-lZd" secondAttribute="height" multiplier="1:1" id="nf1-EB-M8N"/>
+                        <constraint firstAttribute="width" constant="8" id="5lA-ay-4yB"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ijX-iE-Gha" userLabel="Scroll Up View" customClass="ScrollUpView">
@@ -24,26 +24,26 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XDz-VN-qnx">
                             <rect key="frame" x="-24" y="24" width="320" height="1"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="1" id="uxA-MZ-8Kt"/>
-                            </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.98861792974623686" green="0.98919400436638993" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="XDz-VN-qnx" firstAttribute="top" secondItem="ijX-iE-Gha" secondAttribute="top" constant="24" id="CJq-GJ-hIH"/>
+                        <constraint firstAttribute="bottom" secondItem="XDz-VN-qnx" secondAttribute="bottom" constant="-5" id="JtP-iQ-BfF"/>
+                        <constraint firstItem="XDz-VN-qnx" firstAttribute="leading" secondItem="ijX-iE-Gha" secondAttribute="leading" constant="-24" id="t50-HH-OUa"/>
+                        <constraint firstAttribute="trailing" secondItem="XDz-VN-qnx" secondAttribute="trailing" constant="-8" id="xDD-1p-7Ag"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="XDz-VN-qnx" secondAttribute="bottom" id="17E-5d-keN"/>
-                <constraint firstItem="ijX-iE-Gha" firstAttribute="leading" secondItem="MBf-qE-lZd" secondAttribute="trailing" constant="8" id="4I0-R1-ynV"/>
-                <constraint firstAttribute="trailing" secondItem="ijX-iE-Gha" secondAttribute="trailing" constant="8" id="En4-bm-PAj"/>
-                <constraint firstAttribute="bottom" secondItem="ijX-iE-Gha" secondAttribute="bottom" constant="5" id="Joh-bh-DXP"/>
-                <constraint firstAttribute="bottom" secondItem="MBf-qE-lZd" secondAttribute="bottom" constant="11" id="Mwu-2v-ej2"/>
-                <constraint firstItem="ijX-iE-Gha" firstAttribute="top" secondItem="7CJ-6s-PhR" secondAttribute="top" constant="5" id="RTR-it-PhE"/>
-                <constraint firstItem="MBf-qE-lZd" firstAttribute="top" secondItem="7CJ-6s-PhR" secondAttribute="top" constant="11" id="RYW-8K-xoR"/>
-                <constraint firstItem="XDz-VN-qnx" firstAttribute="leading" secondItem="7CJ-6s-PhR" secondAttribute="leading" id="cDY-YG-u7N"/>
-                <constraint firstItem="MBf-qE-lZd" firstAttribute="leading" secondItem="7CJ-6s-PhR" secondAttribute="leading" constant="8" id="h4A-Oo-hJr"/>
-                <constraint firstAttribute="trailing" secondItem="XDz-VN-qnx" secondAttribute="trailing" id="qOu-nK-XkY"/>
+                <constraint firstItem="MBf-qE-lZd" firstAttribute="top" secondItem="7CJ-6s-PhR" secondAttribute="top" constant="11" id="5lZ-20-PgN"/>
+                <constraint firstItem="MBf-qE-lZd" firstAttribute="centerY" secondItem="ijX-iE-Gha" secondAttribute="centerY" id="DBB-Lj-6Oi"/>
+                <constraint firstItem="MBf-qE-lZd" firstAttribute="centerY" secondItem="7CJ-6s-PhR" secondAttribute="centerY" id="V5G-9g-p2r"/>
+                <constraint firstItem="ijX-iE-Gha" firstAttribute="leading" secondItem="MBf-qE-lZd" secondAttribute="trailing" constant="8" symbolic="YES" id="ZpY-JY-8hQ"/>
+                <constraint firstItem="ijX-iE-Gha" firstAttribute="top" secondItem="7CJ-6s-PhR" secondAttribute="top" constant="5" id="np1-YS-Oav"/>
+                <constraint firstItem="MBf-qE-lZd" firstAttribute="leading" secondItem="7CJ-6s-PhR" secondAttribute="leadingMargin" id="qio-xU-fQ8"/>
+                <constraint firstItem="ijX-iE-Gha" firstAttribute="trailing" secondItem="7CJ-6s-PhR" secondAttribute="trailingMargin" id="ugV-Du-6Lo"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

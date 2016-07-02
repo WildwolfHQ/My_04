@@ -203,7 +203,7 @@
     
     
     
-    if (self.model.lucky_type.integerValue==1) {
+    if (self.model.lucky_type.integerValue==1||![self.model.user_id isEqualToString:UID]) {
         
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"支付成功！" message:@"是否分享奖金红包" preferredStyle:UIAlertControllerStyleAlert];
         
@@ -243,41 +243,109 @@
         
     }else{
         
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"支付成功！" message:@"好友合购每人限买一份，故必须邀请好友参与，否则无法完成此订单，除非您公开此订单让网友参与。" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"公开" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            [self gongkai];
+       
             
-        }];
-        
-        
-        
-        
-        
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"邀请好友" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"支付成功！" message:@"好友合购必须邀请好友参与，否则无法完成此订单，除非您公开此订单让网友参与。" preferredStyle:UIAlertControllerStyleAlert];
             
-            [self getData1];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"公开" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                [self gongkai];
+                
+            }];
             
             
-        }];
-        
-        
-        
-        
-        
-        [alertController addAction:okAction];
-        [alertController addAction:cancelAction];
-        
-        //膜态时一定要判断你膜态的ViewController是不是空 ，空才能去膜态 、非空不能。
-        if ([UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil)
-            
-        {
             
             
-            [[UIApplication sharedApplication].keyWindow.rootViewController  presentViewController:alertController  animated: YES completion:nil];
+            
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"邀请好友" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                
+                
+                NSMutableDictionary *params = [NSMutableDictionary dictionary];
+                //    params[@"category"] = @"";//int	可选	分类id
+                
+                params[@"type"] = @"1";
+                
+                
+                params[@"uid"] = UID;
+                params[@"token"] = TOKEN;
+                params[@"lucky_id"] = self.model.lucky_id;
+                
+                
+                
+                
+                
+                AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
+                manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+                
+                AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
+                securityPolicy.validatesDomainName = NO;
+                securityPolicy.allowInvalidCertificates = YES;
+                manager.securityPolicy = securityPolicy;
+                
+                [manager GET:@"https://m.zouyun8.com/api/share_data" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject)
+                 {
+                     
+                     
+                     NSLog(@"进来了");
+                     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+                     
+                     
+                     NSLog(@"%@",dict);
+                     NSDictionary *dic1 = dict[@"data"];
+                     
+                     
+                     NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
+                     [dic setValue:dic1[@"imgurl"] forKey:@"image"];
+                     [dic setValue:dic1[@"desc"]   forKey:@"desc"];
+                     [dic setValue:dic1[@"link" ]  forKey:@"url"];
+                     [dic setValue:dic1[@"title"]  forKey:@"title"];
+                     [dic setValue:@"1" forKey:@"share_action"];//action	int	必须	分享类型	1商品详情，2二维码，3活动页
+                     
+                     [self share1:dic];
+                     
+                     
+                     
+                     //[self.navigationController popViewControllerAnimated:YES];
+                     
+                     
+                     //[self.collectionView.infiniteScrollingView stopAnimating];
+                     //[self.collectionView.pullToRefreshView stopAnimating];
+                     
+                 }
+                     failure:^(AFHTTPRequestOperation *operation, NSError *error)
+                 {
+                     
+                     
+                     
+                     
+                 }];
+
+               
+                
+                
+            }];
             
             
-        }
+            
+            
+            
+            [alertController addAction:okAction];
+            [alertController addAction:cancelAction];
+            
+            //膜态时一定要判断你膜态的ViewController是不是空 ，空才能去膜态 、非空不能。
+            if ([UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil)
+                
+            {
+                
+                
+                [[UIApplication sharedApplication].keyWindow.rootViewController  presentViewController:alertController  animated: YES completion:nil];
+                
+                
+            }
+
+            
+        
+        
         
         
     }
@@ -318,32 +386,57 @@
          NSLog(@"%@",dict);
         NSNumber * errcode = dict[@"errcode"];
          
+         NSString *str;
          if (errcode.integerValue==0) {
              
-              [SVProgressHUD showSuccessWithStatus:@"公开成功"];
+            str=@"公开成功";
+           
          }else{
          
-         
-               [SVProgressHUD showSuccessWithStatus:@"公开失败"];
+             str=@"公开失败";
+
+             
          }
          
          
-//         NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
-//         [dic setValue:dic1[@"imgurl"] forKey:@"image"];
-//         [dic setValue:dic1[@"desc"]   forKey:@"desc"];
-//         [dic setValue:dic1[@"link" ]  forKey:@"url"];
-//         [dic setValue:dic1[@"title"]  forKey:@"title"];
-//         [dic setValue:@"3" forKey:@"share_action"];//action	int	必须	分享类型	1商品详情，2二维码，3活动页
-//         
-//         [self share:dic];
+         
+         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:str message:@"是否分享奖金红包" preferredStyle:UIAlertControllerStyleAlert];
+         
+         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+             
+             
+         }];
          
          
          
-         //[self.navigationController popViewControllerAnimated:YES];
          
          
-         //[self.collectionView.infiniteScrollingView stopAnimating];
-         //[self.collectionView.pullToRefreshView stopAnimating];
+         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+             
+             [self getData1];
+             
+             
+         }];
+         
+         
+         
+         
+         
+         [alertController addAction:okAction];
+         [alertController addAction:cancelAction];
+         
+         //膜态时一定要判断你膜态的ViewController是不是空 ，空才能去膜态 、非空不能。
+         if ([UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil)
+             
+         {
+             
+             
+             [[UIApplication sharedApplication].keyWindow.rootViewController  presentViewController:alertController  animated: YES completion:nil];
+             
+             
+         }
+
+         
          
      }
          failure:^(AFHTTPRequestOperation *operation, NSError *error)
@@ -538,7 +631,7 @@
     AddAddressController * add = [[AddAddressController alloc]init];
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:add animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
+    //self.hidesBottomBarWhenPushed = NO;
 }
 -(void)changeTotalPrice:(void (^)())b
 {
@@ -586,7 +679,7 @@
 {
     self.is_discount = @"0";
     [super viewDidLoad];
-    self.title = @"确定订单";
+    self.title = @"确认订单";
     [self getOrders];
     [self getData];
     [self getPayInfo];
@@ -808,9 +901,16 @@
     [manager GET:PAY_INFO parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         NSString *str=dict[@"data"][@"score_cost"];
+         NSInteger m =[str rangeOfString:@"0"].location;
+         
+         NSString *format = [NSString stringWithFormat:@"%@%@f",@"%.",@(m)];
+         
          self.score = [NSString stringWithFormat:@"%@",dict[@"data"][@"score"]];
          self.discount = [NSString stringWithFormat:@"%@",dict[@"data"][@"discount"]];
-         self.discountMoney = [NSString stringWithFormat:@"%.2f",[self.discount floatValue] * [self.totalPrice floatValue]/100.0];
+         
+         self.discountMoney = [NSString stringWithFormat:format,[self.discount floatValue] * [self.totalPrice floatValue]/100.0];
+         
          [self getDefaultAddress];
      }
          failure:^(AFHTTPRequestOperation *operation, NSError *error)
@@ -1075,6 +1175,7 @@
              }
              case SSDKResponseStateFail:
              {
+                 [SVProgressHUD showSuccessWithStatus:@"分享失败"];
                  
                  break;
              }
@@ -1084,5 +1185,150 @@
      }
      ];
 }
+
+
+
+//特殊分享    邀请好友
+-(void)share1:(NSDictionary *)dict
+{
+    NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+    
+    NSString * image = [[NSString alloc]init];
+    NSString * desc = [[NSString alloc]init];
+    NSString * url = [[NSString alloc]init];
+    NSString * title = [[NSString alloc]init];
+    
+    image = dict[@"image"];
+    desc = dict[@"desc"];
+    url = dict[@"url"];
+    title = dict[@"title"];
+    
+    NSLog(@"分享的图片链接为%@",image);
+    [shareParams SSDKSetupShareParamsByText:desc
+                                     images:@[image]
+                                        url:[NSURL URLWithString:url]
+     
+                                      title:title
+                                       type:SSDKContentTypeAuto];
+    
+    [shareParams SSDKSetupSinaWeiboShareParamsByText:desc title:title image:@[image] url:[NSURL URLWithString:url] latitude:0.0 longitude:0.0 objectID:nil type:SSDKContentTypeAuto];
+    
+    //2、分享（可以弹出我们的分享菜单和编辑界面）
+    [ShareSDK showShareActionSheet:nil //要显示菜单的视图, iPad版中此参数作为弹出菜单的参照视图，只有传这个才可以弹出我们的分享菜单，可以传分享的按钮对象或者自己创建小的view 对象，iPhone可以传nil不会影响
+                             items:nil
+                       shareParams:shareParams
+               onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end)
+     {
+         NSString *str;
+         switch (state)
+         {
+             case SSDKResponseStateSuccess:
+             {
+                 NSMutableDictionary * parameters = [[NSMutableDictionary alloc]init];
+                 
+                 
+                 parameters[@"uid"] = UID;
+                 parameters[@"token"] = TOKEN;
+                 NSString *type=@"";
+                 if (platformType==SSDKPlatformTypeWechat) {
+                     type=@"1";
+                     
+                 }
+                 if (platformType==SSDKPlatformTypeQQ) {
+                     type=@"2";
+                     
+                 }
+                 if (platformType==SSDKPlatformTypeSinaWeibo) {
+                     type=@"3";
+                     
+                 }
+                 
+                 parameters[@"type"] = type;//分享方式 1微信，2QQ，3新浪
+                 parameters[@"action"] = dict[@"share_action"];
+                 AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
+                 manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+                 
+                 AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
+                 securityPolicy.validatesDomainName = NO;
+                 securityPolicy.allowInvalidCertificates = YES;
+                 manager.securityPolicy = securityPolicy;
+                 
+                 [manager GET:Share_successURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
+                  {
+                      
+                      [self.navigationController popViewControllerAnimated:YES];
+                      
+                  }
+                      failure:^(AFHTTPRequestOperation *operation, NSError *error)
+                  {
+                      
+                      
+                  }];
+                 
+                 
+                 str=@"分享成功";
+                 
+//                 [SVProgressHUD showSuccessWithStatus:@"分享成功"];
+                 
+                 break;
+             }
+             case SSDKResponseStateFail:
+             {
+                 
+                 str=@"分享失败";
+                 break;
+             }
+                 
+                 
+                 
+             default:
+                 break;
+         }
+     
+         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:str message:@"是否分享奖金红包" preferredStyle:UIAlertControllerStyleAlert];
+         
+         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+             
+             
+         }];
+         
+         
+         
+         
+         
+         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+             
+             [self getData1];
+             
+             
+         }];
+         
+         
+         
+         
+         
+         [alertController addAction:okAction];
+         [alertController addAction:cancelAction];
+         
+         //膜态时一定要判断你膜态的ViewController是不是空 ，空才能去膜态 、非空不能。
+         if ([UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil)
+             
+         {
+             
+             
+             [[UIApplication sharedApplication].keyWindow.rootViewController  presentViewController:alertController  animated: YES completion:nil];
+             
+             
+         }
+
+     
+     
+     }
+     
+     
+     
+     ];
+}
+
 
 @end

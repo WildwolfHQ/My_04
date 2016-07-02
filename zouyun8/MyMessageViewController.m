@@ -22,7 +22,7 @@
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
                                                          forBarMetrics:UIBarMetricsDefault];
     [SVProgressHUD showWithStatus:@"正在加载"];
-    NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://zy8.jf-q.com/a/cate/1139700195/"]];
+    NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://m.zouyun8.com/a/cate/1139700195/"]];
     [self.webView loadRequest:request];
     self.webView.delegate = self;
 }

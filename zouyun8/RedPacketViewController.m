@@ -8,7 +8,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"红包";
+    self.title = @"拼财运";
     self.navigationController.navigationBar.titleTextAttributes= @{NSForegroundColorAttributeName: [UIColor redColor],
                                                                    NSFontAttributeName : [UIFont boldSystemFontOfSize:18]};
 }

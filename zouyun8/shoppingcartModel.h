@@ -31,4 +31,5 @@
 @property(nonatomic,copy)NSString * end_time;
 @property(nonatomic,copy)NSString * price_level;
 
+
 @end

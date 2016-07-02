@@ -87,7 +87,7 @@
                             <action selector="充值:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="el1-zU-XlW"/>
                         </connections>
                     </button>
-                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_avatar_default" translatesAutoresizingMaskIntoConstraints="NO" id="o7N-HW-7Bd">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o7N-HW-7Bd">
                         <rect key="frame" x="18" y="85" width="70" height="70"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="70" id="2j3-q8-m4v"/>
@@ -166,7 +166,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ic_avatar_default" width="164" height="164"/>
         <image name="ic_setting_white.png" width="28" height="28"/>
         <image name="personal_background.jpg" width="360" height="235"/>
     </resources>

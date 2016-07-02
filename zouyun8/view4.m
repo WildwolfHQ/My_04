@@ -30,25 +30,31 @@
 }
 - (void)personalImageBtn2:(id)sender
 {
-    NSLog(@"%@",self.GoodsArray[1]);
-    NSDictionary * dic = [[NSDictionary alloc]init];
-    dic = self.GoodsArray[1];
-    if ([self.delegate respondsToSelector:@selector(OpenHeGouDetail:)]) {
-        [self.delegate OpenHeGouDetail:dic];
+    if (self.GoodsArray.count>1) {
+        NSDictionary * dic = [[NSDictionary alloc]init];
+        dic = self.GoodsArray[1];
+        if ([self.delegate respondsToSelector:@selector(OpenHeGouDetail:)]) {
+            [self.delegate OpenHeGouDetail:dic];
+        }
+
     }
-}
+   
+   }
 - (void)personalImageBtn3:(id)sender
 {
+    if (self.GoodsArray.count>2) {
+        NSDictionary * dic = [[NSDictionary alloc]init];
+        if (self.GoodsArray.count!=0) {
+            dic = self.GoodsArray[2];
+        }
+        
+        if ([self.delegate respondsToSelector:@selector(OpenHeGouDetail:)]) {
+            [self.delegate OpenHeGouDetail:dic];
+        }
+
+    }
    // NSLog(@"%@",self.GoodsArray[2]);
-    NSDictionary * dic = [[NSDictionary alloc]init];
-    if (self.GoodsArray.count!=0) {
-        dic = self.GoodsArray[2];
-    }
-    
-    if ([self.delegate respondsToSelector:@selector(OpenHeGouDetail:)]) {
-        [self.delegate OpenHeGouDetail:dic];
-    }
-}
+   }
 - (IBAction)OpenHeGou:(id)sender {
     
     if ([self.delegate respondsToSelector:@selector(OpenHeGou)]) {

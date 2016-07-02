@@ -110,6 +110,7 @@
 {
     SortDetailViewController * sortDetail = [[SortDetailViewController alloc]init];
     sortDetail.name1 = name;
+    sortDetail.name = name;
     sortDetail.urlStr = LUCKY_LIST;
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:sortDetail animated:YES];

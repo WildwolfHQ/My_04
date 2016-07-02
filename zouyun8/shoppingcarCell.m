@@ -63,10 +63,11 @@
 
 - (IBAction)cutNumberBtn:(id)sender
 {
-     [SVProgressHUD showWithStatus:@""];
+    
     if ([self.buyTextField.text integerValue] > 1)
     {
         //按照单价递减
+        [SVProgressHUD showWithStatus:@""];
         self.buyTextField.text = [NSString stringWithFormat:@"%ld",[self.buyTextField.text integerValue] - 1];
         
         /*保存减后的数据到数据库 并 调用cell代理方法改变购买数量*/
@@ -95,17 +96,21 @@
         {
             [self.delegate changeBuyNumber:[self getIndexPath]];
         }
+    }else{
+    [SVProgressHUD showErrorWithStatus:@"参与人次不能小于1"];
     }
     
 }
 
 - (IBAction)addNumberBtn:(id)sender
 {
-    NSLog(@"点击了加号");
+   // NSLog(@"点击了加号");
     
-    [SVProgressHUD showWithStatus:@""];
+   
     //
     if (!([self.lastLabel.text integerValue] < [self.buyTextField.text integerValue] || [self.lastLabel.text integerValue] == [self.buyTextField.text integerValue])) {
+         [SVProgressHUD showWithStatus:@""];
+        
         self.buyTextField.text = [NSString stringWithFormat:@"%ld",[self.buyTextField.text integerValue] + 1];
         /*保存减后的数据到数据库 并 调用cell代理方法改变购买数量*/
         FMDatabase *db = [FMDatabase databaseWithPath:DBFATH];
@@ -130,6 +135,12 @@
         {
             [self.delegate changeBuyNumber:[self getIndexPath]];
         }
+    }else{
+    
+     
+        
+        
+        [SVProgressHUD showErrorWithStatus:@"参与人次不能大于剩于人次"];
     }
 }
 

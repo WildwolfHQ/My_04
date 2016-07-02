@@ -241,17 +241,26 @@
 
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-//     AnnounceTableViewCell1 *tmpCell = ( AnnounceTableViewCell1 *)cell;
-//    tmpCell.m_isDisplayed = YES;
-//    TimeModel * model1 = _m_dataArray[indexPath.row];
-//    
-//    
-//    [tmpCell loadData:model1 indexPath:indexPath m_dataArray:self.dataSource :nil];
+    if ([[cell class] isSubclassOfClass:[AnnounceTableViewCell1 class]]) {
+        AnnounceTableViewCell1 *tmpCell = ( AnnounceTableViewCell1 *)cell;
+        tmpCell.m_isDisplayed = YES;
+        TimeModel * model1 = _m_dataArray[indexPath.row];
+        
+        
+        [tmpCell loadData:model1 indexPath:indexPath m_dataArray:self.dataSource :nil];
+    }
+    
+    
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath {
-//    AnnounceTableViewCell1 *tmpCell = ( AnnounceTableViewCell1 *)cell;
-//    tmpCell.m_isDisplayed = NO;
+    
+    if ([[cell class] isSubclassOfClass:[AnnounceTableViewCell1 class]]) {
+        AnnounceTableViewCell1 *tmpCell = ( AnnounceTableViewCell1 *)cell;
+        tmpCell.m_isDisplayed = NO;
+    
+    }
+  
 }
 
 
@@ -347,6 +356,7 @@
          
          if (isrash) {
              [self.dataSource removeAllObjects];
+             [self.m_dataArray removeAllObjects];
          }
          if(array.count==0){
              if (istishi) {
@@ -452,7 +462,7 @@
             
         }
         [weakSelf getData:nil:YES];
-        int64_t delayInSeconds = 2.0;
+        int64_t delayInSeconds = 1.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             
@@ -547,11 +557,8 @@
 }
 
 -(void)update1{
-//    for (Lucky_noticeModel * model in self.dataSource) {
-//        [model.timer invalidate];
-//         model.timer=nil;
-//        
-//    }
+
+    
     [self getData:nil:YES];
     
 }

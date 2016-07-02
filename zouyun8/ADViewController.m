@@ -18,11 +18,29 @@
     [self.webView loadRequest:request];
     self.webView.delegate = self;
 }
+
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+    
+    webView.hidden=YES;
+    
+    
+    
+    
+    
+}
+
 #pragma mark - webview代理（网页加载完后调用）
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     
+    BOOL success  =[webView stringByEvaluatingJavaScriptFromString:@"hide_something()"];
     
+    if(success){
+        
+        [self performSelector:@selector(delayMethod:) withObject:webView afterDelay:0.1f];
+        
+    }
+
     
     
     NSString *str= [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
@@ -31,7 +49,7 @@
     //加载完毕，隐藏HUB
     [SVProgressHUD dismiss];
     //获取当前网页的上下文
-     [webView stringByEvaluatingJavaScriptFromString:@"hide_something()"];
+    
     JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     //@"settle_account"即为传给html端的方法名称，由后台判断是否接受到了方法，接收到后就返回json数据
     context[@"zywShare"] = ^()
@@ -202,4 +220,8 @@
     return NO;
 }
 
+-(void)delayMethod:(UIWebView *)webView{
+    
+    webView.hidden=NO;
+}
 @end

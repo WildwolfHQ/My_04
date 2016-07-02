@@ -13,5 +13,6 @@
 @property(nonatomic,copy)NSString * thumb;
 @property(nonatomic,copy)NSString * total_num;
 @property(nonatomic,copy)NSString * username;
+@property(nonatomic,copy)NSString * type;
 
 @end

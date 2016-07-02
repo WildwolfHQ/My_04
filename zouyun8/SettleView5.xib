@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,13 +13,16 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pao-W6-KxJ">
-                    <rect key="frame" x="8" y="14" width="31" height="15"/>
+                    <rect key="frame" x="8" y="14" width="266" height="15"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wly-iG-t8F">
                     <rect key="frame" x="282" y="9" width="30" height="27"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="0Kj-um-EoH"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <state key="normal" title="更多">
                         <color key="titleColor" red="1" green="0.10259666689999999" blue="0.17166056569999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -30,17 +34,18 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Wly-iG-t8F" firstAttribute="centerY" secondItem="1pD-gG-oRZ" secondAttribute="centerY" id="Enm-20-pmc"/>
-                <constraint firstItem="pao-W6-KxJ" firstAttribute="centerY" secondItem="1pD-gG-oRZ" secondAttribute="centerY" id="Nll-T9-w6b"/>
-                <constraint firstAttribute="trailing" secondItem="Wly-iG-t8F" secondAttribute="trailing" constant="8" id="dx2-rV-jmm"/>
-                <constraint firstItem="pao-W6-KxJ" firstAttribute="leading" secondItem="1pD-gG-oRZ" secondAttribute="leading" constant="8" id="ybx-aA-0Kz"/>
+                <constraint firstItem="Wly-iG-t8F" firstAttribute="trailing" secondItem="1pD-gG-oRZ" secondAttribute="trailingMargin" id="150-uY-7dS"/>
+                <constraint firstItem="Wly-iG-t8F" firstAttribute="bottom" secondItem="1pD-gG-oRZ" secondAttribute="bottomMargin" id="JHG-nU-324"/>
+                <constraint firstItem="pao-W6-KxJ" firstAttribute="leading" secondItem="1pD-gG-oRZ" secondAttribute="leadingMargin" id="Pse-Nn-5zi"/>
+                <constraint firstItem="Wly-iG-t8F" firstAttribute="leading" secondItem="pao-W6-KxJ" secondAttribute="trailing" constant="8" symbolic="YES" id="fPw-S9-Rga"/>
+                <constraint firstItem="pao-W6-KxJ" firstAttribute="centerY" secondItem="1pD-gG-oRZ" secondAttribute="centerY" id="j8d-M1-oDu"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="defaultAddress" destination="pao-W6-KxJ" id="RUV-RB-fNK"/>
             </connections>
-            <point key="canvasLocation" x="187" y="-28.5"/>
+            <point key="canvasLocation" x="187" y="-29"/>
         </view>
     </objects>
 </document>

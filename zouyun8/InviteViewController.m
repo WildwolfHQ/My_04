@@ -28,7 +28,7 @@
     
     
     
-    [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://zy8.jf-q.com/a/article/2045901913/?no_title=1"]]];
+    [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://m.zouyun8.com/a/article/2045901913/?no_title=1"]]];
     //self.webView.scalesPageToFit=YES;
     self.webview.delegate=self;
 

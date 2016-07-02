@@ -239,14 +239,14 @@ UIBarButtonSystemItemFixedSpace target:nil action:nil];
     
     GoodsWebViewController *VC=[[GoodsWebViewController alloc]init];
     
-    VC.urlStr=[NSString stringWithFormat:@"http://zy8.jf-q.com/b/cate/jingxuan/"];
+    VC.urlStr=[NSString stringWithFormat:@"http://m.zouyun8.com/b/cate/jingxuan/"];
     VC.titleName=@"每日精选";
     [self.navigationController pushViewController:VC animated:YES];
 
 }
 -(void)pushTohuodong2:(UIButton *)sender{
       GoodsWebViewController *VC=[[GoodsWebViewController alloc]init];
-    VC.urlStr=[NSString stringWithFormat:@"http://zy8.jf-q.com/a/zhuanpan/?uid=%@&token=%@",UID,TOKEN];
+    VC.urlStr=[NSString stringWithFormat:@"http://m.zouyun8.com/a/zhuanpan/?uid=%@&token=%@",UID,TOKEN];
     VC.titleName=@"抽奖";
     [self.navigationController pushViewController:VC animated:YES];
     
@@ -255,7 +255,7 @@ UIBarButtonSystemItemFixedSpace target:nil action:nil];
 -(void)pushTohuodong3:(UIButton *)sender{
     GoodsWebViewController *VC=[[GoodsWebViewController alloc]init];
     
-    VC.urlStr=[NSString stringWithFormat:@"http://zy8.jf-q.com/a/cate/3818663455/"];
+    VC.urlStr=[NSString stringWithFormat:@"http://m.zouyun8.com/a/cate/3818663455/"];
     VC.titleName=@"帮助";
     [self.navigationController pushViewController:VC animated:YES];
 

@@ -1,5 +1,5 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "2DF040F5CDCB26AF510869E4D1487F43FCFB8D45",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "A8B1696D725C677336EAF486DA581254DFB98714",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
     "810c5dc8-0855-c94e-b5e3-757c82b5169f++7578" : {
 
@@ -7,24 +7,17 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "810c5dc8-0855-c94e-b5e3-757c82b5169f++7578" : 0,
-    "2DF040F5CDCB26AF510869E4D1487F43FCFB8D45" : 0,
     "A8B1696D725C677336EAF486DA581254DFB98714" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "8C02B5A7-643C-44D6-82E6-255AEA430B44",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "810c5dc8-0855-c94e-b5e3-757c82b5169f++7578" : "zouyun8_ios_app\/zouyun8\/JSON\/",
-    "2DF040F5CDCB26AF510869E4D1487F43FCFB8D45" : "My_04\/",
     "A8B1696D725C677336EAF486DA581254DFB98714" : "zouyun8_ios_app\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "zouyun8",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "zouyun8.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
-    {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/WildwolfHQ\/My_04.git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2DF040F5CDCB26AF510869E4D1487F43FCFB8D45"
-    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/svn.wiselinc.com\/svn\/miniTown-iPhone",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",

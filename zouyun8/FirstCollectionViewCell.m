@@ -102,7 +102,7 @@
             {
             NSLog(@"商品名称重复了");
                 NSString * num = [result stringForColumn:@"num"];
-                NSString * price = [result stringForColumn:@"price"];
+                //NSString * price = [result stringForColumn:@"price"];
                 NSInteger count = [num integerValue];
                // NSLog(@"数字count1 = %d",count);
                 

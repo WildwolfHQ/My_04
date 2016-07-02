@@ -40,6 +40,14 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(settleAccounts:) name:@"settleAccounts" object:nil];
     //接受清空购物车的通知
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeAllCart:) name:@"removeAllCart" object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pushtoroot) name:@"pushtoroot" object:nil];
+
+    
+}
+-(void)pushtoroot{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -105,7 +113,7 @@
          model.price_level = [result stringForColumn:@"price_level"];
         //将model的商品信息，token,uid封装为json数据
         NSDictionary * dic;
-        if (model.lucky_id.length!=0)
+        if (model.lucky_id.length!=0&&model.type!=nil)
         {
              dic = @{@"id":model.lucky_id,@"type":model.type,@"num":model.num};
         }
@@ -116,7 +124,17 @@
 //            model.price_level=@"1";
              dic = @{@"id":model.bid_id,@"type":model.type,@"num":model.num,@"price_level":model.price_level};
         }
-        [self.orders addObject:dic];
+        if (dic!=nil) {
+            [self.orders addObject:dic];
+            
+        }else{
+        
+            FMDatabase *db = [FMDatabase databaseWithPath:DBFATH];
+            // 打开数据库
+            [db open];
+           [db executeUpdate:@"DELETE FROM t_contact"];
+        }
+        
     }
 }
 #pragma mark - 懒加载dataSource
@@ -288,9 +306,9 @@
                  item.badgeValue = nil;
              }else{
                  
+               
                  UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:2];
-                 item.badgeValue = @"1";
-
+                 item.badgeValue =@"1" ;
              }
             
              [self.tableView reloadData];
@@ -378,10 +396,11 @@
             [[NSNotificationCenter defaultCenter]postNotificationName:@"changeAccount" object:nil userInfo:@{@"key":@(self.dataSource.count)}];
 
         }
+        
     
     }
     
-    
+   
     
    
     //重新加载底部总价

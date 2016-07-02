@@ -29,22 +29,16 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="L123.5元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKc-nS-jrR" userLabel="累计收入">
-                        <rect key="frame" x="89" y="14" width="67" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="累计(提现/充值):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NOF-jW-mM5">
                         <rect key="frame" x="8" y="39" width="124" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Un9-Lo-VWe">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Un9-Lo-VWe">
                         <rect key="frame" x="139" y="39" width="28" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.94185618459999998" green="0.31935540139197255" blue="0.60199647383275401" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="佣金金额:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jd4-nb-Ots">
@@ -53,10 +47,10 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123.5元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUW-na-odi">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUW-na-odi">
                         <rect key="frame" x="89" y="64" width="59" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.94185618459999998" green="0.31935540140000002" blue="0.60199647379999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(佣金金额可实时充值到您的账户)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bK-xZ-zx6">
@@ -65,6 +59,26 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKc-nS-jrR" userLabel="累计收入">
+                        <rect key="frame" x="89" y="14" width="67" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.94185618459999998" green="0.31935540140000002" blue="0.60199647379999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWJ-OB-IFw">
+                        <rect key="frame" x="517" y="14" width="75" height="27"/>
+                        <color key="backgroundColor" red="0.58839168846387435" green="0.081260702744376828" blue="0.11148853569195918" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="75" id="9Ia-hj-Ios"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="兑换走运币">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="duihuanzouyunbiBt:" destination="-1" eventType="touchUpInside" id="qIX-6X-BiJ"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
@@ -78,7 +92,9 @@
                     <constraint firstItem="Jd4-nb-Ots" firstAttribute="leading" secondItem="Mg4-ou-4ey" secondAttribute="leading" constant="8" id="PU2-AA-Tpc"/>
                     <constraint firstItem="NOF-jW-mM5" firstAttribute="centerY" secondItem="Mg4-ou-4ey" secondAttribute="centerY" multiplier="0.75" id="R4v-3P-b6L"/>
                     <constraint firstItem="OF6-KD-c43" firstAttribute="leading" secondItem="Mg4-ou-4ey" secondAttribute="leading" constant="8" id="Snd-ek-kWQ"/>
+                    <constraint firstItem="nWJ-OB-IFw" firstAttribute="top" secondItem="Mg4-ou-4ey" secondAttribute="top" constant="14" id="VIM-R0-Kzd"/>
                     <constraint firstItem="3bK-xZ-zx6" firstAttribute="leading" secondItem="Mg4-ou-4ey" secondAttribute="leading" constant="8" id="XsF-Fc-dO1"/>
+                    <constraint firstAttribute="trailing" secondItem="nWJ-OB-IFw" secondAttribute="trailing" constant="8" id="klJ-wD-5IQ"/>
                     <constraint firstItem="xKc-nS-jrR" firstAttribute="centerY" secondItem="OF6-KD-c43" secondAttribute="centerY" id="t3Z-15-diB"/>
                     <constraint firstAttribute="trailing" secondItem="3bK-xZ-zx6" secondAttribute="trailing" constant="5" id="tVq-Nm-xcu"/>
                     <constraint firstItem="3bK-xZ-zx6" firstAttribute="centerY" secondItem="Mg4-ou-4ey" secondAttribute="centerY" multiplier="1.5" id="wpH-Rf-fwK"/>
@@ -89,7 +105,7 @@
                 <outlet property="dataSource" destination="-1" id="Tng-2m-Rnh"/>
                 <outlet property="delegate" destination="-1" id="9aC-8N-iBw"/>
             </connections>
-            <point key="canvasLocation" x="34" y="-106"/>
+            <point key="canvasLocation" x="25" y="-107"/>
         </tableView>
     </objects>
 </document>

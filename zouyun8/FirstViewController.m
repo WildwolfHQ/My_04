@@ -8,11 +8,17 @@
 #import "BuyTogetherController.h"
 #import "GoodsWebViewController.h"
 #import "HgGoodsDetailController.h"
+#import "JKAlertDialog.h"
+#import "AlertDialogSubView.h"
 @interface FirstViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,SDCycleScrollViewDelegate,FirstCollectionViewCellDelegate,UIPickerViewDelegate,view2Delegate,UITextFieldDelegate,CZPickerViewDataSource, CZPickerViewDelegate,view4Delegate>{
 
     NSString *_hgID;
     NSString *_hgNum;
     BOOL istishi;
+    view3 * _view31;
+    NSMutableArray *_array3;
+    JKAlertDialog *alert;
+    AlertDialogSubView * alertDialogSubView;
 }
 
 @property(nonatomic,strong)NSMutableArray * dataSource;         //数据源
@@ -260,7 +266,7 @@
 //        self.hidesBottomBarWhenPushed = NO;
 //    }
 }
-
+//公开专区
 -(void)OpenHeGouDetail:(NSDictionary *)dict
 {
     //http://zy8.jf-q.com/l/v/[lucky_id]/?uid=[uid]&token=[token]  实际链接中没有中括号
@@ -272,11 +278,13 @@
     [self.navigationController pushViewController:VC animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
-
+//公开列表
 -(void)OpenHeGou
 {
     BuyTogetherController * buy = [[BuyTogetherController alloc]init];
+    self.hidesBottomBarWhenPushed=YES;
     [self.navigationController pushViewController:buy animated:YES];
+    self.hidesBottomBarWhenPushed=NO;
 }
 
 #pragma mark - 设置导航栏
@@ -336,19 +344,19 @@
     view2.frame = CGRectMake(0, 130, WIDTH, 67);
     view2.backgroundColor = [UIColor whiteColor];
     
-    view3 * view3 = [[NSBundle mainBundle]loadNibNamed:@"view3" owner:self options:nil].firstObject;
-    view3.frame = CGRectMake(0, CGRectGetMaxY(view2.frame), WIDTH, 30);
-    view3.backgroundColor = [UIColor whiteColor];
-    [view3 setData:self.names andPrizes:self.prizes];
+    _view31 = [[NSBundle mainBundle]loadNibNamed:@"view3" owner:self options:nil].firstObject;
+    _view31.frame = CGRectMake(0, CGRectGetMaxY(view2.frame), WIDTH, 30);
+    _view31.backgroundColor = [UIColor whiteColor];
+    
     
     self.view4 = [[NSBundle mainBundle]loadNibNamed:@"view4" owner:self options:nil].firstObject;
     self.view4.delegate = self;
     
     if (iPhone6_plus) {
-        self.view4.frame = CGRectMake(0, CGRectGetMaxY(view3.frame), WIDTH, 173);
+        self.view4.frame = CGRectMake(0, CGRectGetMaxY(_view31.frame), WIDTH, 173);
     }
     else
-    self.view4.frame = CGRectMake(0, CGRectGetMaxY(view3.frame), WIDTH, 153);
+    self.view4.frame = CGRectMake(0, CGRectGetMaxY(_view31.frame), WIDTH, 153);
     
     
     
@@ -361,7 +369,7 @@
     self.headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, CGRectGetMaxY(view5.frame))];
     [self.headView addSubview:self.cycleScrollView];
     [self.headView addSubview:view2];
-    [self.headView addSubview:view3];
+    [self.headView addSubview:_view31];
     [self.headView addSubview:self.view4];
     [self.headView addSubview:view5];
 }
@@ -385,7 +393,7 @@
         else
         {
         ADViewController * ad = [[ADViewController alloc]init];
-        ad.url = [NSString stringWithFormat:@"http://zy8.jf-q.com/a/zhuanpan/?uid=%@&token=%@",UID,TOKEN];
+        ad.url = [NSString stringWithFormat:@"http://m.zouyun8.com/a/zhuanpan/?uid=%@&token=%@",UID,TOKEN];
             self.hidesBottomBarWhenPushed = YES;
             ad.tip = @"幸运抽奖";
         [self.navigationController pushViewController:ad animated:YES];
@@ -450,6 +458,7 @@
 {
     [super viewDidLoad];
     
+    _array3=[[NSMutableArray alloc]init];
     self.page = 1;
     //默认打开时为yes
     self.is_announce = YES;
@@ -586,7 +595,7 @@
 
             
             }
-           
+          
             [self.view4.imageView1 sd_setImageWithURL:[NSURL URLWithString:self.imageUrl1] placeholderImage:nil completed:nil];
             [self.view4.imageView2 sd_setImageWithURL:[NSURL URLWithString:self.imageUrl2] placeholderImage:nil completed:nil];
             [self.view4.imageView3 sd_setImageWithURL:[NSURL URLWithString:self.imageUrl3] placeholderImage:nil completed:nil];
@@ -641,7 +650,7 @@
         NSLog(@"%@",self.names);
         NSLog(@"%@",self.prizes);
         //创建组头视图
-        
+        [_view31 setData:self.names andPrizes:self.prizes and:_array3];
         [SVProgressHUD dismiss];
         [self getData];
     }];
@@ -731,49 +740,247 @@
 
 -(void)selectBuyTogetherNum:(GoodsModel *)model
 {
-    NSLog(@"点击了好友合购");
+//    NSLog(@"点击了好友合购");
+//    self.model = model;
+//    NSInteger count;
+//    if (self.model.money.integerValue>=5000) {
+//         count=5000;
+//
+//    }else{
+//    
+//         count=[self.model.money integerValue];
+//    }
+//    
+//    NSMutableArray * array = [[NSMutableArray alloc]init];
+//    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(testClerk) name:@"TestClerk" object:nil];
+//    
+//  
+//    if ([type integerValue] == count) {
+//        for (int i = 5; i <= count; i ++) {
+//            [array addObject:[NSString stringWithFormat:@"%d",i]];
+//        }
+//    }
+//    else
+//    {
+//        for (int i = 2; i <= count; i ++) {
+//            [array addObject:[NSString stringWithFormat:@"%d",i]];
+//        }
+//    }
+//    self.fruits = array;
     self.model = model;
-    NSInteger count;
-    if (self.model.money.integerValue>=5000) {
-         count=5000;
+    NSString * type = TYPE;//0普通会员 1 代理 2 试购员
+    int k=[self.model.money intValue];
+    int l=0;
+    
+    NSMutableArray *array=[[NSMutableArray alloc]init];
+    NSMutableArray *array1=[[NSMutableArray alloc]init];
+    if (type.integerValue==2) {
+        
+        for (int  i=5; i<=k; i++) {
+            if (k%i==0) {
+                l=l+1;
+                [array addObject:[NSString stringWithFormat:@"%d",i]];
+                
+            }
+            
+        }
 
+        if (array.count<5) {
+            [array removeAllObjects];
+       
+            for (int a=5; a<10; a++) {
+               
+                if (a==9) {
+                    if (k>a) {
+                     [array addObject:[NSString stringWithFormat:@"%d",k]];
+                    }else{
+                     [array addObject:[NSString stringWithFormat:@"%d",a]];
+                    }
+                    
+                     [array1 addObject:[NSString stringWithFormat:@"%d",1]];
+                }else{
+                    
+                    [array addObject:[NSString stringWithFormat:@"%d",a]];
+                    int m;
+                    if (k%a!=0) {
+                       m= k/a + 1;
+                    }else{
+                    
+                       m= k/a ;
+                    }
+                    
+                    
+                    
+
+                    [array1 addObject:[NSString stringWithFormat:@"%d",m]];
+                }
+            }
+            
+
+        }
+        
+        
+        
+      
+
+            
+        
+        
+       
+        
+    }else{
+        
+        for (int  i=2; i<=k; i++) {
+            if (k%i==0) {
+                l=l+1;
+                [array addObject:[NSString stringWithFormat:@"%d",i]];
+                
+            }
+            
+        }
+        
+        if (array.count<5) {
+            [array removeAllObjects];
+            for (int a=2; a<7; a++) {
+                
+                if (a==6) {
+                    if (k>a) {
+                        [array addObject:[NSString stringWithFormat:@"%d",k]];
+                    }else{
+                        [array addObject:[NSString stringWithFormat:@"%d",a]];
+                    }
+                    
+                    [array1 addObject:[NSString stringWithFormat:@"%d",1]];
+                }else{
+                    
+                    [array addObject:[NSString stringWithFormat:@"%d",a]];
+                    
+                    int m;
+                    if (k%a!=0) {
+                        m= k/a + 1;
+                    }else{
+                        
+                        m= k/a ;
+                    }
+
+                    
+                    [array1 addObject:[NSString stringWithFormat:@"%d",m]];
+                }
+            }
+            
+            
+        }
+        
+
+
+       
+    }
+    
+   
+
+     alertDialogSubView = [[NSBundle mainBundle]loadNibNamed:@"AlertDialogSubView" owner:self options:nil].firstObject;
+     alertDialogSubView.shuruTf.delegate=alertDialogSubView;
+
+    if (iPhone4||iPhone5) {
+         alertDialogSubView.frame=CGRectMake(0, 0, 280, 434);
+        alertDialogSubView.tishi1.font=[UIFont systemFontOfSize:11];
+        alertDialogSubView.tishi2.font=[UIFont systemFontOfSize:11];
+        
+    }else if(iPhone6){
+         alertDialogSubView.frame=CGRectMake(0, 0, 300, 434);
     }else{
     
-         count=[self.model.money integerValue];
-    }
+         alertDialogSubView.frame=CGRectMake(0, 0, 350, 434);
     
-    NSMutableArray * array = [[NSMutableArray alloc]init];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(testClerk) name:@"TestClerk" object:nil];
-    
-    NSString * type = TYPE;
-    if ([type integerValue] == count) {
-        for (int i = 5; i <= count; i ++) {
-            [array addObject:[NSString stringWithFormat:@"%d",i]];
-        }
     }
-    else
-    {
-        for (int i = 2; i <= count; i ++) {
-            [array addObject:[NSString stringWithFormat:@"%d",i]];
-        }
-    }
-    self.fruits = array;
+    [alertDialogSubView setdata:array addPrice:self.model.money addArray1:array1];
+    
+    
+    alert = [[JKAlertDialog alloc]init];
+    [self.view addSubview:alert];
+    alert.contentView =  alertDialogSubView;
+    alert.contentViewSize=alertDialogSubView.frame.size;
+    
+    
+    [alert show];
+    
+    [alertDialogSubView.faqihegouBt addTarget:self action:@selector(faqidehegou1) forControlEvents:UIControlEventTouchUpInside ];
+    
+    [alertDialogSubView.canyugongkaihegouBt addTarget:self action:@selector(canyugongkaihegou1) forControlEvents:UIControlEventTouchUpInside ];
+    
+    [alertDialogSubView.dismissAlertBt addTarget:self action:@selector(dismissAlertBt1) forControlEvents:UIControlEventTouchUpInside ];
+
+   
 
     
-    
-    
-    CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"请选择好友合购份数" cancelButtonTitle:@"取消" confirmButtonTitle:@"确定"];
-    picker.delegate = self;
-    picker.dataSource = self;
-    picker.needFooterView = YES;
-//    picker.pickerWidth=100;
-    //picker.headerTitleFont=[UIFont systemFontOfSize:14];
-
-
-    [picker show];
+//    
+//    CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"请选择好友合购份数" cancelButtonTitle:@"取消" confirmButtonTitle:@"确定"];
+//    picker.delegate = self;
+//    picker.dataSource = self;
+//    picker.needFooterView = YES;
+////    picker.pickerWidth=100;
+//    //picker.headerTitleFont=[UIFont systemFontOfSize:14];
+//
+//
+//    [picker show];
 }
+-(void)faqidehegou1{
+    
+    if (alertDialogSubView.selectedNumber.length==0) {
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"你还没输选择合购人数！" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+           
+            
+            
+        }];
+        
+        
+        
 
+        
+        [alertController addAction:okAction];
+      
+        
+        //膜态时一定要判断你膜态的ViewController是不是空 ，空才能去膜态 、非空不能。
+        if ([UIApplication sharedApplication].keyWindow.rootViewController.presentedViewController == nil)
+            
+        {
+            
+            
+            [[UIApplication sharedApplication].keyWindow.rootViewController  presentViewController:alertController  animated: YES completion:nil];
+            
+            
+        }
+        
+
+        //[SVProgressHUD showErrorWithStatus:@"你还没输选择合购人数"];
+        return;
+    }
+    
+    [alert dismiss];
+    
+    NSMutableDictionary *dic=[NSMutableDictionary dictionary];
+    dic[@"id"]=self.model.lucky_id;
+    dic[@"num"]=alertDialogSubView.selectedNumber;
+    [self getDataForCreate_lucky_URL:dic];
+    
+
+}
+-(void)canyugongkaihegou1{
+    [alert dismiss];
+    
+    [self OpenHeGou];
+    
+    
+}
+-(void)dismissAlertBt1{
+     [alert dismiss];
+
+}
 
 #pragma mark --UICollectionViewDelegateFlowLayout
 //定义每个UICollectionView 的大小
@@ -1079,5 +1286,7 @@
          
      }];
 }
+
+
 
 @end

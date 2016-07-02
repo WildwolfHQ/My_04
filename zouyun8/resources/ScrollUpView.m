@@ -29,9 +29,20 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
+    
+    
     self = [super initWithFrame:frame];
     if (self) {
+        
+        
+        
         [self createUI];
+        
+       
+        
+    }else{
+    
+    
     }
     return self;
 }
@@ -55,9 +66,14 @@
 - (void)setScrollUpViewDatas:(NSMutableArray *)dataArr
 {
     _dataArr = dataArr;
+    
     if (_dataArr.count!=0) {
         self.currentLabel.attributedText = _dataArr[count];
+        self.currentLabel.textAlignment = NSTextAlignmentLeft;
+        self.currentLabel.textColor = TextColor;
+        self.currentLabel.font = [UIFont systemFontOfSize:13];
     }
+    
     
 }
 
@@ -80,6 +96,7 @@
     }
     
     if (flag == 1) {
+     
         if (_dataArr.count!=0) {
             self.currentLabel.attributedText = _dataArr[count];
         }
@@ -87,6 +104,7 @@
     }
     
     if (flag == 0) {
+       
         if (_dataArr.count!=0) {
             self.hidenLabel.attributedText = _dataArr[count];
         }
@@ -117,14 +135,13 @@
 - (void)createCurrentView
 {
     self.currentView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-    [self addSubview:self.currentView];
     
+    [self addSubview:self.currentView];
     self.currentLabel = [[UILabel alloc]initWithFrame:self.currentView.frame];
-    self.currentLabel.attributedText = _dataArr[count];
-    self.currentLabel.textAlignment = NSTextAlignmentLeft;
-    self.currentLabel.textColor = TextColor;
-    self.currentLabel.font = [UIFont systemFontOfSize:13];
     [self.currentView addSubview:self.currentLabel];
+   
+ 
+    
 }
 
 - (void)createHidenView

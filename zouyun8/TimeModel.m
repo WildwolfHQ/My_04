@@ -22,7 +22,7 @@
 
     NSString *rtr=[self deviceString];
     if ([rtr hasPrefix:@"iPhone5"]||[rtr hasPrefix:@"iPhone4"]||[rtr hasPrefix:@"iPhone3"]||[rtr hasPrefix:@"iPhone2"]||[rtr hasPrefix:@"iPhone1"]) {
-        _m_countNum -= 5;
+        _m_countNum -= 10;
         return;
     }
     if ([rtr hasPrefix:@"iPad5"]) {
