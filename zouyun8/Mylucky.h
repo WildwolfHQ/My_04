@@ -19,4 +19,15 @@
 @property(nonatomic,copy)NSString * name;//name	string	必须	商品名称
 @property(nonatomic,copy)NSString * thumb;//thumb	string	必须	商品缩略图
 @property(nonatomic,copy)NSString * status;//status
+@property(nonatomic,copy)NSString * track_ename;//status
+@property(nonatomic,copy)NSString * track_name;//status
+@property(nonatomic,copy)NSString * track_num;//status
+@property(nonatomic,copy)NSString * track_url;//status
+@property(nonatomic,copy)NSString * update_time;//status
+
+
+
+
+
+
 @end

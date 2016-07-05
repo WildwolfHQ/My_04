@@ -11,5 +11,6 @@
 @interface AddAddressController : UIViewController
 
 @property(nonatomic,strong)NSMutableArray * dataSource;
+@property (weak, nonatomic) IBOutlet UIButton *xinjiandizhiBt;
 
 @end

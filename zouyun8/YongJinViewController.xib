@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YongJinViewController">
             <connections>
+                <outlet property="duihuanzouyunbiBt" destination="nWJ-OB-IFw" id="LKK-b5-haK"/>
                 <outlet property="rechargeMoney" destination="Un9-Lo-VWe" id="8tg-YU-6wS"/>
                 <outlet property="totalMoney" destination="xKc-nS-jrR" id="mmq-wm-QKS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -38,7 +39,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Un9-Lo-VWe">
                         <rect key="frame" x="139" y="39" width="28" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.94185618459999998" green="0.31935540139197255" blue="0.60199647383275401" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="1" green="0.12797091084127321" blue="0.16905982535514374" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="佣金金额:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jd4-nb-Ots">
@@ -50,7 +51,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUW-na-odi">
                         <rect key="frame" x="89" y="64" width="59" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.94185618459999998" green="0.31935540140000002" blue="0.60199647379999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="1" green="0.1279709108" blue="0.1690598254" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(佣金金额可实时充值到您的账户)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bK-xZ-zx6">
@@ -62,12 +63,12 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKc-nS-jrR" userLabel="累计收入">
                         <rect key="frame" x="89" y="14" width="67" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.94185618459999998" green="0.31935540140000002" blue="0.60199647379999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="1" green="0.1279709108" blue="0.1690598254" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWJ-OB-IFw">
                         <rect key="frame" x="517" y="14" width="75" height="27"/>
-                        <color key="backgroundColor" red="0.58839168846387435" green="0.081260702744376828" blue="0.11148853569195918" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="0.1279709108" blue="0.1690598254" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="75" id="9Ia-hj-Ios"/>
                         </constraints>

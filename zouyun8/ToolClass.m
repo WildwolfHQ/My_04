@@ -621,11 +621,15 @@
 }
 
 //获取公开的合购
-+(NSDictionary *)getPub_lucky:(void (^)(NSDictionary *dic))cb page:(NSString *)page
++(NSDictionary *)getPub_lucky:(void (^)(NSDictionary *dic))cb page:(NSString *)page andTop:(NSString *)top
 {
     __block NSDictionary * dict;
     NSMutableDictionary * parameters = [[NSMutableDictionary alloc]init];
-    parameters[@"page"] = page;
+     parameters[@"page"] = page;
+    if(top!=nil){
+        
+        parameters[@"top"] = top;
+    }
     
     AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -655,11 +659,14 @@
 }
 
 //获取网友晒单
-+(NSDictionary *)getEvaluate_all_list:(void (^)(NSDictionary *dic))cb page:(NSString *)page
++(NSDictionary *)getEvaluate_all_list:(void (^)(NSDictionary *dic))cb page:(NSString *)page andID:(NSString *)ID
 {
     __block NSDictionary * dict;
     NSMutableDictionary * parameters = [[NSMutableDictionary alloc]init];
     parameters[@"page"] = page;
+    if (ID!=nil) {
+        parameters[@"id"] = ID;
+    }
     
     
     AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];

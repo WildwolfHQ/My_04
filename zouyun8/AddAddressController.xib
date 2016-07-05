@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="AddAddressTableView" destination="55q-HV-Env" id="pDv-oH-U78"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="xinjiandizhiBt" destination="o4F-HI-kzS" id="zlE-Zg-YT5"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

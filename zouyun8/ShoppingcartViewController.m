@@ -1,6 +1,7 @@
 #import "ShoppingcartViewController.h"
 #import "shoppingcartModel.h"
 #import "MyTableView.h"
+#import "GoodsWebViewController.h"
 @interface ShoppingcartViewController ()<UITableViewDataSource,UITableViewDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate,tableViewCellDelegate>
 
 @property(nonatomic,strong)NSMutableArray * dataSource;
@@ -68,30 +69,86 @@
 -(void)settleAccounts:(NSNotification *)info
 {
     
-  shoppingcartModel  * model = self.dataSource[0];
-    if (self.is_tuhao) {
-        SettleAccountsViewController * settle = [[SettleAccountsViewController alloc]init];
-        settle.model=model;
-        self.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:settle animated:YES];
-      
-    }else{
-        SettleAccountsViewController * settle = [[SettleAccountsViewController alloc]init];
-        settle.model=model;
-        self.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:settle animated:YES];
-        self.hidesBottomBarWhenPushed = NO;
-    }
+    [self ios_web_pay];
+    
     
 }
+
+-(void)ios_web_pay{
+    
+    
+    NSMutableDictionary * parameters = [[NSMutableDictionary alloc]init];
+    
+    AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
+    securityPolicy.validatesDomainName = NO;
+    securityPolicy.allowInvalidCertificates = YES;
+    manager.securityPolicy = securityPolicy;
+    
+    [manager GET:@"https://m.zouyun8.com/api/ios_web_pay" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         
+         NSNumber *errcode=dict[@"errcode"];
+         if (errcode.integerValue==0) {
+             NSNumber *code=dict[@"code"];
+             if (code.integerValue==0) {
+                 
+                 shoppingcartModel  * model = self.dataSource[0];
+                 if (self.is_tuhao) {
+                     SettleAccountsViewController * settle = [[SettleAccountsViewController alloc]init];
+                     settle.model=model;
+                     self.hidesBottomBarWhenPushed = YES;
+                     [self.navigationController pushViewController:settle animated:YES];
+                     
+                 }else{
+                     SettleAccountsViewController * settle = [[SettleAccountsViewController alloc]init];
+                     settle.model=model;
+                     self.hidesBottomBarWhenPushed = YES;
+                     [self.navigationController pushViewController:settle animated:YES];
+                     self.hidesBottomBarWhenPushed = NO;
+                 }
+
+             }else{
+                 [self removeAllCart:nil];
+                 
+                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://m.zouyun8.com/pay/orderinfo/?uid=%@&token=%@",UID,TOKEN ]]];
+             }
+          
+             
+         }else{
+             
+             
+         }
+         
+         
+     }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+     }];
+    
+    
+    
+    
+    
+}
+
 -(void)removeAllCart:(NSNotification *)info
 {
-    NSLog(@"接到了通知");
-    [self.dataSource removeAllObjects];
-    [self.tableView reloadData];
-    //清空角标
-    UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:2];
-    item.badgeValue = nil;
+    
+    FMDatabase *db = [FMDatabase databaseWithPath:DBFATH];
+    // 打开数据库
+    [db open];
+    BOOL success =  [db executeUpdate:@"DELETE FROM t_contact"];
+    if (success) {
+        [self.dataSource removeAllObjects];
+        [self.tableView reloadData];
+        //清空角标
+        UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:3];
+        item.badgeValue = nil;
+
+    }
 }
 
 -(void)getOrders
@@ -302,12 +359,12 @@
                      
                  }
              if (array.count==0) {
-                 UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:2];
+                 UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:3];
                  item.badgeValue = nil;
              }else{
                  
                
-                 UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:2];
+                 UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:3];
                  item.badgeValue =@"1" ;
              }
             
@@ -366,7 +423,7 @@
    // NSUInteger count = [db intForQuery:@"select count(*) from t_contact"];
     if (success)
     {
-        UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:2];
+        UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:3];
         item.badgeValue = nil;
         //移除商品
         //重新从数据库获取数据 并 单独刷新这一行
@@ -430,7 +487,7 @@
     {
         //底部结算view
         self.accountview = [[NSBundle mainBundle]loadNibNamed:@"accountView" owner:self options:nil].firstObject;
-        
+        self.accountview.qujiesuanBt.layer.cornerRadius=4;
         if (self.is_tabBarHidden == YES)
         {
             self.accountview.frame = CGRectMake(0, HEIGHT-60, WIDTH, 60);

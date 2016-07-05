@@ -20,4 +20,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *backImageViwe;
 @property (weak, nonatomic) IBOutlet UILabel *name2;
 
+@property (weak, nonatomic) IBOutlet UIButton *chongzhiBt;
+@property (weak, nonatomic) IBOutlet UIButton *mingxiBt;
 @end

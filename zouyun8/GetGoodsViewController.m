@@ -10,10 +10,11 @@
 #import "GetGoodsViewCell.h"
 #import "Mylucky.h"
 #import "GoodsWebViewController.h"
+#import "GetGoodsViewCell1.h"
 @interface GetGoodsViewController ()<UITableViewDelegate,UITableViewDataSource>{
     
     UITableView *_tableView;
-    
+    int page;
     
 }
 @property(nonatomic,strong)NSMutableArray * dataSource;         //数据源
@@ -30,7 +31,8 @@
     [super viewDidLoad];
     self.title=@"我获得的商品";
     self.dataSource=[NSMutableArray array];
-    [self getDataForMylucky_URL:nil andPage:nil isRefresh:NO];
+     page=1;
+    [self getDataForMylucky_URL:nil andPage:@"1" isRefresh:NO];
     [self drawTableView];
     // Do any additional setup after loading the view.
 }
@@ -65,18 +67,49 @@
     NSInteger row = indexPath.row;
     
     Mylucky  *  model=self.dataSource[row];
-    
-    GetGoodsViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"GetGoodsViewCell"];
-    if (cell==nil) {
-        [tableView registerNib:[UINib nibWithNibName:@"GetGoodsViewCell" bundle:nil] forCellReuseIdentifier:@"GetGoodsViewCell"];
-        cell = [tableView dequeueReusableCellWithIdentifier:@"GetGoodsViewCell"];
+    if ([model.status isEqualToString:@"待发货"]) {
         
-    }
+        GetGoodsViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"GetGoodsViewCell"];
+        if (cell==nil) {
+            [tableView registerNib:[UINib nibWithNibName:@"GetGoodsViewCell" bundle:nil] forCellReuseIdentifier:@"GetGoodsViewCell"];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"GetGoodsViewCell"];
+            
+        }
+        
+        
+        [cell setProperty:model];
+         return cell;
+    }else{
+    
+        GetGoodsViewCell1 *cell=[tableView dequeueReusableCellWithIdentifier:@"GetGoodsViewCell1"];
+        if (cell==nil) {
+            [tableView registerNib:[UINib nibWithNibName:@"GetGoodsViewCell1" bundle:nil] forCellReuseIdentifier:@"GetGoodsViewCell1"];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"GetGoodsViewCell1"];
+            
+        }
+        
+        
+        [cell setProperty:model and:self];
+        return cell;
 
+    }
     
-    [cell setProperty:model];
-    
-    return cell;
+//    if ([model.status isEqualToString:@"已发货"]) {
+//       
+//    }
+//    //已完成
+//    GetGoodsViewCell1 *cell=[tableView dequeueReusableCellWithIdentifier:@"GetGoodsViewCell1"];
+//    if (cell==nil) {
+//        [tableView registerNib:[UINib nibWithNibName:@"GetGoodsViewCell1" bundle:nil] forCellReuseIdentifier:@"GetGoodsViewCell1"];
+//        cell = [tableView dequeueReusableCellWithIdentifier:@"GetGoodsViewCell1"];
+//        
+//    }
+//    
+//     [cell setProperty:model and:self andData:self.dataSource];
+//   
+//
+//    
+//    return cell;
     
 
     
@@ -94,9 +127,13 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
+     Mylucky  *  model=self.dataSource[indexPath.row];
+    if ([model.status isEqualToString:@"待发货"]) {
     return 100;
+    }else{
+    return 160;
+    }
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -121,6 +158,9 @@
     NSMutableDictionary * parameters = [[NSMutableDictionary alloc]init];
     parameters[@"uid"] = UID;
     parameters[@"token"] = TOKEN;
+    if (page!=nil) {
+        parameters[@"page"] = page;
+    }
     
     
     
@@ -172,7 +212,7 @@
 }
 
 
-static int page=0;
+
 - (void)viewDidLayoutSubviews
 {
     __weak  GetGoodsViewController *weakSelf = self;
@@ -180,8 +220,8 @@ static int page=0;
     //下拉操作
     [_tableView addPullToRefreshWithActionHandler:^{
         
-        
-        [weakSelf getDataForMylucky_URL:nil andPage:nil isRefresh:YES];
+        page=1;
+        [weakSelf getDataForMylucky_URL:nil andPage:@"1" isRefresh:YES];
         int64_t delayInSeconds = 1.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){

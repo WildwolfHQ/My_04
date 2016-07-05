@@ -9,4 +9,5 @@
 @interface SettleView6 : UIView
 @property (weak, nonatomic) IBOutlet UILabel *totalPrice;
 @property (weak, nonatomic) id<SettleView6Delegate> delegate;
+@property (weak, nonatomic) IBOutlet UIButton *tijiaodingdanBt;
 @end

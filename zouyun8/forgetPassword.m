@@ -16,6 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.verificationCodeBtn.layer.cornerRadius=4;
+    self.qurenBt.layer.cornerRadius=4;
 }
 
 -(void)viewWillAppear:(BOOL)animated

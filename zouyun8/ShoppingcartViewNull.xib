@@ -58,6 +58,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <connections>
+                <outlet property="lijixuangouBt" destination="rhb-En-daJ" id="NuO-cf-WhU"/>
                 <outlet property="scrollView" destination="Ow9-52-sZc" id="vSh-Nk-zpO"/>
             </connections>
             <point key="canvasLocation" x="57" y="-104"/>

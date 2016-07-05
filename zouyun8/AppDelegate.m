@@ -1,5 +1,6 @@
 #import "AppDelegate.h"
 #import "UPPaymentControl.h"
+#import "BuyTogetherController.h"
 @interface AppDelegate ()<UITabBarControllerDelegate,WXApiDelegate>
 
 @property(nonatomic,strong)UITabBarController * tabBar;
@@ -15,6 +16,8 @@
 @property(nonatomic,strong)MyViewController *Mvc;
 @property(nonatomic,strong)UINavigationController *NMvc;
 @property(nonatomic,assign)NSInteger count;
+@property(nonatomic,strong)BuyTogetherController *Buyvc;
+@property(nonatomic,strong)UINavigationController *NBuyvc;
 
 @property(nonatomic,strong)NSArray * viewControllers;
 
@@ -29,6 +32,8 @@
     self.tabBar.selectedIndex = 0;
     self.tabBar.viewControllers = self.viewControllers;
     self.window.rootViewController = self.tabBar;
+    
+   
 //    [self initTabBarController];
 }
 -(void)directLogin
@@ -292,7 +297,7 @@
 //    self.NAvc.tabBarItem.image = [[UIImage imageNamed:@"揭晓-灰色.jpg"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 //    self.NAvc.tabBarItem.selectedImage = [[UIImage imageNamed:@"揭晓-主色.jpg"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
-    self.Findvc = [[FindViewController alloc]init];
+    self.Findvc= [[FindViewController alloc]init];
     self.NFindvc = [[UINavigationController alloc]initWithRootViewController:self.Findvc];
     self.NFindvc.tabBarItem.title = @"发现";
     
@@ -301,6 +306,18 @@
     
     self.NFindvc.tabBarItem.image = [[UIImage imageNamed:@"发现-灰色.jpg"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.NFindvc.tabBarItem.selectedImage = [[UIImage imageNamed:@"发现-主色.jpg"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    
+    self.Buyvc = [[BuyTogetherController alloc]init];
+    self.NBuyvc = [[UINavigationController alloc]initWithRootViewController:self.Buyvc];
+    self.NBuyvc.tabBarItem.title=@"公开区";
+
+    self.NBuyvc.tabBarItem.image = [[UIImage imageNamed:@"_60x60_gray"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.NBuyvc.tabBarItem.selectedImage = [[UIImage imageNamed:@"_60x60_red"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    
+    
+    
     
     self.Svc = [[ShoppingcartViewController alloc]init];
     self.NSvc = [[UINavigationController alloc]initWithRootViewController:self.Svc];
@@ -320,9 +337,9 @@
     
     self.NMvc.tabBarItem.image = [[UIImage imageNamed:@"我-灰色.jpg"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.NMvc.tabBarItem.selectedImage = [[UIImage imageNamed:@"我-主色.jpg"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-
+  
     
-    self.viewControllers = [NSArray arrayWithObjects:self.NFvc,self.NFindvc,self.NSvc,self.NMvc,nil];
+    self.viewControllers = [NSArray arrayWithObjects:self.NFvc,self.NFindvc,self.NBuyvc,self.NSvc,self.NMvc,nil];
     self.tabBar.viewControllers = self.viewControllers;
     self.tabBar.tabBar.tintColor = [UIColor redColor];
     self.tabBar.tabBar.translucent = NO;
@@ -331,7 +348,7 @@
     self.window.rootViewController = self.tabBar;
     [self.window makeKeyWindow];
     
-    UITabBarItem * item = [self.tabBar.tabBar.items objectAtIndex:2];
+    UITabBarItem * item = [self.tabBar.tabBar.items objectAtIndex:3];
     //改变购物车角标
     if (self.count == 0)
     {

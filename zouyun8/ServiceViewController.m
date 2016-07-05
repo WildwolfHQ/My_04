@@ -11,7 +11,7 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor redColor],
                                                                     NSFontAttributeName : [UIFont boldSystemFontOfSize:18]};
-    self.title = @"走运客服";
+   
 }
 
 - (void)viewDidLoad {
@@ -33,6 +33,8 @@
         
     }
 
+    NSString *str= [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    self.title=str;
 //    //获取当前网页的上下文
 //    JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
 //    //@"settle_account"即为传给html端的方法名称，由后台判断是否接受到了方法，接收到后就返回json数据

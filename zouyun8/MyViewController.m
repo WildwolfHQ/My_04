@@ -53,7 +53,7 @@
     
     
     
-    self.titles = @[@[@"全部订单",@"获得的商品"],@[@"邀请二维码"],@[@"我的合伙人",@"我的消息",@"我的晒单",@"我的地址"],@[@"走运客服"]];
+    self.titles = @[@[@"全部订单",@"获得的商品"],@[@"邀请二维码"],@[@"我的合伙人",@"通知公告",@"我的晒单",@"我的地址"],@[@"走运客服"]];
     self.imageIcons = @[@[IMAGE(@"ic_record"),IMAGE(@"ic_cup")],@[IMAGE(@"ic_wallet")],@[IMAGE(@"ic_coupon"),IMAGE(@"ic_heart"),IMAGE(@"ic_share"),IMAGE(@"baoshi_big"),IMAGE(@"ic_yuan")],@[IMAGE(@"ic_kefu")]];
     //加载表头视图
     NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"MyHeaderView" owner:self options:nil];
@@ -75,7 +75,7 @@
 }
 
 -(void)tuichu{
-    UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:2];
+    UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:3];
     item.badgeValue = nil;
 
 }
@@ -288,18 +288,71 @@
 
 -(void)reCharge
 {
-    RechargeViewController * recharge = [[RechargeViewController alloc]init];
-    self.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:recharge animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
+    [self ios_web_pay];
 }
+
+-(void)ios_web_pay{
+    
+    
+    NSMutableDictionary * parameters = [[NSMutableDictionary alloc]init];
+    
+    AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
+    securityPolicy.validatesDomainName = NO;
+    securityPolicy.allowInvalidCertificates = YES;
+    manager.securityPolicy = securityPolicy;
+    
+    [manager GET:@"https://m.zouyun8.com/api/ios_web_pay" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         
+         NSNumber *errcode=dict[@"errcode"];
+         if (errcode.integerValue==0) {
+             NSNumber *code=dict[@"code"];
+             if (code.integerValue==0) {
+                 
+                 RechargeViewController * recharge = [[RechargeViewController alloc]init];
+                 recharge.chongzhi=@"1";
+                 self.hidesBottomBarWhenPushed = YES;
+                 
+                 [self.navigationController pushViewController:recharge animated:YES];
+                 self.hidesBottomBarWhenPushed = NO;
+             }else{
+                 
+                 
+                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://m.zouyun8.com/u/recharge/?uid=%@&token=%@",UID,TOKEN ]]];
+             }
+             
+             
+         }else{
+             
+             
+         }
+         
+         
+     }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+     }];
+    
+    
+    
+    
+    
+}
+
+
+
 #pragma mark - headerView代理方法：走运币明细
 -(void)showMoneyDetail
 {
     //跳转到走运币明细界面
     MoneyDetailViewController * money = [[MoneyDetailViewController alloc]init];
     money.zouyunbi = self.headerView.money.text;
+    self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:money animated:YES];
+     self.hidesBottomBarWhenPushed = NO;
 }
 
 #pragma mark - 设置页面

@@ -156,6 +156,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title=@"佣金明细";
+    self.duihuanzouyunbiBt.layer.cornerRadius=4;
     UIBarButtonItem *barbtn=[[UIBarButtonItem alloc] initWithTitle:@"提现" style:UIBarButtonItemStylePlain target:self action:@selector(share)];
     self.navigationItem.rightBarButtonItem=barbtn;
     [ToolClass getUserInfoSuccess:^(NSDictionary *dic) {

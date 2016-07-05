@@ -94,7 +94,7 @@
 //        NetShareModel * model = self.dataSource[6];
 //        NSLog(@"第六个%@",model.images);
         [self.tableView reloadData];
-    } page:[NSString stringWithFormat:@"%ld",self.page]];
+    } page:[NSString stringWithFormat:@"%ld",self.page] andID:self.ID];
 }
 /**
  @method 获取指定宽度情况ixa，字符串value的高度

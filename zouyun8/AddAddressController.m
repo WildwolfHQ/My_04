@@ -75,6 +75,7 @@
     [super viewDidLoad];
     [self setBar];
     [self setAddAddressTableView];
+    self.xinjiandizhiBt.layer.cornerRadius=4;
 }
 - (IBAction)addNewAdd:(id)sender {
     NSLog(@"进入添加新地址页面");

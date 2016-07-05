@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
+                <outlet property="dnegluBt" destination="T64-Zd-cSt" id="BsG-ae-ItV"/>
                 <outlet property="passWordText" destination="5jA-pc-d1c" id="uFH-ta-xra"/>
                 <outlet property="userNameText" destination="CLK-ZW-ZVS" id="L2P-Gz-x48"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -26,7 +27,9 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T64-Zd-cSt">
                     <rect key="frame" x="8" y="176" width="584" height="30"/>
                     <color key="backgroundColor" red="0.83529411764705885" green="0.082352941176470587" blue="0.27843137254901962" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="登录"/>
+                    <state key="normal" title="登录">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="10"/>

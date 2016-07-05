@@ -443,6 +443,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.verificationCodeBtn.layer.cornerRadius=4;
+    self.zucebutton.layer.cornerRadius=4;
     if (self.isBangding!=nil&&self.isBangding.integerValue==0) {
         
          self.title = @"快速注册";

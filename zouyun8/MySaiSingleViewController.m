@@ -13,7 +13,9 @@
 #import "Evaluate_list.h"
 #import "GotosaidanVC.h"
 #import "GoodsWebViewController.h"
+#import "NetShareViewController.h"
 __weak NSString *weak_type;
+
 @interface MySaiSingleViewController ()<UITableViewDelegate,UITableViewDataSource>{
     
     UITableView *_tableView;
@@ -41,6 +43,7 @@ __weak NSString *weak_type;
     [self loadSegmentedControllView];
     NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
     dic[@"type"]=@"2";
+    weak_type=@"2";
     self.dataSource=[NSMutableArray array];
     [self getDataForEvaluate_list_URL:dic andPage:@"1" isRefresh:NO];
     [self drawTableView];
@@ -189,18 +192,33 @@ __weak NSString *weak_type;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    Evaluate_list   *model=self.dataSource[indexPath.row];
-    GoodsWebViewController *VC=[[GoodsWebViewController alloc]init];
     
-    if (model.lucky_id.integerValue!=0) {
-        VC.lucky_id=model.lucky_id;
+   
+    Evaluate_list   *model=self.dataSource[indexPath.row];
+   
+    if ([weak_type isEqualToString:@"2"]) {
+         NetShareViewController * net = [[NetShareViewController alloc]init];
+         net.ID=model.ID;
+        self.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:net animated:YES];
+     
+
     }else{
+    
+       
+        GoodsWebViewController *VC=[[GoodsWebViewController alloc]init];
         
-        VC.bid_id=model.bid_id;
+        if (model.lucky_id.integerValue!=0) {
+            VC.lucky_id=model.lucky_id;
+        }else{
+            
+            VC.bid_id=model.bid_id;
+        }
+        
+        self.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:VC animated:YES];
     }
     
-    self.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:VC animated:YES];
 }
 
 -(void)getDataForEvaluate_list_URL:(NSMutableDictionary*)dic andPage:(NSString *)page isRefresh:(BOOL)refresh

@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="imageView" destination="5Dd-GX-q0v" id="YRV-XS-E7M"/>
                 <outlet property="money" destination="qUt-L4-8rr" id="Ggr-CK-fkl"/>
+                <outlet property="quchongzhiBt" destination="oKl-Hb-O20" id="qwj-Bn-Dl7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

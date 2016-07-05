@@ -12,6 +12,8 @@
     //为个人图像增加点击事件
     [self.backImageViwe addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backImageBtn:)]];
     [self.personalImage addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(personalImageBtn:)]];
+    self.chongzhiBt.layer.cornerRadius=4;
+    self.mingxiBt.layer.cornerRadius=4;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

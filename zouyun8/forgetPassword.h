@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *messageCode;
 @property (weak, nonatomic) IBOutlet UIButton *verificationCodeBtn;
 
+@property (weak, nonatomic) IBOutlet UIButton *qurenBt;
 
 
 @end

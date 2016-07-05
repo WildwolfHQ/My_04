@@ -169,7 +169,7 @@
 //- (IBAction)倒计时1:(id)sender {
 //}
 - (IBAction)tips:(id)sender {
-    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"合购公开专区:" message:@"发起者若没有足够多的好友参与合购，可将发起的合购公开，让其他走运网会员参与，有助于快速完成该合购。" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"合购公开专区" message:@"当发起者没足够多的好友参与，或发起时选择的份数太多，都可将发起的合购公开到此区，让其他会员在公开区参与，有助于快速完成该合购！" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
     [alert show];
 }
 

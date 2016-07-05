@@ -35,7 +35,9 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M65-Lo-Zg8">
                     <rect key="frame" x="446" y="172" width="146" height="30"/>
                     <color key="backgroundColor" red="0.94569128751754761" green="0.13543908286537137" blue="0.13099279776966366" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="获取验证码"/>
+                    <state key="normal" title="获取验证码">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                     <connections>
                         <action selector="获取验证码:" destination="-1" eventType="touchUpInside" id="RTt-jh-XHx"/>
                     </connections>
@@ -43,7 +45,9 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GaL-q4-9T7">
                     <rect key="frame" x="8" y="220" width="584" height="30"/>
                     <color key="backgroundColor" red="0.94569128751754761" green="0.14001799396057565" blue="0.19544207830080707" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="注册"/>
+                    <state key="normal" title="注册">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                     <connections>
                         <action selector="注册:" destination="-1" eventType="touchUpInside" id="X5Y-QQ-nw4"/>
                     </connections>

@@ -22,7 +22,7 @@
                             <attributedString key="attributedText">
                                 <fragment content="佣金兑换走运币">
                                     <attributes>
-                                        <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <font key="NSFont" size="17" name="PingFangSC-Semibold"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                     </attributes>
@@ -114,7 +114,7 @@
         </view>
     </objects>
     <resources>
-        <image name="chacha" width="60" height="36"/>
+        <image name="chacha" width="60" height="28"/>
         <image name="faqihegouBt" width="94" height="35"/>
     </resources>
 </document>

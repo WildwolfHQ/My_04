@@ -18,6 +18,8 @@
     [super viewDidLoad];
     
     self.title=@"修改密码";
+    self.verificationCodeBt.layer.cornerRadius=4;
+    self.verificationCodeBt1.layer.cornerRadius=4;
     // Do any additional setup after loading the view from its nib.
 }
 

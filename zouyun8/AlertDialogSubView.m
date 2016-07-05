@@ -155,17 +155,27 @@
 
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField{
-
     
     self.selectedNumber=textField.text;
     
     self.selectedPrice=self.price6Lb.text;
+    
+    if (textField.text.length==0) {
+         self.price6Lb.text=@"¥:";
+         self.suanfaLb.text=[NSString stringWithFormat:@"...元X...人次"];
+        return;
+    }
+    
+   
     self.suanfaLb.text=[NSString stringWithFormat:@"%@元X%@人次",self.selectedPrice,self.selectedNumber];
     
 }
 -(void)valueChanged:(UITextField *)textField{
-
-    if (textField.text.intValue!=0) {
+    
+    
+ 
+    
+    if (textField.text.length!=0) {
         
         if (textField.text.intValue>self.number5Lb.text.intValue||textField.text.intValue<self.number1Lb.text.intValue) {
             
@@ -199,13 +209,20 @@
             m= self.price1.intValue/textField.text.intValue;
         }
         self.price6Lb.text=[NSString stringWithFormat:@"¥:%d",m];
+        
+        self.selectedNumber=textField.text;
+        
+        self.selectedPrice=self.price6Lb.text;
     }else{
+        self.selectedNumber=textField.text;
+        
+        self.selectedPrice=self.price6Lb.text;
+        self.suanfaLb.text=[NSString stringWithFormat:@"...元X...人次"];
         self.price6Lb.text=@"¥:";
+        return;
     }
     
-    self.selectedNumber=textField.text;
     
-    self.selectedPrice=self.price6Lb.text;
      self.suanfaLb.text=[NSString stringWithFormat:@"%@元X%@人次",self.selectedPrice,self.selectedNumber];
 }
 @end

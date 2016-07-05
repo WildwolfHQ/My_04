@@ -41,7 +41,7 @@
 //        }
 //        self.sectionTitles = (NSArray *)titleArray ;
         
-        self.self.sectionTitles=sectiontitles;
+        self.sectionTitles=sectiontitles;
         [self setDefaultsValue];
     }
     return self;
@@ -155,6 +155,12 @@
             [self setSelectedIndex:segment animated:YES];
             
             
+        }else{
+            
+             _selectedIndex = segment;
+            if (self.superview)
+                [self sendActionsForControlEvents:UIControlEventTouchUpInside];
+        
         }
     }
 }

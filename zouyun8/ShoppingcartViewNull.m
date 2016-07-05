@@ -14,10 +14,11 @@
         [self.scrollView addSubview:imageV];
     }
     self.scrollView.contentSize = CGSizeMake(WIDTH/3 * 10, 0);
+    self.lijixuangouBt.layer.cornerRadius=4;
 }
 - (IBAction)立即夺宝:(id)sender {
  
      [[NSNotificationCenter defaultCenter]postNotificationName:@"changeTabBar" object:nil];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"pushtoroot" object:nil];
+     [[NSNotificationCenter defaultCenter]postNotificationName:@"pushtoroot" object:nil];
 }
 @end

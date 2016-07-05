@@ -62,6 +62,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="tijiaodingdanBt" destination="F5K-MV-l1P" id="uxZ-oe-xm8"/>
                 <outlet property="totalPrice" destination="gdu-3i-WiG" id="moA-Ek-3gQ"/>
             </connections>
             <point key="canvasLocation" x="210" y="127"/>

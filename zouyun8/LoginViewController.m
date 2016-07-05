@@ -10,7 +10,7 @@
     [super viewDidLoad];
     self.title = @"登录";
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    self.dnegluBt.layer.cornerRadius=4;
     //设置letView
     self.userNameText.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"p_21"]];
     self.userNameText.leftViewMode = UITextFieldViewModeAlways;

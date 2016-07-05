@@ -4,10 +4,14 @@
 #import "HgGoodsDetailController.h"
 #import "DirectSettleViewController.h"
 #import "GoodsWebViewController.h"
+#import "SegmentdedControl.h"
 @interface BuyTogetherController ()<UICollectionViewDataSource,UICollectionViewDelegate,BuyTogetherCellDelegate>
 
 @property(nonatomic,assign)NSInteger page;
+@property(nonatomic,strong)NSString * top;
 @property(nonatomic,assign)BOOL is_Pull;
+@property (strong, nonatomic) SegmentdedControl *segmentedControl;
+@property (strong, nonatomic)NSArray *segmentTitlesArray;
 @end
 
 @implementation BuyTogetherController
@@ -35,10 +39,129 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.page = 1;
-    self.title = @"公开列表";
+    self.navigationItem.title = @"公开专区";
+    UIBarButtonItem *fixBar = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    fixBar.width =WIDTH/2-100;
+    UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"wenhao"] style:UIBarButtonItemStylePlain target:self action:@selector(tishi)];
+    
+    self.navigationItem.rightBarButtonItems =@[fixBar,buttonItem];
+    
+    self.segmentTitlesArray=[[NSArray alloc]initWithObjects:@"剩余份数⇩",@"最新⇩",@"单价⇩",@"总价⇩", nil];
+    [self loadSegmentedControllView];
+
     [self createCollectionView];
-    [self getData:[NSString stringWithFormat:@"%ld",(long)self.page]];
+    [self getData:[NSString stringWithFormat:@"%ld",(long)self.page] andTop:@"1"];
 }
+-(void)tishi{
+
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"合购公开专区说明" message:@"【公开专区】展示的是走运网会员发起并公开的合购订单;任何人都可以参与购买;\n\n该区参与者可能不是您熟悉的好友,中奖者也可能不是您的好友,请谨慎参与!若不想外人参与您的好友合购,请不要公开您的订单!" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+    
+    [alert show];
+    
+}
+
+
+-(void)loadSegmentedControllView{
+    
+    
+    
+    self.segmentedControl = [[SegmentdedControl alloc] initWithSectionTitles:self.segmentTitlesArray];
+    [self.segmentedControl setFrame:CGRectMake(0,64, WIDTH, 36)];
+    [self.segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventAllEvents];
+    
+    [self.view addSubview:self.segmentedControl];
+    
+    
+}
+static bool selected1, selected2, selected3, selected4;
+-(void)segmentedControlChangedValue:(SegmentdedControl *)segmentedController
+{
+    
+    
+    
+    self.is_Pull = YES;
+    
+    if (segmentedController.selectedIndex==0) {
+        
+        
+        selected1=!selected1;
+        if (selected1) {
+          [self getData:[NSString stringWithFormat:@"%ld",(long)self.page] andTop:@"1"];
+            self.top=@"1";
+        }else{
+          [self getData:[NSString stringWithFormat:@"%ld",(long)self.page] andTop:@"2"];
+            self.top=@"2";
+        }
+
+        
+    }else if (segmentedController.selectedIndex==1){
+    
+        
+        selected2=!selected2;
+        if (selected2) {
+            [self getData:[NSString stringWithFormat:@"%ld",(long)self.page] andTop:@"3"];
+            self.top=@"3";
+        }else{
+            [self getData:[NSString stringWithFormat:@"%ld",(long)self.page] andTop:@"4"];
+            self.top=@"4";
+        }
+
+    
+    }else if (segmentedController.selectedIndex==2){
+        
+        selected3=!selected3;
+        if (selected3) {
+            [self getData:[NSString stringWithFormat:@"%ld",(long)self.page] andTop:@"5"];
+            self.top=@"5";
+        }else{
+            [self getData:[NSString stringWithFormat:@"%ld",(long)self.page] andTop:@"6"];
+            self.top=@"6";
+        }
+
+        
+    }else if (segmentedController.selectedIndex==3){
+        
+        selected4=!selected4;
+        if (selected4) {
+            [self getData:[NSString stringWithFormat:@"%ld",(long)self.page] andTop:@"7"];
+            self.top=@"7";
+        }else{
+            [self getData:[NSString stringWithFormat:@"%ld",(long)self.page] andTop:@"8"];
+            self.top=@"8";
+        }
+
+        
+    }
+
+
+    
+    
+    
+    
+//    if (segmentedController.selectedIndex==0) {
+//        
+//        NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
+//        dic[@"type"]=@"2";
+//        weak_type=@"2";
+//        [self.dataSource removeAllObjects];
+//        [self getDataForEvaluate_list_URL:dic andPage:@"1" isRefresh:NO];
+//        
+//    }
+//    
+//    if(segmentedController.selectedIndex==1){
+//        NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
+//        dic[@"type"]=@"1";
+//        weak_type=@"1";
+//        [self.dataSource removeAllObjects];
+//        [self getDataForEvaluate_list_URL:dic andPage:@"1" isRefresh:NO];
+//        
+//        
+//    }
+    
+    
+    
+}
+
 
 - (void)viewDidLayoutSubviews
 {
@@ -51,7 +174,7 @@
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             weakSelf.is_Pull = YES;
             weakSelf.page = 1;
-            [weakSelf getData:[NSString stringWithFormat:@"%ld",(long)weakSelf.page]];
+            [weakSelf getData:[NSString stringWithFormat:@"%ld",(long)weakSelf.page] andTop:weakSelf.top];
             [weakSelf.collectionView.pullToRefreshView stopAnimating];
         });
     }];
@@ -59,13 +182,13 @@
     [self.collectionView addInfiniteScrollingWithActionHandler:^{
         weakSelf.is_Pull = NO;
         weakSelf.page = 1 + weakSelf.page;
-        [weakSelf getData:[NSString stringWithFormat:@"%ld",(long)weakSelf.page]];
+        [weakSelf getData:[NSString stringWithFormat:@"%ld",(long)weakSelf.page] andTop:weakSelf.top];
         [weakSelf.collectionView.infiniteScrollingView stopAnimating];
     }];
 }
 
 
--(void)getData:(NSString *)page
+-(void)getData:(NSString *)page andTop:(NSString *)top
 {
     NSLog(@"页码%ld",self.page);
     [ToolClass getPub_lucky:^(NSDictionary *dic) {
@@ -84,7 +207,7 @@
             [self.dataSource addObject:model];
         }
         [self.collectionView reloadData];
-    } page:[NSString stringWithFormat:@"%ld",self.page]];
+    } page:[NSString stringWithFormat:@"%ld",self.page ] andTop:top];
 }
 
 -(void)directToPay:(NSDictionary *)dict
@@ -108,7 +231,7 @@
     CGFloat wid = WIDTH / 3 - 10;
     flowLayout.itemSize = CGSizeMake(wid, WIDTH/2);
     
-    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT) collectionViewLayout:flowLayout];
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, self.segmentedControl.frame.origin.y+self.segmentedControl.frame.size.height, WIDTH, HEIGHT-(self.segmentedControl.frame.origin.y+self.segmentedControl.frame.size.height)) collectionViewLayout:flowLayout];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     //设置代理
     self.collectionView.delegate = self;
@@ -152,25 +275,24 @@
     //边距占5*4=20 ，2个
     //图片为正方形，边长：(fDeviceWidth-20)/2-5-5 所以总高(fDeviceWidth-20)/2-5-5 +20+30+5+5 label高20 btn高30 边
     
-    NSLog(@"%f",[[UIScreen mainScreen] currentMode].size.width);
-    NSLog(@"%f",[[UIScreen mainScreen] currentMode].size.height);
+
     if (iPhone5) {
-        NSLog(@"当前设备为5");
+      
         return CGSizeMake((WIDTH-1)/2, (WIDTH-1)/2*1.45);
     }
     else if (iPhone6) {
-        NSLog(@"当前设备为6");
+       
         return CGSizeMake((WIDTH-1)/2, (WIDTH-1)/2*1.4);
     }
     else if(iPhone6_plus)
     {
-        NSLog(@"当前设备为6_plus");
+       
         
         return CGSizeMake((WIDTH-1)/2, (WIDTH-1)/2*1.4);
     }
     else
     {
-        NSLog(@"当前设备为4");
+      
         
         return CGSizeMake((WIDTH-1)/2, (WIDTH-1)/2*1.45);
     }

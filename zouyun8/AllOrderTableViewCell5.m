@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.chakanwuliuBt.layer.cornerRadius=4;
     // Initialization code
 }
 

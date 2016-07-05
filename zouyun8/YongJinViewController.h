@@ -8,4 +8,5 @@
 @property(nonatomic,strong)NSMutableArray * dataSource;
 
 - (IBAction)duihuanzouyunbiBt:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIButton *duihuanzouyunbiBt;
 @end

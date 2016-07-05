@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface RechargeViewController : UIViewController
-
+@property(nonatomic,strong)NSString * chongzhi;
 @end

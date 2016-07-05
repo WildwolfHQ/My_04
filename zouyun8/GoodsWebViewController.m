@@ -127,7 +127,7 @@
 
     if(success){
     
-        [self performSelector:@selector(delayMethod:) withObject:webView afterDelay:0.1f];
+        [self performSelector:@selector(delayMethod1:) withObject:webView afterDelay:0.1f];
         
     }
   
@@ -572,7 +572,7 @@
                 
                 if(count == 0)
                 {
-                    UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:2];
+                    UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:3];
                     
                     item.badgeValue = [NSString stringWithFormat:@"%d",1];
                     
@@ -623,7 +623,7 @@
                     if(flag == NO)
                         
                     {
-                        UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:2];
+                        UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:3];
                         item.badgeValue = [NSString stringWithFormat:@"%ld",[item.badgeValue integerValue] + 1];
                         NSLog(@"还没有");
                         [db executeUpdate:@"insert into t_contact (buy_num,goods_id,lucky_id,money,name,price,thumb,times,total_num,type,user_id,num,bid_id,buy_user_num,start_time,end_time,price_level) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",pgXiangGing_model.buy_num,pgXiangGing_model.goods_id,nil,pgXiangGing_model.money,pgXiangGing_model.name,pgXiangGing_model.select_price,pgXiangGing_model.thumb,pgXiangGing_model.times,pgXiangGing_model.total_num,pgXiangGing_model.type,pgXiangGing_model.user_id,pgXiangGing_model.buy_num,pgXiangGing_model.bid_id,pgXiangGing_model.buy_user_num,pgXiangGing_model.start_time,pgXiangGing_model.end_time,pgXiangGing_model.price_level];
@@ -700,7 +700,7 @@
   
 
 }
--(void)delayMethod:(UIWebView *)webView{
+-(void)delayMethod1:(UIWebView *)webView{
 
    webView.hidden=NO;
 }

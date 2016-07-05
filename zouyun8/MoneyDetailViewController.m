@@ -24,6 +24,7 @@
     self.money.text = self.zouyunbi;
     [self getData:@"0"];
     [self createTableView];
+    self.quchongzhiBt.layer.cornerRadius=4;
 }
 
 -(void)getData:(NSString *)type
@@ -66,7 +67,8 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
     }
     NSDictionary * dict = self.dataSource[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"订单:%@ %@",dict[@"id"],dict[@"pay_type"]];
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"时间:%@",dict[@"pay_time"]];
     cell.textLabel.font = [UIFont systemFontOfSize:12];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@元",dict[@"money"]];
     return cell;
@@ -108,7 +110,56 @@
     b.selected = YES;
 }
 - (IBAction)去充值:(id)sender {
-    RechargeViewController * recharge = [[RechargeViewController alloc]init];
-    [self.navigationController pushViewController:recharge animated:YES];
+    [self ios_web_pay];
+   
 }
+
+-(void)ios_web_pay{
+    
+    
+    NSMutableDictionary * parameters = [[NSMutableDictionary alloc]init];
+    
+    AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
+    securityPolicy.validatesDomainName = NO;
+    securityPolicy.allowInvalidCertificates = YES;
+    manager.securityPolicy = securityPolicy;
+    
+    [manager GET:@"https://m.zouyun8.com/api/ios_web_pay" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         
+         NSNumber *errcode=dict[@"errcode"];
+         if (errcode.integerValue==0) {
+             NSNumber *code=dict[@"code"];
+             if (code.integerValue==0) {
+                 RechargeViewController * recharge = [[RechargeViewController alloc]init];
+                 self.hidesBottomBarWhenPushed = YES;
+                 
+                 [self.navigationController pushViewController:recharge animated:YES];
+             }else{
+                 
+                 
+                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://m.zouyun8.com/u/recharge/?uid=%@&token=%@",UID,TOKEN ]]];
+             }
+             
+             
+         }else{
+             
+             
+         }
+         
+         
+     }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+     }];
+    
+    
+    
+    
+    
+}
+
 @end

@@ -16,4 +16,6 @@
 - (IBAction)verificationCodeBt:(UIButton *)sender;
 - (IBAction)complete:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIButton *verificationCodeBt;
+@property (weak, nonatomic) IBOutlet UIButton *verificationCodeBt1;
+
 @end

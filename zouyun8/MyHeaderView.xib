@@ -157,7 +157,9 @@
             </constraints>
             <connections>
                 <outlet property="backImageViwe" destination="bUz-Ze-1Ks" id="jrQ-3K-vjT"/>
+                <outlet property="chongzhiBt" destination="X5l-jw-eGm" id="peU-9D-keA"/>
                 <outlet property="level" destination="Ppq-Qb-Jr3" id="Wr0-T6-der"/>
+                <outlet property="mingxiBt" destination="exI-hq-wfU" id="34p-3f-QTi"/>
                 <outlet property="money" destination="3c0-g1-kgu" id="Cw5-gj-mR4"/>
                 <outlet property="personalImage" destination="o7N-HW-7Bd" id="tcP-vF-g5i"/>
                 <outlet property="userNameLabel" destination="Tww-v7-bZh" id="IW0-wp-VVr"/>

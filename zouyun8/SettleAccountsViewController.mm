@@ -3,7 +3,7 @@
 @interface SettleAccountsViewController ()<UITableViewDelegate,UITableViewDataSource,SettleView4Delegate,SettleView5Delegate,SettleView6Delegate,UIAlertViewDelegate>{
 
 
-    
+    NSMutableArray *_payType;
 
 }
 @property(nonatomic,strong)UITableView * tableView;
@@ -34,29 +34,54 @@
 
 -(void)submitOrder
 {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    __weak typeof(self) weakSelf = self;
-    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"走运币支付" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self zouyunPay];
-    }];
-    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"微信支付" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self weixinPay];
-    }];
-    UIAlertAction *action4 = [UIAlertAction actionWithTitle:@"银联支付" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self unionPay];
-    }];
-
-    UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [alert dismissViewControllerAnimated:YES completion:^{
-            NSLog(@"取消支付");
-        }];
-    }];
-    [alert addAction:action1];
-    [alert addAction:action2];
-    [alert addAction:action4];
-    [alert addAction:action3];
+    
+    
+    
+    
    
-    [self presentViewController:alert animated:YES completion:nil];
+    if (_payType!=nil&&_payType.count!=0) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        //__weak typeof(self) weakSelf = self;
+        
+        
+        for (NSDictionary *dic in _payType) {
+            NSString *name= dic[@"name"];
+            NSString *ID= dic[@"id"];
+            
+            UIAlertAction *action;
+            if (ID.integerValue==1) {
+                action = [UIAlertAction actionWithTitle:name style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self zouyunPay];
+                }];
+                
+            }else if(ID.integerValue==2){
+                
+                action = [UIAlertAction actionWithTitle:name style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self weixinPay];
+                }];
+                
+            }else if (ID.integerValue==3){
+                action = [UIAlertAction actionWithTitle:name style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self unionPay];
+                }];
+                
+                
+            }
+            
+            [alert addAction:action];
+        }
+        UIAlertAction  *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+         
+    
+         }];
+         [alert addAction:action1];
+
+
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    
 }
 
 //微信支付方法
@@ -124,7 +149,7 @@
 -(void)zouyunPay
 {
     //清空购物车角标
-    UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:2];
+    UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:3];
     item.badgeValue = nil;
     
     //1.获取用户走运币数量
@@ -198,31 +223,33 @@
 
 -(void)zhifuSucss{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"changeTabBar" object:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
     //[SVProgressHUD showSuccessWithStatus:@"支付成功"];
     
     
     
     if (self.model.lucky_type.integerValue==1||![self.model.user_id isEqualToString:UID]) {
         
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"支付成功！" message:@"是否分享奖金红包" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"邀请必奖！" message:@"恭喜你支付成功，并且获得10个奖金红包，马上分享给好友吧(自己也可以领哦!!!)" preferredStyle:UIAlertControllerStyleAlert];
         
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            
-            
-        }];
-        
-        
-        
-        
-        
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好，我分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
             [self getData1];
             
             
         }];
         
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"不，我任性" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+            
+        }];
+        
+        
+        
+        
+        
+      
         
         
         
@@ -245,9 +272,9 @@
         
        
             
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"支付成功！" message:@"好友合购必须邀请好友参与，否则无法完成此订单，除非您公开此订单让网友参与。" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"支付完成！" message:@"好友合购必须邀请好友参与，否则无法完成此订单，除非您公开此订单让网友参与。" preferredStyle:UIAlertControllerStyleAlert];
             
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"公开" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"公开订单" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
                 [self gongkai];
                 
             }];
@@ -400,20 +427,16 @@
          
          
          
-         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:str message:@"是否分享奖金红包" preferredStyle:UIAlertControllerStyleAlert];
+         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"邀请必奖！" message:@"恭喜你支付成功，并且获得10个奖金红包，马上分享给好友吧(自己也可以领哦!!!)" preferredStyle:UIAlertControllerStyleAlert];
          
-         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好，我分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+             
+             [self getData1];
              
              
          }];
          
-         
-         
-         
-         
-         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-             
-             [self getData1];
+         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"不，我任性" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
              
              
          }];
@@ -677,19 +700,62 @@
 }
 - (void)viewDidLoad
 {
+    
     self.is_discount = @"0";
     [super viewDidLoad];
     self.title = @"确认订单";
-    [self getOrders];
-    [self getData];
-    [self getPayInfo];
-    [self getDefaultAddress];
-    [self createTableView];
+    [self paytype];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getDefaultAddress) name:@"changeDefaultDitali" object:nil];
     
     
 }
 
+-(void)paytype{
+
+    
+    NSMutableDictionary * parameters = [[NSMutableDictionary alloc]init];
+
+    AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
+    securityPolicy.validatesDomainName = NO;
+    securityPolicy.allowInvalidCertificates = YES;
+    manager.securityPolicy = securityPolicy;
+    
+    [manager GET:@"https://m.zouyun8.com/api/paytype" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+      
+         NSNumber *errcode=dict[@"errcode"];
+         if (errcode.integerValue==0) {
+             
+         
+             
+             _payType=[dict[@"data"] mutableCopy];
+             
+             [self getOrders];
+             [self getData];
+             [self getPayInfo];
+             [self getDefaultAddress];
+             [self createTableView];
+             
+         }else{
+         
+         
+         }
+         
+     
+     }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+     }];
+    
+    
+
+
+
+}
 //我们可以在回调的函数中取到userInfo内容，如下：
 -(void)unionPaySuccessNotice:(id)sender{
     
@@ -955,6 +1021,7 @@
     self.view6.delegate = self;
     self.view6.totalPrice.text = self.totalPrice;
     self.view6.frame = CGRectMake(0, HEIGHT - 49, WIDTH, 49);
+    self.view6.tijiaodingdanBt.layer.cornerRadius=4;
     [self.view addSubview:self.view6];
 }
 -(void)tap:(UITapGestureRecognizer*)recognizer

@@ -620,7 +620,7 @@
         }
         [self getAlreadyNotice];
        
-    } page:@"1"];
+    } page:@"1" andTop:nil];
     
 //    [ToolClass getLucky_notice:^(NSDictionary *dic) {
 //        NSArray* array = dic[@"data"];
@@ -734,7 +734,7 @@
 -(void)changeCornerMark
 {
     NSLog(@"改变角标");
-    UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:2];
+    UITabBarItem * item = [self.tabBarController.tabBar.items objectAtIndex:3];
     item.badgeValue = [NSString stringWithFormat:@"%ld",[item.badgeValue integerValue] + 1];
 }
 
@@ -891,7 +891,9 @@
          alertDialogSubView.frame=CGRectMake(0, 0, 300, 434);
     }else{
     
-         alertDialogSubView.frame=CGRectMake(0, 0, 350, 434);
+        alertDialogSubView.frame=CGRectMake(0, 0, 280, 434);
+        alertDialogSubView.tishi1.font=[UIFont systemFontOfSize:11];
+        alertDialogSubView.tishi2.font=[UIFont systemFontOfSize:11];
     
     }
     [alertDialogSubView setdata:array addPrice:self.model.money addArray1:array1];

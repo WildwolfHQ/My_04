@@ -84,6 +84,8 @@
 		426B29161D194F0700FF5468 /* Junior.m in Sources */ = {isa = PBXBuildFile; fileRef = 426B29151D194F0700FF5468 /* Junior.m */; };
 		426B291A1D1950BC00FF5468 /* MyPartnerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 426B29181D1950BC00FF5468 /* MyPartnerCell.m */; };
 		426B291B1D1950BC00FF5468 /* MyPartnerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 426B29191D1950BC00FF5468 /* MyPartnerCell.xib */; };
+		426CAF151D2A5AC400D02C93 /* GetGoodsViewCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 426CAF131D2A5AC400D02C93 /* GetGoodsViewCell1.m */; };
+		426CAF161D2A5AC400D02C93 /* GetGoodsViewCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 426CAF141D2A5AC400D02C93 /* GetGoodsViewCell1.xib */; };
 		4273406C1D2608A200DF804C /* JKAlertDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 4273406B1D2608A200DF804C /* JKAlertDialog.m */; };
 		4273406F1D260BEA00DF804C /* AlertDialogSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4273406E1D260BEA00DF804C /* AlertDialogSubView.m */; };
 		427340711D260C0900DF804C /* AlertDialogSubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 427340701D260C0900DF804C /* AlertDialogSubView.xib */; };
@@ -546,6 +548,9 @@
 		426B29171D1950BC00FF5468 /* MyPartnerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPartnerCell.h; sourceTree = "<group>"; };
 		426B29181D1950BC00FF5468 /* MyPartnerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPartnerCell.m; sourceTree = "<group>"; };
 		426B29191D1950BC00FF5468 /* MyPartnerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPartnerCell.xib; sourceTree = "<group>"; };
+		426CAF121D2A5AC400D02C93 /* GetGoodsViewCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetGoodsViewCell1.h; sourceTree = "<group>"; };
+		426CAF131D2A5AC400D02C93 /* GetGoodsViewCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetGoodsViewCell1.m; sourceTree = "<group>"; };
+		426CAF141D2A5AC400D02C93 /* GetGoodsViewCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GetGoodsViewCell1.xib; sourceTree = "<group>"; };
 		4273406A1D2608A200DF804C /* JKAlertDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKAlertDialog.h; sourceTree = "<group>"; };
 		4273406B1D2608A200DF804C /* JKAlertDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKAlertDialog.m; sourceTree = "<group>"; };
 		4273406D1D260BEA00DF804C /* AlertDialogSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertDialogSubView.h; sourceTree = "<group>"; };
@@ -1288,6 +1293,9 @@
 				4286B19B1D178E8500AD3972 /* GetGoodsViewCell.h */,
 				4286B19C1D178E8500AD3972 /* GetGoodsViewCell.m */,
 				4286B19D1D178E8500AD3972 /* GetGoodsViewCell.xib */,
+				426CAF121D2A5AC400D02C93 /* GetGoodsViewCell1.h */,
+				426CAF131D2A5AC400D02C93 /* GetGoodsViewCell1.m */,
+				426CAF141D2A5AC400D02C93 /* GetGoodsViewCell1.xib */,
 			);
 			name = "获得的商品";
 			sourceTree = "<group>";
@@ -2903,6 +2911,7 @@
 				7189BF4B1CBCD1B000A1D39B /* SVProgressHUD.bundle in Resources */,
 				713AF72A1CF2A769003741B4 /* AddAddressController.xib in Resources */,
 				71E7BDB61D0524F000821160 /* NetShareCell.xib in Resources */,
+				426CAF161D2A5AC400D02C93 /* GetGoodsViewCell1.xib in Resources */,
 				715D83101CBA0F9700E2E99E /* FindViewController.xib in Resources */,
 				71E504821CD0CF5300704068 /* ic_share@2x.png in Resources */,
 				713AF7351CF2AE8F003741B4 /* AddrListTableViewCell.xib in Resources */,
@@ -3010,6 +3019,7 @@
 				7189BF831CBCE92700A1D39B /* JSONModel.m in Sources */,
 				713CBCC71CBB6940006F526F /* TimeCell.m in Sources */,
 				7189BF8A1CBCE92700A1D39B /* JSONModel+networking.m in Sources */,
+				426CAF151D2A5AC400D02C93 /* GetGoodsViewCell1.m in Sources */,
 				42576CE41D12AB7E00B3003C /* AllOrderTableViewCell2.m in Sources */,
 				719A86E11CC0B8E6004608A4 /* GoodsModel.m in Sources */,
 				715D82CE1CB8E5B200E2E99E /* SDWebImageManager.m in Sources */,

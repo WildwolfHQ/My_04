@@ -2,7 +2,10 @@
 #import "RechargeCell.h"
 #import "UPPaymentControl.h"
 
-@interface RechargeViewController ()<UITableViewDelegate,UITableViewDataSource,RechargeCellDelegate>
+@interface RechargeViewController ()<UITableViewDelegate,UITableViewDataSource,RechargeCellDelegate>{
+    NSMutableArray *_payType;
+
+}
 @property(nonatomic,strong)UITableView * tableView;
 @property(nonatomic,strong)NSString * rechargeNum;
 @property(nonatomic,copy)NSString * orderID;
@@ -13,17 +16,69 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden = NO;
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.title = @"充值";
     self.view.backgroundColor = [UIColor whiteColor];
-    [self createTableView];
+    [self paytype];
+   
 }
 
+
+-(void)paytype{
+    
+    
+    NSMutableDictionary * parameters = [[NSMutableDictionary alloc]init];
+    
+    AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
+    securityPolicy.validatesDomainName = NO;
+    securityPolicy.allowInvalidCertificates = YES;
+    manager.securityPolicy = securityPolicy;
+    
+    [manager GET:@"https://m.zouyun8.com/api/paytype" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         
+         NSNumber *errcode=dict[@"errcode"];
+         if (errcode.integerValue==0) {
+             
+             
+             
+             _payType=[dict[@"data"] mutableCopy];
+             
+             
+             [self createTableView];
+             
+         }else{
+             
+             
+         }
+         
+         
+     }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+     }];
+    
+    
+    
+    
+    
+}
 -(void)createTableView
 {
-    self.tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
+    if (self.chongzhi.integerValue==1) {
+          self.tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
+    }else{
+        
+     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,self.navigationController.navigationBar.frame.origin.y+ self.navigationController.navigationBar.frame.size.height, WIDTH, HEIGHT-self.navigationController.navigationBar.frame.size.height) style:UITableViewStyleGrouped];
+    }
+   
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
@@ -66,7 +121,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section==1) {
-        return 2;
+        return _payType.count-1;
     }else{
         return 1;
     }
@@ -84,18 +139,25 @@
     else
     {
         UITableViewCell * cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        if (indexPath.row==0) {
+         NSDictionary *dic=_payType[indexPath.row+1];
+      
+           
+            if ([dic[@"id"] integerValue]==1) {
+                
+               
+            }else if([dic[@"id"] integerValue]==2){
+               
+                cell.imageView.image = [UIImage imageNamed:@"weixinkk"];
+                cell.textLabel.text = @"   微信支付";
             
-            cell.imageView.image = [UIImage imageNamed:@"weixinkk"];
-            cell.textLabel.text = @"   微信支付";
+            }else if([dic[@"id"] integerValue]==3){
             
-        }else if(indexPath.row==1){
-            cell.imageView.image = [UIImage imageNamed:@"yinliankk"];
-            cell.textLabel.text = @"银联支付";
-
+                cell.imageView.image = [UIImage imageNamed:@"yinliankk"];
+                cell.textLabel.text = @"银联支付";
+            }
         
-        
-        }
+            
+     
        
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         return cell;

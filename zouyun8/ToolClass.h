@@ -57,10 +57,10 @@
 +(NSDictionary *)getMoney_log:(void (^)(NSDictionary *dic))cb type:(NSString *)type;
 
 //获取公开的合购
-+(NSDictionary *)getPub_lucky:(void (^)(NSDictionary *dic))cb page:(NSString *)page;
++(NSDictionary *)getPub_lucky:(void (^)(NSDictionary *dic))cb page:(NSString *)page andTop:(NSString *)top;
 
 //获取网友晒单
-+(NSDictionary *)getEvaluate_all_list:(void (^)(NSDictionary *dic))cb page:(NSString *)page;
++(NSDictionary *)getEvaluate_all_list:(void (^)(NSDictionary *dic))cb page:(NSString *)page andID:(NSString *)ID;
 
 //获取佣金明细
 +(NSDictionary *)getComm_log:(void (^)(NSDictionary *dic))cb page:(NSString *)page;
