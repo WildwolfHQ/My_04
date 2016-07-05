@@ -54,7 +54,7 @@
     
     
     self.titles = @[@[@"全部订单",@"获得的商品"],@[@"邀请二维码"],@[@"我的合伙人",@"通知公告",@"我的晒单",@"我的地址"],@[@"走运客服"]];
-    self.imageIcons = @[@[IMAGE(@"ic_record"),IMAGE(@"ic_cup")],@[IMAGE(@"ic_wallet")],@[IMAGE(@"ic_coupon"),IMAGE(@"ic_heart"),IMAGE(@"ic_share"),IMAGE(@"baoshi_big"),IMAGE(@"ic_yuan")],@[IMAGE(@"ic_kefu")]];
+    self.imageIcons = @[@[IMAGE(@"dd"),IMAGE(@"sp")],@[IMAGE(@"ewm")],@[IMAGE(@"hhr"),IMAGE(@"xx"),IMAGE(@"sdm"),IMAGE(@"dz"),IMAGE(@"ic_yuan")],@[IMAGE(@"kf")]];
     //加载表头视图
     NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"MyHeaderView" owner:self options:nil];
     self.headerView = [nib objectAtIndex:0];

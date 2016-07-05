@@ -199,7 +199,7 @@
        
         
         TimeModel * model1 = _m_dataArray[indexPath.row];
-        
+        cell1.timesLable.text=@"开奖中";
         
         [cell1 loadData:model1 indexPath:indexPath m_dataArray:self.dataSource :nil];
         cell1.m_isDisplayed=YES;
@@ -371,7 +371,7 @@
          for (NSDictionary * dic in array)
          {
              Lucky_noticeModel * model = [[Lucky_noticeModel alloc]initWithDictionary:dic error:nil];
-             
+             NSLog(@"lucky_username:%@ %@",model.lucky_username,model.lucky_num);
              if (model!=nil) {
                   //model.lucky_userid=@"0";
                  
@@ -383,13 +383,6 @@
                          [self.m_dataArray addObject:model1];
                          
                          
-                         
-//                         NSTimer *timer=[NSTimer timerWithTimeInterval:0.001 target:self selector:@selector(timerEvent:) userInfo:model1 repeats:YES];
-//                         [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-//                                model.timer=timer;
-
-//                         NSThread *thread = [[NSThread alloc] initWithTarget:self selector:@selector(newThread:) object:model1];
-//                            [thread start];
                          
                          
                          
@@ -404,7 +397,7 @@
                  
                  
                 
-                 //[self.m_dataArray addObject:[TimeModel timeModelWithTime:time*1000]];
+                
              }
            }
              [self.tableView reloadData];
@@ -435,17 +428,7 @@
      }];
 }
 
-- (void)newThread:(NSThread *)thread
- {
-       @autoreleasepool
-       {
-           
 
-           
-//        [runLoop run];
-
-       }
-  }
 
 
 
@@ -479,7 +462,7 @@
     [self.tableView addInfiniteScrollingWithActionHandler:^{
         Lucky_noticeModel * model=  [weakSelf.dataSource lastObject];
         [weakSelf getData:model.run_time:NO];
-        int64_t delayInSeconds = 2.0;
+        int64_t delayInSeconds = 1.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             

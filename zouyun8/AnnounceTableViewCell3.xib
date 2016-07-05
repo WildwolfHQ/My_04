@@ -18,6 +18,9 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nnb-2y-NMP">
                         <rect key="frame" x="8" y="8" width="116" height="116"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="116" id="UNo-8O-qML"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天堂三折山呵呵上大街上" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FeW-Ix-JQl">
                         <rect key="frame" x="132" y="20" width="232" height="25"/>
@@ -26,7 +29,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="揭晓时间" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Evq-GS-XXZ">
-                        <rect key="frame" x="149" y="116" width="56" height="13"/>
+                        <rect key="frame" x="153" y="116" width="56" height="13"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="56" id="YTE-OR-nvL"/>
                         </constraints>
@@ -35,15 +38,15 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-1-3  07:23:45" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2e-Nb-EbT">
-                        <rect key="frame" x="205" y="116" width="109" height="13"/>
+                        <rect key="frame" x="209" y="116" width="105" height="13"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                         <color key="textColor" red="0.81849231020000002" green="0.1028221552" blue="0.13434956980000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="times" translatesAutoresizingMaskIntoConstraints="NO" id="bBs-OW-Aog">
-                        <rect key="frame" x="132" y="116" width="9" height="13"/>
+                        <rect key="frame" x="132" y="116" width="13" height="13"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="9" id="25x-aL-94J"/>
+                            <constraint firstAttribute="width" constant="13" id="25x-aL-94J"/>
                             <constraint firstAttribute="height" constant="13" id="elt-Qc-g6g"/>
                         </constraints>
                     </imageView>

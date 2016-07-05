@@ -1084,7 +1084,7 @@
     //添加轮播器
     self.cycleScrollView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     //         --- 轮播时间间隔，默认1.0秒，可自定义
-    self.cycleScrollView.autoScrollTimeInterval = 1.0;
+    self.cycleScrollView.autoScrollTimeInterval = 3.0;
 }
 
 #pragma mark - 广告视图代理方法

@@ -55,14 +55,7 @@
         if ([self.timesLable.text isEqualToString:@"00:00:00"]) {
             
             self.timesLable.text=@"";
-//            //关闭定时器
-//            [timer setFireDate:[NSDate distantFuture]];
-//            //开启定时器
-//            [timer setFireDate:[NSDate distantPast]];
-            
-//            //永久关闭定时器并释放
-//            [timer invalidate];
-//             timer = nil;
+
             
             Lucky_noticeModel * model1=dataArray[indexPath.row];
             
@@ -92,7 +85,7 @@
             self.xinyunhao2.hidden=YES;
             self.timetuxiaotu.hidden=YES;
             self.jiexiaotimes.hidden=YES;
-            
+            self.kaijinagzhongLb.hidden=YES;
 
 
         
@@ -188,12 +181,39 @@
          //请求成功,将图片下载完保存到数组中
          
         
+         
         
              HG_XiangGing * model = [[HG_XiangGing alloc]initWithDictionary: dict1 error:nil];
+         
+          if (model.lucky_code.integerValue==0) {
+             
+              cell.timesLable.hidden=YES;
+              cell.jiexiaotudatu.hidden=YES;
+              cell.jiexiaoname.hidden=YES;
+              //数据
+              cell.xinyunname2.hidden=YES;
+              cell.xinyunma2name.hidden=YES;
+              cell.xiaoliang2name.hidden=YES;
+              cell.times2Lable.hidden=YES;
+              //
+              
+              cell.xinyunxing1.hidden=YES;
+              cell.xiaoliang2.hidden=YES;
+              cell.xinyunhao2.hidden=YES;
+              cell.timetuxiaotu.hidden=YES;
+              cell.jiexiaotimes.hidden=YES;
+              
+              cell.kaijinagzhongLb.hidden=NO;
+              //self.timesLable.text=nil;
+              //[self getData:lucky_id :cell];
+//              cell.textLabel.text=@"开奖中...";
+              
+          }else{
+         
              cell.timesLable.hidden=YES;
              cell.jiexiaotudatu.hidden=YES;
              cell.jiexiaoname.hidden=YES;
-             
+             cell.kaijinagzhongLb.hidden=YES;
              
              
              
@@ -211,6 +231,7 @@
              cell.timetuxiaotu.hidden=NO;
              cell.jiexiaotimes.hidden=NO;
              //数据
+         
              cell.xinyunname2.text=model.lucky_username;
              cell.xinyunma2name.text=model.lucky_code;
              cell.xiaoliang2name.text=model.lucky_buynum;
@@ -221,7 +242,8 @@
              cell.xiaoliang2.text=@"购买量:";
              cell.xinyunhao2.text=@"幸运号:";
              [cell.timetuxiaotu setImage:[UIImage imageNamed:@"times"]];
-             cell.jiexiaotimes.text=@"揭晓时间";
+              cell.jiexiaotimes.text=@"揭晓时间";
+          }
 
              
          UIFont *font;
@@ -291,5 +313,6 @@
      {
      }];
 }
+
 
 @end

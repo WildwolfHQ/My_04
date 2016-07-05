@@ -221,7 +221,7 @@
         alertDialogSubView.frame=CGRectMake(0, 0, 300, 434);
     }else{
         
-        alertDialogSubView.frame=CGRectMake(0, 0, 350, 434);
+        alertDialogSubView.frame=CGRectMake(0, 0, 280, 434);
         
     }
     [alertDialogSubView setdata:array addPrice:self.model.money addArray1:array1];

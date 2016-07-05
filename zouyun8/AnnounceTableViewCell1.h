@@ -28,4 +28,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *xinyunname2;
 @property (weak, nonatomic) IBOutlet UILabel *xiaoliang2name;
 @property (weak, nonatomic) IBOutlet UILabel *xinyunma2name;
+@property (weak, nonatomic) IBOutlet UILabel *kaijinagzhongLb;
 @end
