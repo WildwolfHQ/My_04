@@ -9,15 +9,16 @@
 @implementation view5
 - (IBAction)即将揭晓:(UIButton *)sender {
     [self swipe:sender];
+   
     [[NSNotificationCenter defaultCenter]postNotificationName:@"getData" object:nil userInfo:nil];
 }
 - (IBAction)最火:(id)sender {
     [self swipe:sender];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"refresh" object:nil userInfo:@{@"top":@"2"}];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"refresh" object:nil userInfo:@{@"top":@"3"}];
 }
 - (IBAction)最新:(id)sender {
     [self swipe:sender];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"refresh" object:nil userInfo:@{@"top":@"3"}];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"refresh" object:nil userInfo:@{@"top":@"2"}];
 }
 - (IBAction)价格:(id)sender {
     [self swipe:sender];

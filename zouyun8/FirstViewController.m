@@ -19,6 +19,8 @@
     NSMutableArray *_array3;
     JKAlertDialog *alert;
     AlertDialogSubView * alertDialogSubView;
+    BOOL _is_Refresh;
+    BOOL _isjishu;
 }
 
 @property(nonatomic,strong)NSMutableArray * dataSource;         //数据源
@@ -429,7 +431,8 @@
         int64_t delayInSeconds = 0.5;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            
+            _is_Refresh=YES;
+            _isjishu=NO;
              weakSelf.page = 1;
             [weakSelf getData];
             [weakSelf getPub_lucky];
@@ -440,6 +443,7 @@
     
     //上拉操作
     [self.collectionView addInfiniteScrollingWithActionHandler:^{
+         _is_Refresh=NO;
         if (self.is_announce == YES) {
             weakSelf.page += 1;
             [weakSelf getData];
@@ -661,10 +665,10 @@
     UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
 //    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
 //    CSStickyHeaderFlowLayout *flowLayout=[[CSStickyHeaderFlowLayout alloc] init];
-    flowLayout.minimumInteritemSpacing = 1;
-    flowLayout.minimumLineSpacing = 1;
-    CGFloat wid = WIDTH / 3 - 10;
-    flowLayout.itemSize = CGSizeMake(wid, WIDTH/2);
+//    flowLayout.minimumInteritemSpacing = 1;
+//    flowLayout.minimumLineSpacing = 1;
+//    CGFloat wid = WIDTH / 3 - 10;
+//    flowLayout.itemSize = CGSizeMake(wid, WIDTH/2);
 
     self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-49) collectionViewLayout:flowLayout];
     self.collectionView.backgroundColor = [UIColor whiteColor];
@@ -724,10 +728,44 @@
     if (self.dataSource.count != 0) {
        
         cell.model = model;
+        
+     
+        
+        
         [cell setCellWithModel];
         cell.backgroundColor = [UIColor whiteColor];
+       
     }
+        
+        
+        if (_isjishu) {
+            
+            if (indexPath.row+1==self.dataSource.count) {
+                
+                cell.userInteractionEnabled=NO;
+                
+                NSArray *subviews = [[NSArray alloc] initWithArray:cell.contentView.subviews];
+                for (UIView *subview in subviews) {
+                    subview.hidden=YES;
+                }
+                
+            }else{
+            
+                
+                cell.userInteractionEnabled=YES;
+                
+                NSArray *subviews = [[NSArray alloc] initWithArray:cell.contentView.subviews];
+                for (UIView *subview in subviews) {
+                    subview.hidden=NO;
+                }
+
+               
+            }
+        }
+
         return cell;
+        
+        
     }
 }
 
@@ -991,14 +1029,16 @@
     //边距占5*4=20 ，2个
     //图片为正方形，边长：(fDeviceWidth-20)/2-5-5 所以总高(fDeviceWidth-20)/2-5-5 +20+30+5+5 label高20 btn高30 边
     
-
-    
     if (indexPath.row==self.dataSource.count+1-1) {
         
         return CGSizeMake(WIDTH, 50);
         
         
     }
+
+    
+    
+    
     
     
     NSLog(@"%f",[[UIScreen mainScreen] currentMode].size.width);
@@ -1142,9 +1182,12 @@
 
 -(void)getData
 {
+    if (self.page ==1) {
+        _isjishu=NO;
+    }
     self.is_announce == YES;
-    NSMutableDictionary * parameters = [[NSMutableDictionary alloc]init];
-    parameters[@"page"] = [NSString stringWithFormat:@"%ld",(long)self.page];
+     NSMutableDictionary * parameters = [[NSMutableDictionary alloc]init];
+     parameters[@"page"] = [NSString stringWithFormat:@"%ld",(long)self.page];
      parameters[@"top"] = @"1";
     
     AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
@@ -1161,6 +1204,9 @@
          NSLog(@"最新揭晓列表%@",dict);
          NSArray * array = dict[@"data"];
         
+         if (_is_Refresh) {
+             [self.dataSource removeAllObjects];
+         }
          
          //请求成功,将图片下载完保存到数组中
          for (NSDictionary * dic in array)
@@ -1168,7 +1214,18 @@
              GoodsModel * model = [[GoodsModel alloc]initWithDictionary:dic error:nil];
              [self.dataSource addObject:model];
          }
-        // NSLog(@"时候%d",self.dataSource.count);
+        // NSL
+         if(self.dataSource.count%2==0){
+         
+            
+         
+         }else{
+             _isjishu=YES;
+          //GoodsModel * model = [[GoodsModel alloc]init];
+          [self.dataSource addObject:[self.dataSource lastObject]];
+         }
+         
+         NSLog(@"时候%d",self.dataSource.count);
          [self.collectionView reloadData];
          self.cycleScrollView.imageURLStringsGroup = self.AdImages;
          
@@ -1187,19 +1244,34 @@
     self.is_announce = NO;
     self.page = 1;
     self.top = info.userInfo[@"top"];
-
+    if (self.page ==1) {
+        _isjishu=NO;
+    }
     [self.dataSource removeAllObjects];
     
     [ToolClass getRank:^(NSDictionary *dic) {
         NSArray * array = dic[@"data"];
         NSLog(@"获取到的商品个数为%@",dic);
-        
+        if (_is_Refresh) {
+            [self.dataSource removeAllObjects];
+        }
+
     
         for (NSDictionary * dic in array)
         {
             GoodsModel * model = [[GoodsModel alloc]initWithDictionary:dic error:nil];
             [self.dataSource addObject:model];
         }
+        if(self.dataSource.count%2==0){
+            
+            
+            
+        }else{
+            _isjishu=YES;
+            //GoodsModel * model = [[GoodsModel alloc]init];
+            [self.dataSource addObject:[self.dataSource lastObject]];
+        }
+
        
             [self.collectionView reloadData];
         
@@ -1216,15 +1288,31 @@
 }
 -(void)refresh
 {
+    if (self.page ==1) {
+        _isjishu=NO;
+    }
     [ToolClass getRank:^(NSDictionary *dic)
     {
         NSArray * array = dic[@"data"];
-        
+        if (_is_Refresh) {
+            [self.dataSource removeAllObjects];
+        }
+
         for (NSDictionary * dic in array)
         {
             GoodsModel * model = [[GoodsModel alloc]initWithDictionary:dic error:nil];
             [self.dataSource addObject:model];
         }
+        if(self.dataSource.count%2==0){
+            
+            
+            
+        }else{
+            _isjishu=YES;
+            //GoodsModel * model = [[GoodsModel alloc]init];
+            [self.dataSource addObject:[self.dataSource lastObject]];
+        }
+
         [self.collectionView reloadData];
         
     } minPrice:nil maxPrice:nil page:[NSString stringWithFormat:@"%ld",self.page] name:nil category:nil top:self.top type:nil];

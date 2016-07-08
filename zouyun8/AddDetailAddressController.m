@@ -157,6 +157,7 @@
     self.title = self.editOrAdd;
     self.is_default = @"0";
     [super viewDidLoad];
+    self.baocunBt.layer.cornerRadius=4;
 //    UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveAdd:)];
 //    self.navigationItem.rightBarButtonItem = rightItem;
     [self createAddDetailAddressTableView];

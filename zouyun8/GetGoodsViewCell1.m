@@ -8,6 +8,7 @@
 
 #import "GetGoodsViewCell1.h"
 #import "GoodsWebViewController.h"
+#import "KKWebViewController.h"
 @implementation GetGoodsViewCell1
 
 - (void)awakeFromNib {
@@ -53,9 +54,11 @@
 
 - (IBAction)chakanwuliuBt:(UIButton *)sender {
     
-    GoodsWebViewController *VC=[[GoodsWebViewController alloc]init];
+
+    
+    KKWebViewController *VC=[[KKWebViewController alloc]init];
     VC.urlStr=self.model.track_url;
-    VC.titleName=@"物流信息";
+    //VC.titleName=@"物流信息";
     self.getGoodsViewController.hidesBottomBarWhenPushed = YES;
     [self.getGoodsViewController.navigationController pushViewController:VC animated:YES];
 }

@@ -58,13 +58,13 @@
 
      NSString *urlStr;
     if (self.lucky_id!=nil) {
-        urlStr=[NSString stringWithFormat:@"http://m.zouyun8.com/l/v/%@",self.lucky_id];
+        urlStr=[NSString stringWithFormat:@"http://m.zouyun8.com/l/v/%@?uid=%@&token=%@",self.lucky_id,UID,TOKEN];
         
          //self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:217/255.0 green:43/255.0 blue:73/255.0 alpha:1];
     }
     
     if (self.bid_id!=nil) {
-        urlStr=[NSString stringWithFormat:@"http://m.zouyun8.com/b/v/%@",self.bid_id];
+        urlStr=[NSString stringWithFormat:@"http://m.zouyun8.com/b/v/%@?uid=%@&token=%@",self.bid_id,UID,TOKEN];
         //self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
         
     }

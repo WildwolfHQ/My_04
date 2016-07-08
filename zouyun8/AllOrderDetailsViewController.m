@@ -14,6 +14,7 @@
 #import "AllOrderTableViewCell5.h"
 #import "Bill_View.h"
 #import "GoodsWebViewController.h"
+#import "KKWebViewController.h"
 @interface AllOrderDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>{
 
     UITableView *_tableView;
@@ -392,9 +393,11 @@
 
 -(void)action1{
 
-    GoodsWebViewController *VC=[[GoodsWebViewController alloc]init];
+    
+    
+    KKWebViewController *VC=[[KKWebViewController alloc]init];
     VC.urlStr=_model.track_info[@"url"];
-    VC.titleName=@"物流信息";
+    //VC.titleName=@"物流信息";
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:VC animated:YES];
     

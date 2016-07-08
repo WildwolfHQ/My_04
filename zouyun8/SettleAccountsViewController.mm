@@ -968,20 +968,35 @@
      {
          NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          NSString *str=dict[@"data"][@"score_cost"];
-         NSInteger m =[str rangeOfString:@"0"].location;
+         int m =(int)[str rangeOfString:@"0"].location;
          
-         NSString *format = [NSString stringWithFormat:@"%@%@f",@"%.",@(m)];
+         //NSString *format = [NSString stringWithFormat:@"%@%@f",@"%.",@(m)];
          
          self.score = [NSString stringWithFormat:@"%@",dict[@"data"][@"score"]];
          self.discount = [NSString stringWithFormat:@"%@",dict[@"data"][@"discount"]];
          
-         self.discountMoney = [NSString stringWithFormat:format,[self.discount floatValue] * [self.totalPrice floatValue]/100.0];
+         
+         self.discountMoney =[self notRounding:[self.discount floatValue] * [self.totalPrice floatValue]/100.0 afterPoint:m];
+         
+       
+   
          
          [self getDefaultAddress];
      }
          failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
      }];
+}
+
+-(NSString *)notRounding:(float)price afterPoint:(int)position{
+    NSDecimalNumberHandler* roundingBehavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundDown scale:position raiseOnExactness:NO raiseOnOverflow:NO raiseOnUnderflow:NO raiseOnDivideByZero:NO];
+    NSDecimalNumber *ouncesDecimal;
+    NSDecimalNumber *roundedOunces;
+    
+    ouncesDecimal = [[NSDecimalNumber alloc] initWithFloat:price];
+    roundedOunces = [ouncesDecimal decimalNumberByRoundingAccordingToBehavior:roundingBehavior];
+   
+    return [NSString stringWithFormat:@"%@",roundedOunces];
 }
 -(void)createUI
 {

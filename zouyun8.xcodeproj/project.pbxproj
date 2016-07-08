@@ -89,6 +89,8 @@
 		4273406C1D2608A200DF804C /* JKAlertDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 4273406B1D2608A200DF804C /* JKAlertDialog.m */; };
 		4273406F1D260BEA00DF804C /* AlertDialogSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4273406E1D260BEA00DF804C /* AlertDialogSubView.m */; };
 		427340711D260C0900DF804C /* AlertDialogSubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 427340701D260C0900DF804C /* AlertDialogSubView.xib */; };
+		427F27D91D2E312C00340C10 /* KKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427F27D71D2E312C00340C10 /* KKWebViewController.m */; };
+		427F27DA1D2E312C00340C10 /* KKWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 427F27D81D2E312C00340C10 /* KKWebViewController.xib */; };
 		42825E001D22256300019618 /* TixianVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42825DFE1D22256300019618 /* TixianVC.m */; };
 		42825E011D22256300019618 /* TixianVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42825DFF1D22256300019618 /* TixianVC.xib */; };
 		4286B19A1D178D7400AD3972 /* GetGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4286B1991D178D7400AD3972 /* GetGoodsViewController.m */; };
@@ -556,6 +558,9 @@
 		4273406D1D260BEA00DF804C /* AlertDialogSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertDialogSubView.h; sourceTree = "<group>"; };
 		4273406E1D260BEA00DF804C /* AlertDialogSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertDialogSubView.m; sourceTree = "<group>"; };
 		427340701D260C0900DF804C /* AlertDialogSubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertDialogSubView.xib; sourceTree = "<group>"; };
+		427F27D61D2E312C00340C10 /* KKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKWebViewController.h; sourceTree = "<group>"; };
+		427F27D71D2E312C00340C10 /* KKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKWebViewController.m; sourceTree = "<group>"; };
+		427F27D81D2E312C00340C10 /* KKWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KKWebViewController.xib; sourceTree = "<group>"; };
 		42825DFD1D22256300019618 /* TixianVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TixianVC.h; sourceTree = "<group>"; };
 		42825DFE1D22256300019618 /* TixianVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TixianVC.m; sourceTree = "<group>"; };
 		42825DFF1D22256300019618 /* TixianVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TixianVC.xib; sourceTree = "<group>"; };
@@ -1200,6 +1205,9 @@
 				4251174F1D07AF4300EAEA99 /* GoodsWebViewController.h */,
 				425117501D07AF4300EAEA99 /* GoodsWebViewController.m */,
 				425117511D07AF4300EAEA99 /* GoodsWebViewController.xib */,
+				427F27D61D2E312C00340C10 /* KKWebViewController.h */,
+				427F27D71D2E312C00340C10 /* KKWebViewController.m */,
+				427F27D81D2E312C00340C10 /* KKWebViewController.xib */,
 			);
 			name = Web;
 			sourceTree = "<group>";
@@ -2889,6 +2897,7 @@
 				71E7BD9A1D01600F00821160 /* MoneyDetailViewController.xib in Resources */,
 				71E7BDC41D05814000821160 /* BigImageViewController.xib in Resources */,
 				713AF72F1CF2A79E003741B4 /* AddDetailAddressController.xib in Resources */,
+				427F27DA1D2E312C00340C10 /* KKWebViewController.xib in Resources */,
 				42503A7F1CFD2F19000EE2CA /* PGView2.xib in Resources */,
 				715D82EF1CB9157500E2E99E /* icon_main_bottom_favorite_norma@2x.png in Resources */,
 				71E7BDE11D06C49400821160 /* tips.xib in Resources */,
@@ -2957,6 +2966,7 @@
 				710B16C11CF000520098FB83 /* DetailFooterView.m in Sources */,
 				717EDE411D000D7F0072570F /* SearchViewController.m in Sources */,
 				71E504C71CD2224200704068 /* AFURLConnectionOperation.m in Sources */,
+				427F27D91D2E312C00340C10 /* KKWebViewController.m in Sources */,
 				425117641D0838DB00EAEA99 /* SearchHDView2.m in Sources */,
 				715D82F81CB91A5900E2E99E /* AnnounceTableViewCell.m in Sources */,
 				425C22521D054A9500905226 /* AnnounceTableViewCell3.m in Sources */,
@@ -3319,7 +3329,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -3356,11 +3366,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Shenzhen Bolebrother Technology Co., Ltd. (N42463KTUV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shenzhen Bolebrother Technology Co., Ltd. (N42463KTUV)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/zouyun8/ShareSDK",

@@ -108,7 +108,7 @@
                 
                 break;
             case 2:
-                cell.textLabel.text =  @"关于产品";
+                cell.textLabel.text =  @"关于我们";
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 break;
           
@@ -141,7 +141,7 @@
         
         //    dic[@"url"]=model;
         //    dic[@"desc"];
-        VC.urlStr=@"https://m.zouyun8.com/a/article/3501050422";
+        VC.urlStr=@"http://m.zouyun8.com/a/article/3501050422";
         VC.titleName=@"关于我们";
         self.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:VC animated:YES];

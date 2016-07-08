@@ -27,7 +27,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XZ6-zT-9yj">
-                        <rect key="frame" x="8" y="8" width="73" height="83"/>
+                        <rect key="frame" x="8" y="8" width="73" height="73"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKz-ri-tlq">
                         <rect key="frame" x="89" y="56" width="222" height="16"/>
@@ -126,7 +126,7 @@
                     <constraint firstItem="FPD-41-TdQ" firstAttribute="trailing" secondItem="Eeu-F2-xeQ" secondAttribute="trailing" id="kgT-DX-VgL"/>
                     <constraint firstItem="XU6-fg-HbK" firstAttribute="centerX" secondItem="yk8-if-YwH" secondAttribute="centerX" id="poD-Cv-bH8"/>
                     <constraint firstItem="XU6-fg-HbK" firstAttribute="trailing" secondItem="AZK-yB-qDa" secondAttribute="trailingMargin" id="rf3-nh-Yae"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="XZ6-zT-9yj" secondAttribute="bottom" constant="60" id="uYS-id-JjK"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="XZ6-zT-9yj" secondAttribute="bottom" constant="70" id="uYS-id-JjK"/>
                     <constraint firstItem="qKz-ri-tlq" firstAttribute="leading" secondItem="FPD-41-TdQ" secondAttribute="leading" id="vU5-iU-idR"/>
                     <constraint firstItem="HDa-Pb-EHH" firstAttribute="firstBaseline" secondItem="XU6-fg-HbK" secondAttribute="firstBaseline" id="xc2-Fo-YwD"/>
                 </constraints>

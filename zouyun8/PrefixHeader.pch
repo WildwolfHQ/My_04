@@ -212,8 +212,14 @@
 #define Comm_to_money @"https://m.zouyun8.com/api/comm_to_money"
 
 
-
-
+//releae 屏蔽NSLog
+#ifdef DEBUG
+#define NSLog(...) NSLog(__VA_ARGS__)
+#define debugMethod() NSLog(@"%s", __func__)
+#else
+#define NSLog(...)
+#define debugMethod()
+#endif
 
 
 

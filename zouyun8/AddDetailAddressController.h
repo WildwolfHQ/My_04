@@ -9,4 +9,5 @@
 
 @property (nonatomic,strong)NSString * editOrAdd;
 @property (nonatomic,strong)NSString * addressID;
+@property (weak, nonatomic) IBOutlet UIButton *baocunBt;
 @end
