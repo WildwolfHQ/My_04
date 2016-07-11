@@ -9,6 +9,11 @@
 #import "AlertDialogSubView.h"
 
 @implementation AlertDialogSubView
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+}
 -(void)setdata:(NSArray *)array addPrice:(NSString *)price addArray1:(NSArray *)array1{
 
     
@@ -40,7 +45,10 @@
     self.price5Lb.text=[NSString stringWithFormat:@"¥:%d",price.intValue/self.number5Lb.text.intValue];
     }
     
-    
+    self.number5Lb.textColor=[UIColor redColor];
+    self.selectedNumber=self.number5Lb.text;
+    self.selectedPrice=self.price5Lb.text;
+    self.suanfaLb.text=[NSString stringWithFormat:@"%@元X%@人次",self.selectedPrice,self.selectedNumber];
 }
 /*
 // Only override drawRect: if you perform custom drawing.

@@ -22,7 +22,7 @@
   
     UIScrollView *_contentScrollView;
     
-   
+    UIWindow *window;
   
    
 

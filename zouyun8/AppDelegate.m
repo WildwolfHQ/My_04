@@ -309,6 +309,8 @@
     
     
     self.Buyvc = [[BuyTogetherController alloc]init];
+    self.Buyvc.is_gongkai=YES;
+    
     self.NBuyvc = [[UINavigationController alloc]initWithRootViewController:self.Buyvc];
     self.NBuyvc.tabBarItem.title=@"公开区";
 

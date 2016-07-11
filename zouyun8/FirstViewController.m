@@ -600,9 +600,9 @@
             
             }
           
-            [self.view4.imageView1 sd_setImageWithURL:[NSURL URLWithString:self.imageUrl1] placeholderImage:nil completed:nil];
-            [self.view4.imageView2 sd_setImageWithURL:[NSURL URLWithString:self.imageUrl2] placeholderImage:nil completed:nil];
-            [self.view4.imageView3 sd_setImageWithURL:[NSURL URLWithString:self.imageUrl3] placeholderImage:nil completed:nil];
+            [self.view4.imageView1 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?imageView/1/w/500/h/500/q/85",self.imageUrl1]] placeholderImage:nil completed:nil];
+            [self.view4.imageView2 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?imageView/1/w/500/h/500/q/85",self.imageUrl2]] placeholderImage:nil completed:nil];
+            [self.view4.imageView3 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?imageView/1/w/500/h/500/q/85",self.imageUrl3]] placeholderImage:nil completed:nil];
             self.view4.price1.text = [NSString stringWithFormat:@"%@",self.price1];
             self.view4.price2.text = [NSString stringWithFormat:@"%@",self.price2];
             self.view4.price3.text = [NSString stringWithFormat:@"%@",self.price3];
@@ -1002,6 +1002,7 @@
     }
     
     [alert dismiss];
+    [alert removeFromSuperview];
     
     NSMutableDictionary *dic=[NSMutableDictionary dictionary];
     dic[@"id"]=self.model.lucky_id;
@@ -1012,6 +1013,7 @@
 }
 -(void)canyugongkaihegou1{
     [alert dismiss];
+    [alert removeFromSuperview];
     
     [self OpenHeGou];
     
@@ -1019,6 +1021,7 @@
 }
 -(void)dismissAlertBt1{
      [alert dismiss];
+    [alert removeFromSuperview];
 
 }
 
@@ -1118,9 +1121,9 @@
     // 本地加载 --- 创建不带标题的图片轮播器
     self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WIDTH, 130/*具体宽度根据屏幕高宽比适配*/) shouldInfiniteLoop:YES imageNamesGroup:self.AdImages];
     self.cycleScrollView.delegate = self;
-    self.cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
+    self.cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleClassic;
     self.cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-    
+    self.cycleScrollView.currentPageDotColor=[UIColor redColor];
     //添加轮播器
     self.cycleScrollView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     //         --- 轮播时间间隔，默认1.0秒，可自定义

@@ -17,7 +17,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlStr]]];
+    if (self.urlStr!=nil) {
+        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlStr]]];
+    }else{
+    
+        [self.webView loadHTMLString:self.htmlStr baseURL:nil];
+    }
+    
     
     self.webView.delegate=self;
 
@@ -46,6 +52,17 @@
 {
     NSString *str= [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     self.navigationItem.title=str;
+    
+    if ([webView.request.URL.host hasPrefix:@"m.zouyun8.com"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"yinliansuccess" object:nil];
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }else{
+    
+    
+    }
+    
+    
     
 }
 

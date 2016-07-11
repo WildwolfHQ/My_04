@@ -1,10 +1,11 @@
 #import "MoneyDetailViewController.h"
 #import "RechargeViewController.h"
-
+#import "YongJinCell.h"
 @interface MoneyDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong)UITableView * tableView;
 @property(nonatomic,strong)NSMutableArray * dataSource;
+
 @end
 
 @implementation MoneyDetailViewController
@@ -61,16 +62,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * ID = @"cell";
-    UITableViewCell * cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
+  
+   YongJinCell * cell = [tableView dequeueReusableCellWithIdentifier:@"YongJinCell"];
+    
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
+       [tableView registerNib:[UINib nibWithNibName:@"YongJinCell" bundle:nil] forCellReuseIdentifier:@"YongJinCell"];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"YongJinCell"];
     }
     NSDictionary * dict = self.dataSource[indexPath.row];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"时间:%@",dict[@"pay_time"]];
-    cell.textLabel.font = [UIFont systemFontOfSize:12];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@元",dict[@"money"]];
+    cell.time.text =[NSString stringWithFormat:@"%@",dict[@"pay_time"]];
+    //cell.time.font=[UIFont systemFontOfSize:8];
+    cell.desc.text = [NSString stringWithFormat:@"%@",dict[@"pay_type"]];
+    cell.money.text = [NSString stringWithFormat:@"%@元",dict[@"money"]];
+//    cell.textLabel.text = [NSString stringWithFormat:@"时间:%@",dict[@"pay_time"]];
+//    cell.textLabel.font = [UIFont systemFontOfSize:12];
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@元",dict[@"money"]];
     return cell;
 }
 

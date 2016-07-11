@@ -1,7 +1,7 @@
 #import "RechargeViewController.h"
 #import "RechargeCell.h"
 #import "UPPaymentControl.h"
-
+#import "KKWebViewController.h"
 @interface RechargeViewController ()<UITableViewDelegate,UITableViewDataSource,RechargeCellDelegate>{
     NSMutableArray *_payType;
 
@@ -208,7 +208,7 @@
 
                      [self jumpToBizPay:dic];
                  }
-             } orderID:self.orderID payType:@"1"];
+             } orderID:self.orderID payType:@"1" andApp:@"1"];
              
          } order:nil addressID:nil is_discount:nil payID:@"2" payType:@"1" rechargeMoney:self.rechargeNum app:@"1"];
     }
@@ -248,7 +248,7 @@
              //NSLog(@"支付参数为%@",dic);
              
              
-             if (dic[@"tn"] == NULL)
+             if (dic[@"strHtml"] == NULL)
              {
                  [SVProgressHUD showErrorWithStatus:@"获取订单失败，请重新提交"];
                  [NSThread sleepForTimeInterval:1];
@@ -257,17 +257,43 @@
              {
                  //[SVProgressHUD showSuccessWithStatus:@"获取订单成功"];
                  
-                 //调用银联支付助手
-                 [self UnionPay:dic[@"tn"]];
                  
+                 
+                 NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+                 //添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知
+                 [center addObserver:self selector:@selector(unionPaySuccessNotice:) name:@"yinliansuccess"object:nil];
+                 
+                 KKWebViewController *VC=[[KKWebViewController alloc]init];
+                 VC.htmlStr=dic[@"strHtml"];
+                 self.hidesBottomBarWhenPushed=YES;
+                 [self.navigationController pushViewController:VC animated:YES];
+                 //[self UnionPay:dic[@"tn"]];
+                 //[self jumpToBizPay:dic];
              }
              
+
+             
+             
+//             if (dic[@"tn"] == NULL)
+//             {
+//                 [SVProgressHUD showErrorWithStatus:@"获取订单失败，请重新提交"];
+//                 [NSThread sleepForTimeInterval:1];
+//             }
+//             else
+//             {
+//                 //[SVProgressHUD showSuccessWithStatus:@"获取订单成功"];
+//                 
+//                 //调用银联支付助手
+//                 [self UnionPay:dic[@"tn"]];
+//                 
+//             }
              
              
              
-         } orderID:self.orderID payType:@"1"];        // payID 1走运币 2微信 3银联
+             
+         } orderID:self.orderID payType:@"1" andApp:@"0"];
          
-     } order:nil addressID:nil is_discount:nil payID:@"3" payType:@"1" rechargeMoney:self.rechargeNum  app:@"1"];
+     } order:nil addressID:nil is_discount:nil payID:@"3" payType:@"1" rechargeMoney:self.rechargeNum  app:@"0"];  // payID 1走运币 2微信 3银联
     
     
     

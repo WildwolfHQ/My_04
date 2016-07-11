@@ -73,7 +73,7 @@
 
 #pragma mark - show and dismiss
 -(UIView*)topView{
-    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    window = [[UIApplication sharedApplication] keyWindow];
     //我们都知道UIWindow有三个层级，分别是Normal，StatusBar，Alert。打印输出他们三个这三个层级的值我们发现从左到右依次是0，1000，2000 .默认的window的level是0，即normal级别；AlertView的window的level是1996
     window.windowLevel=1;
     return  window.subviews[0];
@@ -91,6 +91,7 @@
 }
 
 - (void)dismiss {
+    //window.windowLevel=0;
     [self hideAnimation];
 }
 
@@ -115,6 +116,9 @@
         
     } completion:^(BOOL finished) {
          [self removeFromSuperview];
+         window.windowLevel=0;
+        [window removeFromSuperview];
+        
     }];
 
     

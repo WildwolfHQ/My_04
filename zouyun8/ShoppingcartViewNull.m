@@ -5,20 +5,17 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    for (int i = 0; i < 10; i++)
-    {
-        UIImageView * imageV = [[UIImageView alloc]initWithFrame:CGRectMake(WIDTH/3*i, 0, WIDTH/3, CGRectGetHeight(self.scrollView.frame))];
-        UIView * view = [[NSBundle mainBundle]loadNibNamed:@"GuessView" owner:self options:nil].firstObject;
-        view.frame = imageV.frame;
-        [imageV addSubview:view];
-        [self.scrollView addSubview:imageV];
-    }
-    self.scrollView.contentSize = CGSizeMake(WIDTH/3 * 10, 0);
+
     self.lijixuangouBt.layer.cornerRadius=4;
+  
 }
 - (IBAction)立即夺宝:(id)sender {
  
-     [[NSNotificationCenter defaultCenter]postNotificationName:@"changeTabBar" object:nil];
-     [[NSNotificationCenter defaultCenter]postNotificationName:@"pushtoroot" object:nil];
+    
+}
+- (IBAction)lijigoumaiBt:(id)sender {
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"changeTabBar" object:nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"pushtoroot" object:nil];
 }
 @end

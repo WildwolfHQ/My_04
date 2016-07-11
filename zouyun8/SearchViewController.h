@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "View1.h"
 @interface SearchViewController : UIViewController
 
+
+@property (weak, nonatomic) IBOutlet View1 *view1;
 @end

@@ -208,14 +208,14 @@
          }
          
          [_tableView reloadData];
-         
+         [_tableView.infiniteScrollingView stopAnimating];
       
          
          
      }
          failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
-         
+         [_tableView.infiniteScrollingView stopAnimating];
          
      }];
 }
@@ -267,14 +267,14 @@ static int page=0;
         
         [weakSelf getDataForMyoriginate_URL:nil andPage:[NSString stringWithFormat:@"%d",++page] isRefresh:NO];
         
-        int64_t delayInSeconds = 2.0;
+        int64_t delayInSeconds = 0.4;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            
-            
-            
-            
             [weak_tableView.infiniteScrollingView stopAnimating];
+            
+            
+            
+            
         });
         
         

@@ -65,14 +65,16 @@
             
         
         }else{
-        
+         Lucky_noticeModel * model1=dataArray[indexPath.row];
             self.timesLable.hidden=NO;
             self.jiexiaotudatu.hidden=NO;
             self.jiexiaoname.hidden=NO;
+            self.faqizheName.hidden=NO;
             
             [self.jiexiaotudatu setImage:[UIImage imageNamed:@"times"]];
             
             self.jiexiaoname.text=@"即将揭晓";
+            self.faqizheName.text=[NSString stringWithFormat:@"发起者:%@",model1.username];
             //数据
             self.xinyunname2.hidden=YES;
             self.xinyunma2name.hidden=YES;
@@ -186,7 +188,7 @@
              HG_XiangGing * model = [[HG_XiangGing alloc]initWithDictionary: dict1 error:nil];
          
           if (model.lucky_code.integerValue==0) {
-             
+              cell.faqizheName.hidden=YES;
               cell.timesLable.hidden=YES;
               cell.jiexiaotudatu.hidden=YES;
               cell.jiexiaoname.hidden=YES;
@@ -209,7 +211,7 @@
 //              cell.textLabel.text=@"开奖中...";
               
           }else{
-         
+             cell.faqizheName.hidden=YES;
              cell.timesLable.hidden=YES;
              cell.jiexiaotudatu.hidden=YES;
              cell.jiexiaoname.hidden=YES;

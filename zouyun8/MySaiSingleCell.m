@@ -13,7 +13,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.saidanBt.layer.cornerRadius=4;
+//self.saidanBt.layer.cornerRadius=4;
     // Initialization code
 }
 

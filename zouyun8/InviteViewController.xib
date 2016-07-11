@@ -18,33 +18,33 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dhI-8Y-vGh">
-                    <rect key="frame" x="76" y="125" width="169" height="194"/>
+                    <rect key="frame" x="104" y="88" width="112" height="112"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="194" id="IVn-cx-EG6"/>
+                        <constraint firstAttribute="width" constant="112" id="8V2-yt-XQJ"/>
+                        <constraint firstAttribute="height" constant="112" id="G59-Rc-FeK"/>
                     </constraints>
                 </imageView>
-                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k05-gq-zgc">
-                    <rect key="frame" x="0.0" y="342" width="320" height="226"/>
-                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
-                </webView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="扫我分享" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evB-CP-ZUD">
-                    <rect key="frame" x="126" y="81" width="68" height="21"/>
+                    <rect key="frame" x="126" y="65" width="68" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k05-gq-zgc">
+                    <rect key="frame" x="0.0" y="208" width="320" height="360"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                </webView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="dhI-8Y-vGh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="76" id="0Ju-V5-QHz"/>
-                <constraint firstItem="k05-gq-zgc" firstAttribute="top" secondItem="dhI-8Y-vGh" secondAttribute="bottom" constant="23" id="165-wj-fAT"/>
-                <constraint firstItem="evB-CP-ZUD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="81" id="ONo-xa-Qwf"/>
-                <constraint firstItem="evB-CP-ZUD" firstAttribute="centerX" secondItem="dhI-8Y-vGh" secondAttribute="centerX" id="Q7R-yA-3gk"/>
-                <constraint firstItem="dhI-8Y-vGh" firstAttribute="top" secondItem="evB-CP-ZUD" secondAttribute="bottom" constant="23" id="Xsk-EO-ecJ"/>
-                <constraint firstAttribute="bottom" secondItem="k05-gq-zgc" secondAttribute="bottom" id="drj-WH-1cp"/>
-                <constraint firstAttribute="trailing" secondItem="k05-gq-zgc" secondAttribute="trailing" id="l8T-P8-Kp4"/>
-                <constraint firstItem="dhI-8Y-vGh" firstAttribute="centerX" secondItem="k05-gq-zgc" secondAttribute="centerX" id="rvJ-hF-RcA"/>
-                <constraint firstItem="k05-gq-zgc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wid-im-OsX"/>
+                <constraint firstItem="evB-CP-ZUD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="65" id="33i-OL-V3E"/>
+                <constraint firstAttribute="trailing" secondItem="k05-gq-zgc" secondAttribute="trailing" id="AVN-7I-RaZ"/>
+                <constraint firstItem="dhI-8Y-vGh" firstAttribute="top" secondItem="evB-CP-ZUD" secondAttribute="bottom" constant="2" id="Trt-i7-5lO"/>
+                <constraint firstAttribute="bottom" secondItem="k05-gq-zgc" secondAttribute="bottom" id="V3t-HV-3Df"/>
+                <constraint firstItem="k05-gq-zgc" firstAttribute="top" secondItem="dhI-8Y-vGh" secondAttribute="bottom" constant="8" symbolic="YES" id="VLT-F2-aiH"/>
+                <constraint firstItem="evB-CP-ZUD" firstAttribute="centerX" secondItem="dhI-8Y-vGh" secondAttribute="centerX" id="ZmQ-BY-kwV"/>
+                <constraint firstItem="dhI-8Y-vGh" firstAttribute="centerX" secondItem="k05-gq-zgc" secondAttribute="centerX" id="cBd-oa-c2U"/>
+                <constraint firstItem="k05-gq-zgc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xMO-qg-e4c"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="328" y="322"/>

@@ -12,4 +12,5 @@
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property(strong,nonatomic)NSString *urlStr;
+@property(strong,nonatomic)NSString *htmlStr;
 @end

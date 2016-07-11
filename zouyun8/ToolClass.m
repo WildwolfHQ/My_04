@@ -196,29 +196,49 @@
 }
 
 //获取到（微信，银联）支付所需参数
-+(NSDictionary *)getPayParameter:(void (^)(NSDictionary *))cb orderID:(NSString *)orderID payType:(NSString *)pay_type
++(NSDictionary *)getPayParameter:(void (^)(NSDictionary *))cb orderID:(NSString *)orderID payType:(NSString *)pay_type andApp:(NSString *)app
 {
     __block NSDictionary *dict;
+    __block    NSString *strHtml;
+    __block    NSString *  app1;
     //post请求
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"token"] = TOKEN;
     params[@"uid"] = UID;
     params[@"id"] = orderID;
     params[@"pay_type"] = pay_type;
-    params[@"app"]=@"1";
+    params[@"app"]=app;
+    app1=app;
     [HttpRequest postWithURLString:START_PAY parameters:params success:^(id responseObject)
      {
-         dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-         NSString * errcode = dict[@"errcode"];
-         if ([errcode integerValue])
-         {
-             [SVProgressHUD showErrorWithStatus:dict[@"errmsg"]];
-         }
-         else
-         {
-             //[SVProgressHUD showSuccessWithStatus:@"支付成功"];
+         
+         
+         
+         if (app1.integerValue==0) {
+            strHtml =[[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+             
+            
+             dict=@{@"strHtml":strHtml};
+             
+         }else{
+             dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+             NSString * errcode = dict[@"errcode"];
+             if ([errcode integerValue])
+             {
+                 [SVProgressHUD showErrorWithStatus:dict[@"errmsg"]];
+             }
+             else
+             {
+                 //[SVProgressHUD showSuccessWithStatus:@"支付成功"];
+             }
+             
+             
          }
          cb(dict);
+         
+         
+         
+        
      } failure:^(NSError *error) {
          
          
@@ -376,8 +396,11 @@
     [shareParams SSDKSetupSinaWeiboShareParamsByText:desc title:title image:@[image] url:[NSURL URLWithString:url] latitude:0.0 longitude:0.0 objectID:nil type:SSDKContentTypeAuto];
 
     //2、分享（可以弹出我们的分享菜单和编辑界面）
+    
+    NSArray *shareList=@[@(SSDKPlatformTypeQQ),@(SSDKPlatformSubTypeQZone),@(SSDKPlatformTypeSinaWeibo),@(SSDKPlatformTypeWechat),@(SSDKPlatformSubTypeWechatTimeline),@(SSDKPlatformSubTypeWechatFav)];
+    
     [ShareSDK showShareActionSheet:nil //要显示菜单的视图, iPad版中此参数作为弹出菜单的参照视图，只有传这个才可以弹出我们的分享菜单，可以传分享的按钮对象或者自己创建小的view 对象，iPhone可以传nil不会影响
-                             items:nil
+                             items:shareList
                        shareParams:shareParams
                onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end)
      {

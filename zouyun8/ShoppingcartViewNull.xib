@@ -26,42 +26,22 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="立即夺宝:" destination="Lgr-4L-DHD" eventType="touchUpInside" id="QpJ-DV-mdX"/>
+                        <action selector="lijigoumaiBt:" destination="Lgr-4L-DHD" eventType="touchUpInside" id="Cc9-h1-X49"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XcX-Ef-9kw">
-                    <rect key="frame" x="0.0" y="359" width="600" height="241"/>
-                    <subviews>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ow9-52-sZc">
-                            <rect key="frame" x="0.0" y="22" width="600" height="219"/>
-                            <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        </scrollView>
-                    </subviews>
-                    <constraints>
-                        <constraint firstItem="Ow9-52-sZc" firstAttribute="leading" secondItem="XcX-Ef-9kw" secondAttribute="leading" id="5fD-7M-gax"/>
-                        <constraint firstAttribute="bottom" secondItem="Ow9-52-sZc" secondAttribute="bottom" id="SPk-U5-dfv"/>
-                        <constraint firstAttribute="trailing" secondItem="Ow9-52-sZc" secondAttribute="trailing" id="hlM-df-xJN"/>
-                        <constraint firstItem="Ow9-52-sZc" firstAttribute="top" secondItem="XcX-Ef-9kw" secondAttribute="top" constant="22" id="jGK-33-mDq"/>
-                    </constraints>
-                </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.91883453315881325" green="0.91883453315881325" blue="0.91883453315881325" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="XcX-Ef-9kw" secondAttribute="bottom" id="2QQ-JA-aNo"/>
-                <constraint firstItem="XcX-Ef-9kw" firstAttribute="top" secondItem="rhb-En-daJ" secondAttribute="bottom" constant="15" id="2fj-W5-qPY"/>
-                <constraint firstAttribute="trailing" secondItem="XcX-Ef-9kw" secondAttribute="trailing" id="H04-Hi-4Yu"/>
-                <constraint firstItem="XPB-de-jEm" firstAttribute="centerX" secondItem="Lgr-4L-DHD" secondAttribute="centerX" id="blr-ZY-KXJ"/>
-                <constraint firstItem="XcX-Ef-9kw" firstAttribute="leading" secondItem="Lgr-4L-DHD" secondAttribute="leading" id="mgt-cE-v33"/>
-                <constraint firstItem="XPB-de-jEm" firstAttribute="centerY" secondItem="Lgr-4L-DHD" secondAttribute="centerY" id="u2o-dR-jeF"/>
-                <constraint firstItem="rhb-En-daJ" firstAttribute="centerX" secondItem="XPB-de-jEm" secondAttribute="centerX" id="uVZ-XN-uUi"/>
-                <constraint firstItem="rhb-En-daJ" firstAttribute="top" secondItem="XPB-de-jEm" secondAttribute="bottom" constant="7.5" id="xva-dN-evJ"/>
+                <constraint firstItem="XPB-de-jEm" firstAttribute="centerY" secondItem="Lgr-4L-DHD" secondAttribute="centerY" id="3ks-vJ-d2f"/>
+                <constraint firstItem="XPB-de-jEm" firstAttribute="centerX" secondItem="Lgr-4L-DHD" secondAttribute="centerX" id="Oh2-qd-ET9"/>
+                <constraint firstItem="XPB-de-jEm" firstAttribute="centerX" secondItem="rhb-En-daJ" secondAttribute="centerX" id="etl-cT-7dm"/>
+                <constraint firstItem="rhb-En-daJ" firstAttribute="top" secondItem="XPB-de-jEm" secondAttribute="bottom" constant="8" symbolic="YES" id="vLu-r9-fbM"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <connections>
                 <outlet property="lijixuangouBt" destination="rhb-En-daJ" id="NuO-cf-WhU"/>
-                <outlet property="scrollView" destination="Ow9-52-sZc" id="vSh-Nk-zpO"/>
             </connections>
-            <point key="canvasLocation" x="57" y="-104"/>
+            <point key="canvasLocation" x="229" y="-103"/>
         </view>
     </objects>
 </document>

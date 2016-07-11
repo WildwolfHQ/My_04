@@ -46,11 +46,11 @@
     
     self.navigationItem.rightBarButtonItems =@[fixBar,buttonItem];
     
-    self.segmentTitlesArray=[[NSArray alloc]initWithObjects:@"剩余份数⇩",@"最新⇩",@"单价⇩",@"总价⇩", nil];
+    self.segmentTitlesArray=[[NSArray alloc]initWithObjects:@"单价⇩",@"最新⇩",@"剩余⇩",@"总价⇩", nil];
     [self loadSegmentedControllView];
 
     [self createCollectionView];
-    [self getData:[NSString stringWithFormat:@"%ld",(long)self.page] andTop:@"1"];
+    [self getData:[NSString stringWithFormat:@"%ld",(long)self.page] andTop:@"5"];
 }
 -(void)tishi{
 
@@ -83,16 +83,17 @@ static bool selected1, selected2, selected3, selected4;
     
     if (segmentedController.selectedIndex==0) {
         
-        
         selected1=!selected1;
+        
         if (selected1) {
-          [self getData:[NSString stringWithFormat:@"%ld",(long)self.page] andTop:@"1"];
-            self.top=@"1";
+            [self getData:[NSString stringWithFormat:@"%ld",(long)self.page] andTop:@"5"];
+            self.top=@"5";
         }else{
-          [self getData:[NSString stringWithFormat:@"%ld",(long)self.page] andTop:@"2"];
-            self.top=@"2";
+            [self getData:[NSString stringWithFormat:@"%ld",(long)self.page] andTop:@"6"];
+            self.top=@"6";
         }
 
+       
         
     }else if (segmentedController.selectedIndex==1){
     
@@ -109,13 +110,14 @@ static bool selected1, selected2, selected3, selected4;
     
     }else if (segmentedController.selectedIndex==2){
         
+        
         selected3=!selected3;
         if (selected3) {
-            [self getData:[NSString stringWithFormat:@"%ld",(long)self.page] andTop:@"5"];
-            self.top=@"5";
+            [self getData:[NSString stringWithFormat:@"%ld",(long)self.page] andTop:@"1"];
+            self.top=@"1";
         }else{
-            [self getData:[NSString stringWithFormat:@"%ld",(long)self.page] andTop:@"6"];
-            self.top=@"6";
+            [self getData:[NSString stringWithFormat:@"%ld",(long)self.page] andTop:@"2"];
+            self.top=@"2";
         }
 
         
@@ -212,12 +214,27 @@ static bool selected1, selected2, selected3, selected4;
 
 -(void)directToPay:(NSDictionary *)dict
 {
-    ShoppingcartViewController *vc=[[ShoppingcartViewController alloc]init];
     
-     vc.is_tabBarHidden=YES;
-//    vc.is_tuhao=YES;
-    self.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    if (self.is_gongkai) {
+       
+        ShoppingcartViewController *vc=[[ShoppingcartViewController alloc]init];
+        vc.is_tabBarHidden=YES;
+        vc.is_tuhao=YES;
+        self.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
+    }else{
+      ShoppingcartViewController *vc=[[ShoppingcartViewController alloc]init];
+               vc.is_tabBarHidden=YES;
+               //vc.is_tuhao=YES;
+               self.hidesBottomBarWhenPushed = YES;
+               [self.navigationController pushViewController:vc animated:YES];
+
+    
+
+    }
+   
+    
     
 
 }

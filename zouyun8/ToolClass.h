@@ -24,7 +24,7 @@
 +(NSDictionary *)create_bill:(void (^)(NSDictionary *))cb order:(NSString *)json addressID:(NSString *)address is_discount:(NSString * )discount payID:(NSString *)payID payType:(NSString *)pay_type rechargeMoney:(NSString *)money app:(NSString *)is_app;
 
 //获取到（微信，银联）支付所需参数
-+(NSDictionary *)getPayParameter:(void (^)(NSDictionary *))cb orderID:(NSString *)orderID payType:(NSString *)pay_type;
++(NSDictionary *)getPayParameter:(void (^)(NSDictionary  *))cb orderID:(NSString *)orderID payType:(NSString *)pay_type andApp:(NSString *)app;
 
 //获取最新中奖消息
 +(NSDictionary *)getLucky_notice:(void (^)(NSDictionary *dic))cb;

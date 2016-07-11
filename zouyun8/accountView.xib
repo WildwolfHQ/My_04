@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -18,10 +19,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cU-p7-A3X">
-                    <rect key="frame" x="250" y="15" width="55" height="30"/>
+                    <rect key="frame" x="226" y="15" width="79" height="30"/>
                     <color key="backgroundColor" red="0.94569128749999998" green="0.25289195530000003" blue="0.21384743949999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="55" id="Qb6-3Q-AW1"/>
+                        <constraint firstAttribute="width" constant="79" id="btb-EJ-lYo"/>
                     </constraints>
                     <state key="normal" title="去结算">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -52,16 +53,16 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Yp3-cu-Xa5" firstAttribute="leading" secondItem="x5J-EN-7a7" secondAttribute="trailing" id="4v9-Lf-gwx"/>
-                <constraint firstItem="4cU-p7-A3X" firstAttribute="centerY" secondItem="CdT-Lc-PHP" secondAttribute="centerY" id="911-VJ-TDk"/>
-                <constraint firstItem="x5J-EN-7a7" firstAttribute="leading" secondItem="AaB-5N-dAv" secondAttribute="trailing" constant="1" id="AFm-5Y-4fp"/>
-                <constraint firstItem="AaB-5N-dAv" firstAttribute="centerY" secondItem="CKC-ru-tCg" secondAttribute="centerY" id="FYy-cw-wER"/>
-                <constraint firstItem="CKC-ru-tCg" firstAttribute="leading" secondItem="CdT-Lc-PHP" secondAttribute="leading" constant="8" id="G3p-fl-am1"/>
-                <constraint firstItem="Yp3-cu-Xa5" firstAttribute="centerY" secondItem="x5J-EN-7a7" secondAttribute="centerY" id="g3t-Sm-66w"/>
-                <constraint firstAttribute="trailing" secondItem="4cU-p7-A3X" secondAttribute="trailing" constant="15" id="ot3-O0-fb6"/>
-                <constraint firstItem="x5J-EN-7a7" firstAttribute="centerY" secondItem="AaB-5N-dAv" secondAttribute="centerY" id="s82-ez-jFf"/>
-                <constraint firstItem="AaB-5N-dAv" firstAttribute="leading" secondItem="CKC-ru-tCg" secondAttribute="trailing" id="xR1-hm-8Gp"/>
-                <constraint firstItem="CKC-ru-tCg" firstAttribute="centerY" secondItem="CdT-Lc-PHP" secondAttribute="centerY" id="xjp-t2-Nzp"/>
+                <constraint firstItem="Yp3-cu-Xa5" firstAttribute="leading" secondItem="x5J-EN-7a7" secondAttribute="trailing" id="5mf-2r-yaV"/>
+                <constraint firstItem="CKC-ru-tCg" firstAttribute="centerY" secondItem="CdT-Lc-PHP" secondAttribute="centerY" id="Drf-Eu-ReD"/>
+                <constraint firstItem="Yp3-cu-Xa5" firstAttribute="centerY" secondItem="4cU-p7-A3X" secondAttribute="centerY" id="KgK-qE-LLz"/>
+                <constraint firstItem="AaB-5N-dAv" firstAttribute="leading" secondItem="CKC-ru-tCg" secondAttribute="trailing" id="PWF-zr-y0I"/>
+                <constraint firstItem="AaB-5N-dAv" firstAttribute="baseline" secondItem="x5J-EN-7a7" secondAttribute="baseline" id="QgF-0G-Sur"/>
+                <constraint firstItem="CKC-ru-tCg" firstAttribute="leading" secondItem="CdT-Lc-PHP" secondAttribute="leadingMargin" id="Tng-0c-l93"/>
+                <constraint firstItem="x5J-EN-7a7" firstAttribute="baseline" secondItem="Yp3-cu-Xa5" secondAttribute="baseline" id="WcC-1Z-zdM"/>
+                <constraint firstAttribute="trailing" secondItem="4cU-p7-A3X" secondAttribute="trailing" constant="15" id="YeY-ij-hkw"/>
+                <constraint firstItem="x5J-EN-7a7" firstAttribute="leading" secondItem="AaB-5N-dAv" secondAttribute="trailing" constant="1" id="gFx-xA-GLM"/>
+                <constraint firstItem="CKC-ru-tCg" firstAttribute="baseline" secondItem="AaB-5N-dAv" secondAttribute="baseline" id="oeB-C9-Wxq"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

@@ -14,6 +14,9 @@
 		424A42A71D1526B900E74624 /* JointPurchaseCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 424A42A51D1526B900E74624 /* JointPurchaseCell1.m */; };
 		424A42A81D1526B900E74624 /* JointPurchaseCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 424A42A61D1526B900E74624 /* JointPurchaseCell1.xib */; };
 		424A42AB1D1533F400E74624 /* Myoriginate.m in Sources */ = {isa = PBXBuildFile; fileRef = 424A42AA1D1533F400E74624 /* Myoriginate.m */; };
+		424EA11C1D2F7B5100747F39 /* OTPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 424EA1191D2F7B5100747F39 /* OTPageScrollView.m */; };
+		424EA11D1D2F7B5100747F39 /* OTPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 424EA11B1D2F7B5100747F39 /* OTPageView.m */; };
+		424EA1221D2FB40200747F39 /* View1.m in Sources */ = {isa = PBXBuildFile; fileRef = 424EA1211D2FB40200747F39 /* View1.m */; };
 		42503A4D1CFD2C13000EE2CA /* PG_bid_list.m in Sources */ = {isa = PBXBuildFile; fileRef = 42503A4A1CFD2C13000EE2CA /* PG_bid_list.m */; };
 		42503A4E1CFD2C13000EE2CA /* PGXiangGing.m in Sources */ = {isa = PBXBuildFile; fileRef = 42503A4C1CFD2C13000EE2CA /* PGXiangGing.m */; };
 		42503A5C1CFD2E2D000EE2CA /* CommodityDetailsView1.m in Sources */ = {isa = PBXBuildFile; fileRef = 42503A511CFD2E2D000EE2CA /* CommodityDetailsView1.m */; };
@@ -440,6 +443,12 @@
 		424A42A61D1526B900E74624 /* JointPurchaseCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JointPurchaseCell1.xib; sourceTree = "<group>"; };
 		424A42A91D1533F400E74624 /* Myoriginate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Myoriginate.h; sourceTree = "<group>"; };
 		424A42AA1D1533F400E74624 /* Myoriginate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Myoriginate.m; sourceTree = "<group>"; };
+		424EA1181D2F7B5100747F39 /* OTPageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTPageScrollView.h; sourceTree = "<group>"; };
+		424EA1191D2F7B5100747F39 /* OTPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPageScrollView.m; sourceTree = "<group>"; };
+		424EA11A1D2F7B5100747F39 /* OTPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTPageView.h; sourceTree = "<group>"; };
+		424EA11B1D2F7B5100747F39 /* OTPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPageView.m; sourceTree = "<group>"; };
+		424EA1201D2FB40200747F39 /* View1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = View1.h; sourceTree = "<group>"; };
+		424EA1211D2FB40200747F39 /* View1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = View1.m; sourceTree = "<group>"; };
 		42503A491CFD2C13000EE2CA /* PG_bid_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PG_bid_list.h; sourceTree = "<group>"; };
 		42503A4A1CFD2C13000EE2CA /* PG_bid_list.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PG_bid_list.m; sourceTree = "<group>"; };
 		42503A4B1CFD2C13000EE2CA /* PGXiangGing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGXiangGing.h; sourceTree = "<group>"; };
@@ -1159,6 +1168,17 @@
 				424A42A61D1526B900E74624 /* JointPurchaseCell1.xib */,
 			);
 			name = "发起的合购";
+			sourceTree = "<group>";
+		};
+		424EA1171D2F7B5100747F39 /* OTPageScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				424EA1181D2F7B5100747F39 /* OTPageScrollView.h */,
+				424EA1191D2F7B5100747F39 /* OTPageScrollView.m */,
+				424EA11A1D2F7B5100747F39 /* OTPageView.h */,
+				424EA11B1D2F7B5100747F39 /* OTPageView.m */,
+			);
+			path = OTPageScrollView;
 			sourceTree = "<group>";
 		};
 		42503A4F1CFD2DE9000EE2CA /* 拼购 */ = {
@@ -1941,6 +1961,7 @@
 		715D831D1CBA90B100E2E99E /* 第三方 */ = {
 			isa = PBXGroup;
 			children = (
+				424EA1171D2F7B5100747F39 /* OTPageScrollView */,
 				427340691D2608A200DF804C /* JKAlertDialog */,
 				4286B1B11D17DA1A00AD3972 /* SDPhotoBrowser */,
 				4286B1A71D17C56900AD3972 /* SegmentedControl */,
@@ -2122,6 +2143,8 @@
 				717EDE3E1D000D7F0072570F /* SearchViewController.h */,
 				717EDE3F1D000D7F0072570F /* SearchViewController.m */,
 				717EDE401D000D7F0072570F /* SearchViewController.xib */,
+				424EA1201D2FB40200747F39 /* View1.h */,
+				424EA1211D2FB40200747F39 /* View1.m */,
 			);
 			name = "搜索";
 			sourceTree = "<group>";
@@ -2953,6 +2976,7 @@
 				4258B2FA1D13F3A100DB1FD1 /* AllOrderTableViewCell5.m in Sources */,
 				710B16D31CF05B0F0098FB83 /* RechargeCell.m in Sources */,
 				4286B1BB1D17DA1A00AD3972 /* SDWaitingView.m in Sources */,
+				424EA11C1D2F7B5100747F39 /* OTPageScrollView.m in Sources */,
 				71FFC6DC1CBE375B00A407F3 /* CustomIOS7AlertView.m in Sources */,
 				71E504A01CD1FF1C00704068 /* ShoppingcartViewNull.m in Sources */,
 				42988EDE1D27BCDD00AC53CC /* DuihuanzouyunbiView.m in Sources */,
@@ -2983,6 +3007,7 @@
 				713AF72E1CF2A79E003741B4 /* AddDetailAddressController.m in Sources */,
 				715B365A1CB7BCFD005E66F3 /* ViewController.m in Sources */,
 				42503A5E1CFD2E2D000EE2CA /* CommodityDetailsView2.m in Sources */,
+				424EA1221D2FB40200747F39 /* View1.m in Sources */,
 				715D82A01CB8E58D00E2E99E /* TADotView.m in Sources */,
 				715D829E1CB8E58D00E2E99E /* TAAbstractDotView.m in Sources */,
 				713AF7F01CFC08E7003741B4 /* SortModel.m in Sources */,
@@ -3111,6 +3136,7 @@
 				71E504BD1CD221B500704068 /* AFURLResponseSerialization.m in Sources */,
 				713AF79A1CF6F998003741B4 /* SettleModel.m in Sources */,
 				715D82CC1CB8E5B200E2E99E /* SDWebImageDownloader.m in Sources */,
+				424EA11D1D2F7B5100747F39 /* OTPageView.m in Sources */,
 				71E504991CD1EB6900704068 /* GoodsDetailController.m in Sources */,
 				42576CDB1D129B6400B3003C /* SetUpViewController.m in Sources */,
 				715D82CF1CB8E5B200E2E99E /* SDWebImagePrefetcher.m in Sources */,

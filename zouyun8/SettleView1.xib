@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -29,25 +30,25 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Lg-Mc-3XC">
-                    <rect key="frame" x="292" y="13" width="20" height="20"/>
+                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Lg-Mc-3XC">
+                    <rect key="frame" x="274" y="0.0" width="46" height="44"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="20" id="0T9-Mg-b09"/>
-                        <constraint firstAttribute="width" constant="20" id="QJy-8l-g3y"/>
+                        <constraint firstAttribute="width" constant="46" id="tGP-90-17l"/>
                     </constraints>
-                    <state key="normal" title="Button" image="Indicator"/>
+                    <state key="normal" title="Button" image="indicator_newb"/>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="YKF-ZD-JPX" firstAttribute="centerY" secondItem="Uf4-jC-SDJ" secondAttribute="centerY" id="EFT-6K-qU7"/>
-                <constraint firstItem="3Lg-Mc-3XC" firstAttribute="centerY" secondItem="MrU-rk-xo4" secondAttribute="centerY" id="H0c-rW-uUu"/>
-                <constraint firstItem="YKF-ZD-JPX" firstAttribute="leading" secondItem="Uf4-jC-SDJ" secondAttribute="trailing" id="Q3u-ij-T6h"/>
-                <constraint firstAttribute="trailing" secondItem="3Lg-Mc-3XC" secondAttribute="trailing" constant="8" id="QJY-lt-5cJ"/>
-                <constraint firstItem="MrU-rk-xo4" firstAttribute="leading" secondItem="rcW-El-gyc" secondAttribute="leading" constant="8" id="aCS-h6-qde"/>
-                <constraint firstItem="Uf4-jC-SDJ" firstAttribute="leading" secondItem="MrU-rk-xo4" secondAttribute="trailing" id="cPl-Jy-dXA"/>
-                <constraint firstItem="MrU-rk-xo4" firstAttribute="centerY" secondItem="rcW-El-gyc" secondAttribute="centerY" id="ky9-B8-KPZ"/>
-                <constraint firstItem="Uf4-jC-SDJ" firstAttribute="centerY" secondItem="MrU-rk-xo4" secondAttribute="centerY" id="laI-mK-hbX"/>
+                <constraint firstItem="YKF-ZD-JPX" firstAttribute="centerY" secondItem="3Lg-Mc-3XC" secondAttribute="centerY" id="6tf-cN-IwD"/>
+                <constraint firstItem="MrU-rk-xo4" firstAttribute="baseline" secondItem="Uf4-jC-SDJ" secondAttribute="baseline" id="8SM-yR-C6e"/>
+                <constraint firstItem="Uf4-jC-SDJ" firstAttribute="leading" secondItem="MrU-rk-xo4" secondAttribute="trailing" id="8Z5-JS-mSh"/>
+                <constraint firstItem="MrU-rk-xo4" firstAttribute="leading" secondItem="rcW-El-gyc" secondAttribute="leadingMargin" id="Hvd-rf-e7s"/>
+                <constraint firstAttribute="trailing" secondItem="3Lg-Mc-3XC" secondAttribute="trailing" id="KGB-uE-weF"/>
+                <constraint firstItem="YKF-ZD-JPX" firstAttribute="leading" secondItem="MrU-rk-xo4" secondAttribute="trailing" constant="8" symbolic="YES" id="WvA-nb-j0r"/>
+                <constraint firstAttribute="bottom" secondItem="3Lg-Mc-3XC" secondAttribute="bottom" id="oU1-7H-Lxm"/>
+                <constraint firstItem="Uf4-jC-SDJ" firstAttribute="baseline" secondItem="YKF-ZD-JPX" secondAttribute="baseline" id="obq-Em-TBE"/>
+                <constraint firstItem="3Lg-Mc-3XC" firstAttribute="top" secondItem="rcW-El-gyc" secondAttribute="top" id="xmN-Ea-3VN"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -59,6 +60,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Indicator" width="8" height="15"/>
+        <image name="indicator_newb" width="15" height="15"/>
     </resources>
 </document>

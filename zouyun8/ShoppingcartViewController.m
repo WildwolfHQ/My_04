@@ -2,13 +2,22 @@
 #import "shoppingcartModel.h"
 #import "MyTableView.h"
 #import "GoodsWebViewController.h"
-@interface ShoppingcartViewController ()<UITableViewDataSource,UITableViewDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate,tableViewCellDelegate>
+#import "OTPageScrollView.h"
+#import "OTPageView.h"
+#import "BuyTogetherModel.h"
+@interface ShoppingcartViewController ()<UITableViewDataSource,UITableViewDelegate,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate,tableViewCellDelegate,OTPageScrollViewDataSource,OTPageScrollViewDelegate>{
+
+ 
+}
 
 @property(nonatomic,strong)NSMutableArray * dataSource;
 @property(nonatomic,strong)MyTableView * tableView;
 @property(nonatomic,strong)accountView * accountview;
 @property(nonatomic,assign)NSInteger totalPrice;
 @property(nonatomic,strong)NSMutableArray * orders;
+@property(nonatomic,strong)NSMutableArray * otdataSource;
+@property(nonatomic,strong)OTPageView *PScrollView;
+@property(nonatomic,strong)OTPageView *myview;
 @end
 
 @implementation ShoppingcartViewController
@@ -186,10 +195,10 @@
             
         }else{
         
-            FMDatabase *db = [FMDatabase databaseWithPath:DBFATH];
-            // 打开数据库
-            [db open];
-           [db executeUpdate:@"DELETE FROM t_contact"];
+//            FMDatabase *db = [FMDatabase databaseWithPath:DBFATH];
+//            // 打开数据库
+//            [db open];
+//           [db executeUpdate:@"DELETE FROM t_contact"];
         }
         
     }
@@ -203,9 +212,18 @@
     return _dataSource;
 }
 
+-(NSMutableArray *)otdataSource
+{
+    if (_otdataSource == nil) {
+        _otdataSource = [[NSMutableArray alloc]init];
+    }
+    return _otdataSource;
+}
+
 - (void)viewDidLoad {
         [super viewDidLoad];
-        self.tableView = [[MyTableView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-44-60) style:UITableViewStylePlain];
+    self.view.backgroundColor=[UIColor colorWithRed:234/255.0 green:234/255.0 blue:234/255.0 alpha:1.0];
+        self.tableView = [[MyTableView alloc]initWithFrame:CGRectMake(0, 64, WIDTH, HEIGHT-50) style:UITableViewStylePlain];
         self.tableView.backgroundColor = [UIColor whiteColor];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
@@ -214,7 +232,17 @@
         /* STEP5:去掉TableView中的默认横线 */
         self.tableView.tableFooterView = [UIView new];
 
-    [self.view addSubview:self.tableView];
+    
+        [self loadOT];
+        [self.view addSubview:self.tableView];
+    
+    
+        _myview = [[NSBundle mainBundle]loadNibNamed:@"ShoppingcartViewNull" owner:self options:nil].firstObject;
+        _myview.frame = CGRectMake(0, 0, WIDTH, HEIGHT-(44+200));
+    
+        [self.view addSubview:_myview];
+    
+    
 
 
 //    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:255/255.0 green:64/255.0 blue:64/255.0 alpha:1];
@@ -224,6 +252,82 @@
     UINib *nib = [UINib nibWithNibName:@"shoppingcarCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     
+}
+
+-(void)loadOT{
+    [self getData:nil andTop:nil];
+    
+    
+    if (self.is_tabBarHidden == YES){
+        
+        self.PScrollView = [[OTPageView alloc] initWithFrame:CGRectMake(0, HEIGHT-(155), WIDTH, 155)];
+    
+    }else{
+    
+        self.PScrollView = [[OTPageView alloc] initWithFrame:CGRectMake(0, HEIGHT-(155+44), WIDTH, 155)];
+    }
+    
+    UILabel *titlelable=[[UILabel alloc]initWithFrame:CGRectMake(10, 0, 100, 40)];
+    
+    titlelable.text=@"猜你喜欢";
+    [self.PScrollView addSubview:titlelable];
+    
+    self.PScrollView.pageScrollView.dataSource = self;
+    self.PScrollView.pageScrollView.delegate = self;
+    self.PScrollView.pageScrollView.padding =0;
+    self.PScrollView.pageScrollView.leftRightOffset = 0;
+    self.PScrollView.pageScrollView.frame = CGRectMake(0, titlelable.frame.origin.y+titlelable.frame.size.height-55, 100, 100);
+    self.PScrollView.backgroundColor = [UIColor whiteColor];
+  
+    [self.view addSubview:self.PScrollView];
+    
+   
+
+}
+
+#pragma mark - 猜你喜欢view的代理
+- (NSInteger)numberOfPageInPageScrollView:(OTPageScrollView*)pageScrollView{
+    return [self.otdataSource count];
+}
+
+- (UIView*)pageScrollView:(OTPageScrollView*)pageScrollView viewForRowAtIndex:(int)index{
+    
+    BuyTogetherModel * model=self.otdataSource[index];
+    UIImageView *cell = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    
+    [cell sd_setImageWithURL:[NSURL URLWithString:model.thumb]];
+    return cell;
+}
+
+- (CGSize)sizeCellForPageScrollView:(OTPageScrollView*)pageScrollView
+{
+    return CGSizeMake(100, 100);
+}
+
+- (void)pageScrollView:(OTPageScrollView *)pageScrollView didTapPageAtIndex:(NSInteger)index{
+    
+    BuyTogetherModel * model=self.otdataSource[index];
+    NSString * url = [NSString stringWithFormat:@"http://m.zouyun8.com/l/v/%@/?uid=%@&token=%@",model.ID,UID,TOKEN];
+    
+    GoodsWebViewController * VC = [[GoodsWebViewController alloc]init];
+    
+    VC.urlStr = url;
+    
+    
+    if (self.is_tuhao) {
+        self.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:VC animated:YES];
+      
+    }else{
+    
+        self.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:VC animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
+    }
+   
+    
+    
+   
 }
 
 #pragma mark - 获取并设置当前购物车商品总价
@@ -379,10 +483,21 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (self.dataSource.count!=0) {
+        self.tableView.hidden=NO;
+        _myview.hidden=YES;
+        //[_myview removeFromSuperview];
+        self.PScrollView .hidden=YES;
+    }else{
+        
+    }
+    
+    
     return self.dataSource.count;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    
     return 1;
 }
 
@@ -510,9 +625,37 @@
 }
 - (UIView *)customViewForEmptyDataSet:(UIScrollView *)scrollView {
     //加入你自定义的view
-    UIView * view = [[NSBundle mainBundle]loadNibNamed:@"ShoppingcartViewNull" owner:self options:nil].firstObject;
-    view.frame = CGRectMake(0, 0, WIDTH, HEIGHT);
-    return view;
+    self.tableView.hidden=YES;
+     _myview.hidden=NO;
+    self.PScrollView.hidden=NO;
+    
+    
+    //myview.backgroundColor=[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1];
+   
+    return nil;
+}
+
+
+
+
+
+-(void)getData:(NSString *)page andTop:(NSString *)top
+{
+     page=@"1";
+     top=@"1";
+    [ToolClass getPub_lucky:^(NSDictionary *dic) {
+        
+
+        
+        NSArray *  array = dic[@"data"];
+        
+        for (NSDictionary * dict in array) {
+            BuyTogetherModel * model = [[BuyTogetherModel alloc]initWithDictionary:dict error:nil];
+           
+            [self.otdataSource addObject:model];
+        }
+        [self.PScrollView.pageScrollView reloadData];
+    } page:page andTop:top];
 }
 
 @end

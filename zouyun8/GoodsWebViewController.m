@@ -313,7 +313,7 @@
                         
                         
                         //停止加载不然跳转时可能会线程死掉
-                        self.webView.delegate = nil;
+                        //self.webView.delegate = nil;
                         [self.webView stopLoading];
                         
                         ShoppingcartViewController *vc=[[ShoppingcartViewController alloc]init];
@@ -352,7 +352,7 @@
                                 
                                 
                                 //停止加载不然跳转时可能会线程死掉
-                                self.webView.delegate = nil;
+                                //self.webView.delegate = nil;
                                 [self.webView stopLoading];
                                 ShoppingcartViewController *vc=[[ShoppingcartViewController alloc]init];
                                 
@@ -380,7 +380,7 @@
                                 
                                 
                                 //停止加载不然跳转时可能会线程死掉
-                                self.webView.delegate = nil;
+//                                self.webView.delegate = nil;
                                 [self.webView stopLoading];
                                 ShoppingcartViewController *vc=[[ShoppingcartViewController alloc]init];
                                 
@@ -632,7 +632,7 @@
                 }
                 
                 //停止加载不然跳转时可能会线程死掉
-                self.webView.delegate = nil;
+                //self.webView.delegate = nil;
                 [self.webView stopLoading];
 
                 

@@ -1,5 +1,6 @@
 #import "SettleAccountsViewController.h"
 #import "UPPaymentControl.h"
+#import "KKWebViewController.h"
 @interface SettleAccountsViewController ()<UITableViewDelegate,UITableViewDataSource,SettleView4Delegate,SettleView5Delegate,SettleView6Delegate,UIAlertViewDelegate>{
 
 
@@ -211,7 +212,7 @@
                      
                      
                      
-                 } orderID:self.orderID payType:@"0"];
+                 } orderID:self.orderID payType:@"0" andApp:@"1"];
                  
              } order:self.json addressID:self.defaultAddressID is_discount:self.is_discount payID:@"1" payType:@"0" rechargeMoney:nil app:@"1"];
         }
@@ -500,7 +501,7 @@
                     //调用微信Sdk支付
                     [self jumpToBizPay:dic];
                 }
-            } orderID:self.orderID payType:@"1"];
+            } orderID:self.orderID payType:@"1" andApp:@"1"];
             
         } order:self.json addressID:self.defaultAddressID is_discount:self.is_discount payID:@"2" payType:@"1" rechargeMoney:self.rechargeNum app:@"1"];
     }
@@ -545,9 +546,9 @@
          //根据订单信息，获取到支付的参数
          [ToolClass getPayParameter:^(NSDictionary *dic) {
              NSLog(@"支付参数为%@",dic);
-            
+           
              
-             if (dic[@"tn"] == NULL)
+             if (dic[@"strHtml"] == NULL)
              {
                  [SVProgressHUD showErrorWithStatus:@"获取订单失败，请重新提交"];
                  [NSThread sleepForTimeInterval:1];
@@ -557,14 +558,23 @@
                  [SVProgressHUD showSuccessWithStatus:@"获取订单成功"];
                  
                  
-                 [self UnionPay:dic[@"tn"]];
+                 
+                 NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+                 //添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知
+                 [center addObserver:self selector:@selector(unionPaySuccessNotice:) name:@"yinliansuccess"object:nil];
+
+                 KKWebViewController *VC=[[KKWebViewController alloc]init];
+                 VC.htmlStr=dic[@"strHtml"];
+                 self.hidesBottomBarWhenPushed=YES;
+                 [self.navigationController pushViewController:VC animated:YES];
+                 //[self UnionPay:dic[@"tn"]];
                  //[self jumpToBizPay:dic];
              }
              
 
              
              
-         } orderID:self.orderID payType:@"0"];        // payID 1走运币 2微信 3银联
+         } orderID:self.orderID payType:@"0" andApp:@"0"];        // payID 1走运币 2微信 3银联
          
      } order:self.json addressID:self.defaultAddressID is_discount:self.is_discount payID:@"3" payType:@"0" rechargeMoney:nil app:@"1"];
 
@@ -645,7 +655,7 @@
                  [self jumpToBizPay:dic];
              }
 
-         } orderID:self.orderID payType:@"0"];
+         } orderID:self.orderID payType:@"0" andApp:@"1"];
          
      } order:self.json addressID:self.defaultAddressID is_discount:self.is_discount payID:@"2" payType:@"0" rechargeMoney:nil app:@"1"];
 }
@@ -667,13 +677,13 @@
     }
     else
     {
-        self.view6.totalPrice.text = [NSString stringWithFormat:@"%.2f",[self.totalPrice floatValue] - [self.discountMoney floatValue]];
+        self.view6.totalPrice.text = [NSString stringWithFormat:@"%.2f元",[self.totalPrice floatValue] - [self.discountMoney floatValue]];
         self.is_discount = @"1";
     }
 }
 -(void)resetTotalPrice
 {
-    self.view6.totalPrice.text = self.totalPrice;
+    self.view6.totalPrice.text =[NSString stringWithFormat:@"%@元",self.totalPrice];
     self.is_discount = @"0";
 }
 -(NSMutableArray *)dataSource
@@ -981,7 +991,7 @@
        
    
          
-         [self getDefaultAddress];
+         //[self getDefaultAddress];
      }
          failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
@@ -1005,14 +1015,28 @@
     self.view1.GoodsCount.text = [NSString stringWithFormat:@"%lu",(unsigned long)self.dataSource.count];
     
     [self.view addSubview:self.view1];
+    
+    
+    if (self.dataSource.count > 3) {
+        self.tableView.frame = CGRectMake(0, CGRectGetMaxY(self.view1.frame), WIDTH, 3 * 44);
+    }
+    else
+    {
+        self.tableView.frame = CGRectMake(0, CGRectGetMaxY(self.view1.frame), WIDTH, self.dataSource.count * 44);
+    }
+
+    [self.view1.arrowBtn setImage:[UIImage imageNamed:@"indicator_newa"] forState:UIControlStateNormal];
+     [self.view addSubview:self.tableView];
+    
     //添加点击手势
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
-    [self.view1 addGestureRecognizer:tap];
+    [self.view1.arrowBtn addGestureRecognizer:tap];
     
     self.view2 = [[NSBundle mainBundle]loadNibNamed:@"SettleView2" owner:self options:nil].firstObject;
     self.view2.bonus.text = [NSString stringWithFormat:@"%.2f",[self.score floatValue]/10.0];
     self.view2.deduction.text = self.discount;
-    self.view2.frame = CGRectMake(0, CGRectGetMaxY(self.view1.frame), WIDTH, 44);
+   // self.view2.frame = CGRectMake(0, CGRectGetMaxY(self.view1.frame), WIDTH, 44);
+     self.view2.frame = CGRectMake(0, CGRectGetMaxY(self.tableView.frame), WIDTH, 44);
     [self.view addSubview:self.view2];
     
     self.view3 = [[NSBundle mainBundle]loadNibNamed:@"SettleView3" owner:self options:nil].firstObject;
@@ -1034,7 +1058,7 @@
     
     self.view6 = [[NSBundle mainBundle]loadNibNamed:@"SettleView6" owner:self options:nil].firstObject;
     self.view6.delegate = self;
-    self.view6.totalPrice.text = self.totalPrice;
+    self.view6.totalPrice.text =[NSString stringWithFormat:@"%@元", self.totalPrice];
     self.view6.frame = CGRectMake(0, HEIGHT - 49, WIDTH, 49);
     self.view6.tijiaodingdanBt.layer.cornerRadius=4;
     [self.view addSubview:self.view6];
@@ -1042,9 +1066,9 @@
 -(void)tap:(UITapGestureRecognizer*)recognizer
 {
     NSLog(@"点击了");
-    if (self.is_expaned == NO) {
+    if (self.is_expaned == YES) {
         //箭头向下
-        [self.view1.arrowBtn setImage:[UIImage imageNamed:@"indicator_new向下"] forState:UIControlStateNormal];
+        [self.view1.arrowBtn setImage:[UIImage imageNamed:@"indicator_newa"] forState:UIControlStateNormal];
         //点击操作
         [UIView animateWithDuration:0.5 animations:^{
             if (self.dataSource.count > 3) {
@@ -1058,14 +1082,14 @@
             self.view3.frame = CGRectMake(0, CGRectGetMaxY(self.view2.frame), WIDTH, 44);
             self.view4.frame = CGRectMake(0, CGRectGetMaxY(self.view3.frame), WIDTH, 44);
             self.view5.frame = CGRectMake(0, CGRectGetMaxY(self.view4.frame), WIDTH, 44);
-            [self.view addSubview:self.tableView];
+            //[self.view addSubview:self.tableView];
         }];
-        self.is_expaned = YES;
+        self.is_expaned = NO;
     }
     else
     {
         //箭头向上
-        [self.view1.arrowBtn setImage:[UIImage imageNamed:@"Indicator"] forState:UIControlStateNormal];
+        [self.view1.arrowBtn setImage:[UIImage imageNamed:@"indicator_newb"] forState:UIControlStateNormal];
         [UIView animateWithDuration:0.5 animations:^{
             self.tableView.frame = CGRectMake(0, CGRectGetMaxY(self.view1.frame), WIDTH, 0);
             self.view2.frame = CGRectMake(0, CGRectGetMaxY(self.view1.frame), WIDTH, 44);
@@ -1073,7 +1097,7 @@
             self.view4.frame = CGRectMake(0, CGRectGetMaxY(self.view3.frame), WIDTH, 44);
             self.view5.frame = CGRectMake(0, CGRectGetMaxY(self.view4.frame), WIDTH, 44);
         }];
-        self.is_expaned = NO;
+        self.is_expaned = YES;
     }
 }
 -(void)createTableView
@@ -1089,12 +1113,13 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell * cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+    UITableViewCell * cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     SettleModel * model = [self.dataSource objectAtIndex:indexPath.row];
     cell.textLabel.text = model.name;
     cell.textLabel.font = [UIFont systemFontOfSize:12];
     cell.textLabel.textColor = [UIColor greenColor];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",model.num];
+    
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@份",model.num];
     return cell;
 }
 
